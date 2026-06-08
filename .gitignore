@@ -1,0 +1,5 @@
+.DS_Store
+*.log
+preview-*.png
+footer-*.png
+pdf-preview/
