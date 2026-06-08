@@ -1655,7 +1655,7 @@ html[data-theme="dark"] .cookie-consent-option input:checked + i::before {
   background-position: center;
   background-size: cover;
   filter: grayscale(100%) saturate(0.72) contrast(1.12) brightness(0.58);
-  transition: background-image 160ms linear;
+  contain: paint;
 }
 
 .hero-frame-color {
@@ -1666,7 +1666,8 @@ html[data-theme="dark"] .cookie-consent-option input:checked + i::before {
   background-size: cover;
   filter: saturate(1.55) contrast(1.14) brightness(0.95);
   pointer-events: none;
-  transition: background-image 160ms linear;
+  contain: paint;
+  will-change: -webkit-mask-image, mask-image;
   -webkit-mask-image: var(--hero-bg-brush-mask);
   mask-image: var(--hero-bg-brush-mask);
   -webkit-mask-repeat: no-repeat;

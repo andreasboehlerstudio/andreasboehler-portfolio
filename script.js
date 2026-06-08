@@ -821,8 +821,6 @@ setupPageLoader();
 setupStudioCursor();
 unlockPageScroll();
 
-const heroImage = "assets/andreas-virtual-production.jpg";
-
 const projectData = {
   "50-jahre-europa-park": {
     title: "50 Jahre Europa-Park",
@@ -1153,10 +1151,15 @@ function setupHeroBackgroundBrush() {
     return;
   }
 
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    return;
+  }
+
   const state = {
     lastPoint: null,
     points: []
   };
+  let maskFrame = null;
 
   const updateMask = () => {
     const trailPoints = state.points.slice(0, -1);
@@ -1195,6 +1198,17 @@ function setupHeroBackgroundBrush() {
     heroFrameColor.style.setProperty("--hero-bg-brush-mask", mask);
   };
 
+  const scheduleMaskUpdate = () => {
+    if (maskFrame) {
+      return;
+    }
+
+    maskFrame = window.requestAnimationFrame(() => {
+      maskFrame = null;
+      updateMask();
+    });
+  };
+
   const addPoint = (event) => {
     const rect = heroBrushSurface.getBoundingClientRect();
     const point = {
@@ -1209,7 +1223,7 @@ function setupHeroBackgroundBrush() {
 
     const lastPoint = state.lastPoint || point;
     const distance = Math.hypot(point.x - lastPoint.x, point.y - lastPoint.y);
-    const steps = Math.max(1, Math.ceil(distance / 22));
+    const steps = Math.max(1, Math.ceil(distance / 34));
 
     for (let index = 0; index <= steps; index += 1) {
       const amount = index / steps;
@@ -1219,9 +1233,9 @@ function setupHeroBackgroundBrush() {
       });
     }
 
-    state.points = state.points.slice(-82);
+    state.points = state.points.slice(-42);
     state.lastPoint = point;
-    updateMask();
+    scheduleMaskUpdate();
   };
 
   heroBrushSurface.addEventListener(brushMoveEvent, addPoint, { passive: true });
@@ -1340,10 +1354,6 @@ function updateHero() {
   const scrollable = hero.offsetHeight - window.innerHeight;
   const progress = clamp(-rect.top / Math.max(scrollable, 1), 0, 1);
 
-  heroFrame.style.backgroundImage = `url("${heroImage}")`;
-  if (heroFrameColor) {
-    heroFrameColor.style.backgroundImage = `url("${heroImage}")`;
-  }
   heroTitle.style.opacity = clamp(1 - progress * 1.25, 0, 1);
   heroTitle.style.transform = `translateY(${-progress * 46}px)`;
 }
