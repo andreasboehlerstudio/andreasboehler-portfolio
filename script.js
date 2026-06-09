@@ -83,9 +83,10 @@ function setupBrandMarks() {
     link.setAttribute("aria-label", "Andreas Boehler Studio Startseite");
     wordmark.className = "site-mark-wordmark";
     wordmark.setAttribute("aria-hidden", "true");
-    wordmark.innerHTML = "<span>ANDREAS-</span><span>BOEHLER.</span>";
+    wordmark.innerHTML = "<span>ANDREAS</span><span>BOEHLER</span>";
     link.append(createBrandGlyph("brand-glyph site-mark-glyph"), wordmark);
     nav.append(link);
+    document.documentElement.classList.add("is-brand-pending");
   }
 
   document.querySelectorAll(".footer-mark").forEach((mark) => {
@@ -142,6 +143,26 @@ function setupWorksViewToggle() {
   });
 
   setView("grid");
+}
+
+function setupWorksScrollCue() {
+  const cue = document.querySelector(".works-scroll-cue");
+
+  if (!cue) {
+    return;
+  }
+
+  cue.addEventListener("click", (event) => {
+    const target = document.querySelector(cue.getAttribute("href"));
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.pushState(null, "", cue.getAttribute("href"));
+  });
 }
 
 function setupDynamicCopyright() {
@@ -288,6 +309,24 @@ function setupPageLoader() {
     return;
   }
 
+  const getLoaderSectionLabel = () => {
+    const activeNavLabel = document.querySelector(".nav-item.active span")?.textContent.trim();
+    const pageLabels = {
+      home: "Home",
+      works: "Works",
+      services: "Services",
+      about: "About",
+      contact: "Contact",
+      faq: "FAQ",
+      privacy: "Datenschutz",
+      imprint: "Impressum",
+      agb: "AGB"
+    };
+    const fallbackLabel = pageLabels[document.body?.dataset.page] || document.title.split("|")[0] || "Studio";
+
+    return (activeNavLabel || fallbackLabel).replace(/\s+/g, " ").trim().toUpperCase();
+  };
+
   const loader = document.createElement("div");
   const curtain = document.createElement("div");
   const noise = document.createElement("div");
@@ -295,6 +334,8 @@ function setupPageLoader() {
   const mark = document.createElement("div");
   const glyphStack = document.createElement("div");
   const progressText = document.createElement("div");
+  const loaderSection = document.createElement("div");
+  const loaderSectionTitle = document.createElement("strong");
   const loaderQuote = document.createElement("div");
   const quoteLine = document.createElement("span");
   const quoteMain = document.createElement("strong");
@@ -368,6 +409,8 @@ function setupPageLoader() {
         window.cancelAnimationFrame(progressFrame);
       }
       document.body.classList.remove("is-loading");
+      document.documentElement.classList.add("is-brand-revealed");
+      document.documentElement.classList.remove("is-brand-pending");
       unlockPageScroll();
       window.setTimeout(() => {
         loader.remove();
@@ -390,6 +433,10 @@ function setupPageLoader() {
   glyphStack.append(outlineGlyph, fillGlyph);
   progressText.className = "loader-progress";
   progressText.setAttribute("aria-hidden", "true");
+  loaderSection.className = "loader-section-label";
+  loaderSection.setAttribute("aria-hidden", "true");
+  loaderSectionTitle.textContent = getLoaderSectionLabel();
+  loaderSection.append(loaderSectionTitle);
   loaderQuote.className = "loader-quote";
   quoteLine.textContent = "The average life is";
   quoteMain.textContent = "only about 28000 days";
@@ -403,9 +450,9 @@ function setupPageLoader() {
   mark.className = "loader-mark";
   mark.append(glyphStack, progressText);
   if (showLoaderQuote) {
-    loaderStage.append(loaderQuote, mark);
+    loaderStage.append(loaderQuote, mark, loaderSection);
   } else {
-    loaderStage.append(mark);
+    loaderStage.append(mark, loaderSection);
   }
   loader.append(curtain, noise, loaderStage);
   document.body.prepend(loader);
@@ -424,10 +471,10 @@ function setupPageLoader() {
       loaderQuote.style.transform = "translate3d(0, 0, 0)";
     }
     mark.style.opacity = "1";
-    mark.style.filter = "blur(0) drop-shadow(0 28px 70px rgba(17, 17, 17, 0.16))";
+    mark.style.filter = "blur(0)";
     mark.style.transform = "translate3d(0, 0, 0)";
     glyphStack.style.opacity = "1";
-    glyphStack.style.filter = "blur(0) drop-shadow(0 28px 70px rgba(17, 17, 17, 0.16))";
+    glyphStack.style.filter = "blur(0)";
     glyphStack.style.transform = "translate3d(0, 0, 0)";
     outlinePath?.style.setProperty("stroke-dashoffset", "0");
     window.setTimeout(() => {
@@ -445,6 +492,8 @@ function setupPageLoader() {
   waitAndHide();
   window.setTimeout(() => {
     loader.remove();
+    document.documentElement.classList.add("is-brand-revealed");
+    document.documentElement.classList.remove("is-brand-pending");
     unlockPageScroll();
   }, 6200);
 }
@@ -1945,6 +1994,7 @@ window.addEventListener("resize", updatePage);
 renderProjectPage();
 setupNavHoverLabels();
 setupWorksViewToggle();
+setupWorksScrollCue();
 setupBriefingForm();
 setupTalkButton();
 setupThemeToggle();
