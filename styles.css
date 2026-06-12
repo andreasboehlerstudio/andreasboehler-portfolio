@@ -10283,8 +10283,8 @@ html.is-brand-revealed .site-nav.is-open .site-mark-link {
 }
 
 .service-lite-hero h1 {
-  max-width: 96vw;
-  font-size: clamp(7.2rem, 25vw, 31rem);
+  max-width: calc(100vw - (var(--section-x-slim) * 2));
+  font-size: clamp(3.9rem, calc((100vw - (var(--section-x-slim) * 2)) * 0.237), 31rem);
   line-height: 0.72;
 }
 
@@ -10719,7 +10719,8 @@ html[data-theme="dark"] .service-proof-band--lite {
   }
 
   .service-lite-hero h1 {
-    font-size: clamp(4.8rem, 24vw, 11.4rem);
+    max-width: calc(100vw - 48px);
+    font-size: clamp(3.75rem, calc((100vw - 48px) * 0.237), 8rem);
     line-height: 0.76;
   }
 
