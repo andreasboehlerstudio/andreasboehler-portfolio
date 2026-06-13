@@ -35,287 +35,367 @@
       {
         "@context": "https://schema.org",
         "@graph": [
-          {
-            "@type": [
-              "ProfessionalService",
-              "LocalBusiness"
-            ],
-            "@id": "https://andreasboehler.com/#studio",
-            "name": "Andreas Boehler Studio",
-            "url": "https://andreasboehler.com/",
-            "logo": "https://andreasboehler.com/assets/andreas-hero-video.png",
-            "image": "https://andreasboehler.com/assets/andreas-wedding.jpg",
-            "slogan": "Creating moments not images",
-            "description": "Regisseur, Fotograf, DoP und Art Director für Werbefilm, Markenfotografie, Portraitfotografie, Reportage und visuelle Kampagnen aus Freiburg/Basel.",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Freiburg im Breisgau",
-              "addressRegion": "Baden-Württemberg",
-              "addressCountry": "DE"
-            },
-            "areaServed": [
-              "Freiburg im Breisgau",
-              "Basel",
-              "Deutschland",
-              "Schweiz",
-              "Europa"
-            ],
-            "founder": {
-              "@type": "Person",
-              "@id": "https://andreasboehler.com/about.html#andreas-boehler",
-              "name": "Andreas Boehler",
-              "jobTitle": "Regisseur, Fotograf, DoP, Creative Film-Producer und Art Director"
-            },
-            "sameAs": [
-              "https://www.instagram.com/andy.cinematic/",
-              "https://www.linkedin.com/in/andreas-boehler/",
-              "https://www.behance.net/andyboehler"
-            ],
-            "knowsAbout": [
-              "Portraitfotografie",
-              "Reportagefotografie",
-              "Markenfotografie",
-              "Lifestyle Fotografie",
-              "Business Portrait",
-              "Behind the Scenes",
-              "Cinematic Stills",
-              "Kampagnenfotografie"
-            ]
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://andreasboehler.com/#website",
-            "url": "https://andreasboehler.com/",
-            "name": "Andreas Boehler Studio",
-            "inLanguage": "de-DE",
-            "publisher": {
-              "@id": "https://andreasboehler.com/#studio"
-            }
-          },
-          {
-            "@type": "ImageGallery",
-            "@id": "https://andreasboehler.com/photography.html#webpage",
-            "url": "https://andreasboehler.com/photography.html",
-            "name": "Still Photography | Fotograf Freiburg & Basel",
-            "description": "Fotografie-Portfolio von Andreas Boehler Studio mit Portraitfotografie, Reportagefotografie, Markenfotografie, Behind-the-Scenes und cinematischen Stills.",
-            "inLanguage": "de-DE",
-            "isPartOf": {
-              "@id": "https://andreasboehler.com/#website"
-            },
-            "about": {
-              "@id": "https://andreasboehler.com/#studio"
-            },
-            "publisher": {
-              "@id": "https://andreasboehler.com/#studio"
-            },
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://andreasboehler.com/assets/andreas-wedding.jpg"
-            },
-            "breadcrumb": {
-              "@id": "https://andreasboehler.com/photography.html#breadcrumb"
-            },
-            "mainEntity": {
-              "@id": "https://andreasboehler.com/photography.html#photo-list"
-            }
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://andreasboehler.com/photography.html#breadcrumb",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://andreasboehler.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Works",
-                "item": "https://andreasboehler.com/works.html"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Photography",
-                "item": "https://andreasboehler.com/photography.html"
-              }
-            ]
-          },
-          {
-            "@type": "ItemList",
-            "@id": "https://andreasboehler.com/photography.html#photo-list",
-            "name": "Fotografie-Auswahl von Andreas Boehler Studio",
-            "itemListOrder": "https://schema.org/ItemListOrderAscending",
-            "numberOfItems": 16,
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Wedding Reportage",
-                  "description": "Cinematische Hochzeitsreportage und emotionale Portraitfotografie.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-wedding.jpg"
+                {
+                        "@type": [
+                                "ProfessionalService",
+                                "LocalBusiness"
+                        ],
+                        "@id": "https://andreasboehler.com/#studio",
+                        "name": "Andreas Boehler Studio",
+                        "url": "https://andreasboehler.com/",
+                        "logo": "https://andreasboehler.com/assets/andreas-hero-video.png",
+                        "image": "https://andreasboehler.com/assets/andreas-wedding.jpg",
+                        "slogan": "Creating moments not images",
+                        "description": "Regisseur, Fotograf, DoP und Art Director für Werbefilm, Markenfotografie, Portraitfotografie, Reportage und visuelle Kampagnen aus Freiburg/Basel.",
+                        "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "Freiburg im Breisgau",
+                                "addressRegion": "Baden-Württemberg",
+                                "addressCountry": "DE"
+                        },
+                        "areaServed": [
+                                "Freiburg im Breisgau",
+                                "Basel",
+                                "Deutschland",
+                                "Schweiz",
+                                "Europa"
+                        ],
+                        "founder": {
+                                "@type": "Person",
+                                "@id": "https://andreasboehler.com/about.html#andreas-boehler",
+                                "name": "Andreas Boehler",
+                                "jobTitle": "Regisseur, Fotograf, DoP, Creative Film-Producer und Art Director"
+                        },
+                        "sameAs": [
+                                "https://www.instagram.com/andy.cinematic/",
+                                "https://www.linkedin.com/in/andreas-boehler/",
+                                "https://www.behance.net/andyboehler"
+                        ],
+                        "knowsAbout": [
+                                "Portraitfotografie",
+                                "Reportagefotografie",
+                                "Markenfotografie",
+                                "Lifestyle Fotografie",
+                                "Business Portrait",
+                                "Behind the Scenes",
+                                "Cinematic Stills",
+                                "Kampagnenfotografie"
+                        ]
+                },
+                {
+                        "@type": "WebSite",
+                        "@id": "https://andreasboehler.com/#website",
+                        "url": "https://andreasboehler.com/",
+                        "name": "Andreas Boehler Studio",
+                        "inLanguage": "de-DE",
+                        "publisher": {
+                                "@id": "https://andreasboehler.com/#studio"
+                        }
+                },
+                {
+                        "@type": "ImageGallery",
+                        "@id": "https://andreasboehler.com/photography.html#webpage",
+                        "url": "https://andreasboehler.com/photography.html",
+                        "name": "Still Photography | Fotograf Freiburg & Basel",
+                        "description": "Fotografie-Portfolio von Andreas Boehler Studio mit Portraitfotografie, Reportagefotografie, Markenfotografie, Behind-the-Scenes und cinematischen Stills.",
+                        "inLanguage": "de-DE",
+                        "isPartOf": {
+                                "@id": "https://andreasboehler.com/#website"
+                        },
+                        "about": {
+                                "@id": "https://andreasboehler.com/#studio"
+                        },
+                        "publisher": {
+                                "@id": "https://andreasboehler.com/#studio"
+                        },
+                        "primaryImageOfPage": {
+                                "@type": "ImageObject",
+                                "url": "https://andreasboehler.com/assets/andreas-wedding.jpg"
+                        },
+                        "breadcrumb": {
+                                "@id": "https://andreasboehler.com/photography.html#breadcrumb"
+                        },
+                        "mainEntity": {
+                                "@id": "https://andreasboehler.com/photography.html#photo-list"
+                        }
+                },
+                {
+                        "@type": "BreadcrumbList",
+                        "@id": "https://andreasboehler.com/photography.html#breadcrumb",
+                        "itemListElement": [
+                                {
+                                        "@type": "ListItem",
+                                        "position": 1,
+                                        "name": "Home",
+                                        "item": "https://andreasboehler.com/"
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 2,
+                                        "name": "Works",
+                                        "item": "https://andreasboehler.com/works.html"
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 3,
+                                        "name": "Photography",
+                                        "item": "https://andreasboehler.com/photography.html"
+                                }
+                        ]
+                },
+                {
+                        "@type": "ItemList",
+                        "@id": "https://andreasboehler.com/photography.html#photo-list",
+                        "name": "Fotografie-Auswahl von Andreas Boehler Studio",
+                        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+                        "numberOfItems": 24,
+                        "itemListElement": [
+                                {
+                                        "@type": "ListItem",
+                                        "position": 1,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Wedding Reportage",
+                                                "description": "Cinematische Hochzeitsreportage und emotionale Portraitfotografie.",
+                                                "contentUrl": "https://andreasboehler.com/assets/andreas-wedding.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 2,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Paris",
+                                                "description": "Cinematisches Travel-Detail mit urbaner Stimmung.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-paris.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 3,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Ocean Coast",
+                                                "description": "Landschaftsfotografie mit rauer Kueste und filmischer Farbigkeit.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-ocean-coast.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 4,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Hamburg",
+                                                "description": "Architektur- und Stadtfotografie mit klarer grafischer Perspektive.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-hamburg.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 5,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Vietnam",
+                                                "description": "Reportagefotografie mit dichter Beobachtung und natuerlichem Licht.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-vietnam.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 6,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Jeep Wrangler on Hawaii",
+                                                "description": "Automotive- und Lifestyle-Fotografie mit dynamischer Landschaft.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-jeep-wrangler-on-hawaii.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 7,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Christoph Goettel Portrait",
+                                                "description": "Charakterportrait mit reduziertem Licht und ruhiger Inszenierung.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-christoph-goettel-artist-portrait.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 8,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Valentin Business Portrait",
+                                                "description": "Business Portrait mit dunklem Studiohintergrund.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-valentin-business-portrait.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 9,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Businessportrait Kurt",
+                                                "description": "Business Portrait mit ruhiger Lichtsetzung.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-businessportrait-kurt.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 10,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Sportportrait Irene",
+                                                "description": "Sportportrait mit klarer Haltung und konzentriertem Ausdruck.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-sportsportrait-irene.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 11,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Larissa Spring Feels",
+                                                "description": "Lifestyle-Portrait mit Gegenlicht und warmer Stimmung.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-larissa-spring-feels.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 12,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Larissa Autumn Spirit",
+                                                "description": "Portraitfotografie mit natuerlichem Licht und editorialer Anmutung.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-larissa-autumn-spirit.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 13,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Dogportrait Ilvy & Co",
+                                                "description": "Tierportrait am See mit filmischer Stimmung.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-dogportrait-ilvy-co.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 14,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Wedding Albana Max",
+                                                "description": "Emotionale Hochzeitsreportage mit natuerlichem Moment.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-hochzeit-albana-max.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 15,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Mareike Daniel Wedding",
+                                                "description": "Hochzeitsportrait mit intimer Naehe und weichem Licht.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-mareike-daniel-wedding.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 16,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Familienportrait Foro",
+                                                "description": "Familienportrait mit natuerlicher Pose.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-familienportrait-foro.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 17,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "One Stop in Venedig",
+                                                "description": "Travel-Fotografie mit Architektur und Licht.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-one-stop-in-venedig.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 18,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Le Louvre during night",
+                                                "description": "Architekturfotografie bei Nacht mit klarer Spiegelung und ruhiger Lichtstimmung.",
+                                                "contentUrl": "https://andreasboehler.com/assets/500px-le-louvre-during-night.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 19,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Bridge of Sighs",
+                                                "description": "Venedig-Architektur mit symmetrischer Komposition und reduzierter Farbigkeit.",
+                                                "contentUrl": "https://andreasboehler.com/assets/500px-bridge-of-sighs.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 20,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Lenk Switzerland",
+                                                "description": "Landschaftsfotografie aus der Schweiz mit weitem Blick und ruhigem Licht.",
+                                                "contentUrl": "https://andreasboehler.com/assets/500px-lenk-switzerland.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 21,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Rock Sea Black Forest",
+                                                "description": "Reduzierte Schwarzwald-Landschaft mit filmischer Tiefe und ruhiger Komposition.",
+                                                "contentUrl": "https://andreasboehler.com/assets/500px-rock-sea-black-forest.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 22,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Feldberg Tower",
+                                                "description": "Reduzierte Landschafts- und Architekturfotografie vom Feldberg mit ruhiger Stimmung.",
+                                                "contentUrl": "https://andreasboehler.com/assets/500px-feldberg-tower.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 23,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Venice Doors",
+                                                "description": "Architekturdetail aus Venedig mit grafischer Struktur und warmem Seitenlicht.",
+                                                "contentUrl": "https://andreasboehler.com/assets/500px-venice-doors.jpg"
+                                        }
+                                },
+                                {
+                                        "@type": "ListItem",
+                                        "position": 24,
+                                        "item": {
+                                                "@type": "ImageObject",
+                                                "name": "Praxis Seesemann Commercial Fotografie",
+                                                "description": "Kommerzielle Detailfotografie fuer eine Zahnarztpraxis.",
+                                                "contentUrl": "https://andreasboehler.com/assets/live-praxis-seesemann-commercial-fotografie.jpg"
+                                        }
+                                }
+                        ]
                 }
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Portrait Andreas Boehler",
-                  "description": "Portraitfotografie mit filmischem Licht.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-about-portrait.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Kameramann Portrait",
-                  "description": "Markenfotografie und Personal Branding im Produktionskontext.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-fotograf.png"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 4,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Lighting Reportage",
-                  "description": "Reportagefotografie am Set mit Fokus auf Licht und Bewegung.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-services-lighting.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 5,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Direction Moment",
-                  "description": "Behind-the-Scenes Fotografie und dokumentarischer Set-Moment.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-about-directing.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 6,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Camera Rig",
-                  "description": "Cinematische Equipment-Fotografie für Filmproduktion und DoP.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-services-camera-rig.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 7,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Production Team",
-                  "description": "Dokumentarische Fotografie eines kreativen Produktionsprozesses.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-about-production-team.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 8,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Creative Tech",
-                  "description": "Reportage und Markenbild für digitale Produktionsprozesse.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-services-creative-tech.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 9,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Entertainment Still",
-                  "description": "Cinematische Stills aus Entertainment- und Kampagnenkontext.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-europapark.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 10,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Filmischer Moment",
-                  "description": "Atmosphärische Fotografie zwischen Filmstill und Kampagnenbild.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-hero-film.png"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 11,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "RED Camera",
-                  "description": "Equipment-Fotografie einer RED Cinema Kamera als filmisches Arbeitsdetail.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-services-red-camera.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 12,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Green Screen",
-                  "description": "Creative-Tech- und Green-Screen-Produktion als fotografischer Set-Moment.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-services-green-screen.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 13,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Entertainment Production",
-                  "description": "Filmische Fotografie aus einer Entertainment-Produktion.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-amusement-park.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 14,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Tourtrailer Still",
-                  "description": "Cinematischer Still aus einer Tourtrailer-Produktion.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-djbobo.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 15,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Duolingo Spec Ad",
-                  "description": "Werbefilm-Still mit markanter Farb- und Lichtstimmung.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-duolingo.jpg"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 16,
-                "item": {
-                  "@type": "ImageObject",
-                  "name": "Virtual Production",
-                  "description": "Virtual-Production-Still aus einem Healthcare- und Creative-Tech-Kontext.",
-                  "contentUrl": "https://andreasboehler.com/assets/andreas-virtual-production.jpg"
-                }
-              }
-            ]
-          }
         ]
-      }
+}
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260612-services-responsive1">
+    <link rel="stylesheet" href="styles.css?v=20260613-menu-close-sync6">
   </head>
   <body data-page="works">
     <nav class="site-nav" aria-label="Hauptnavigation">
@@ -339,50 +419,74 @@
           <figure class="photo-tile photo-tile-hero photo-focus-center" id="people">
             <img src="assets/andreas-wedding.jpg" alt="Cinematische Hochzeitsreportage von Andreas Boehler" width="1400" height="933" loading="eager" decoding="async">
           </figure>
-          <figure class="photo-tile photo-tile-tall photo-focus-face">
-            <img src="assets/andreas-about-portrait.jpg" alt="Portraitfotografie von Andreas Boehler" width="1800" height="1225" loading="eager" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-square photo-focus-left">
-            <img src="assets/andreas-fotograf.png" alt="Markenfotografie und Personal Branding im Produktionskontext" width="1024" height="819" loading="eager" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-wide photo-focus-center">
-            <img src="assets/andreas-about-directing.jpg" alt="Dokumentarischer Set-Moment bei einer Filmproduktion" width="2200" height="1466" loading="lazy" decoding="async">
+          <figure class="photo-tile photo-tile-tall photo-focus-center">
+            <img src="assets/live-paris.jpg" alt="Travel-Fotografie mit Eiffelturm und urbanem Detail" width="934" height="1400" loading="eager" decoding="async">
           </figure>
           <figure class="photo-tile photo-tile-square photo-focus-center" id="places">
-            <img src="assets/andreas-europapark.jpg" alt="Cinematischer Still aus Entertainment- und Kampagnenkontext" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-tall photo-focus-left">
-            <img src="assets/andreas-services-lighting.jpg" alt="Reportagefotografie am Filmset mit Licht" width="2200" height="1466" loading="lazy" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-hero photo-focus-center">
-            <img src="assets/andreas-hero-film.png" alt="Atmosphärische Fotografie zwischen Filmstill und Kampagnenbild" width="1920" height="975" loading="lazy" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-wide photo-focus-center">
-            <img src="assets/andreas-about-production-team.jpg" alt="Dokumentarische Fotografie eines Produktionsteams" width="2200" height="1466" loading="lazy" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-square photo-focus-center" id="things">
-            <img src="assets/andreas-services-red-camera.jpg" alt="RED Cinema Kamera als filmisches Arbeitsdetail von Andreas Boehler Studio" width="1800" height="1200" loading="lazy" decoding="async">
+            <img src="assets/live-ocean-coast.jpg" alt="Landschaftsfotografie einer felsigen Kueste" width="1400" height="933" loading="lazy" decoding="async">
           </figure>
           <figure class="photo-tile photo-tile-tall photo-focus-center">
-            <img src="assets/andreas-services-camera-rig.jpg" alt="Cinematische Equipment-Fotografie einer Kamera" width="2200" height="1466" loading="lazy" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-square photo-focus-center">
-            <img src="assets/andreas-services-green-screen.jpg" alt="Green Screen Produktion für Creative Tech und Compositing" width="2200" height="1466" loading="lazy" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-wide photo-focus-center">
-            <img src="assets/andreas-services-creative-tech.jpg" alt="Reportage und Markenbild für digitale Produktionsprozesse" width="2200" height="1466" loading="lazy" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-hero photo-focus-center">
-            <img src="assets/andreas-amusement-park.jpg" alt="Filmische Fotografie aus einer Entertainment-Produktion" width="1880" height="1058" loading="lazy" decoding="async">
-          </figure>
-          <figure class="photo-tile photo-tile-square photo-focus-center">
-            <img src="assets/andreas-djbobo.jpg" alt="Cinematischer Still aus einer Tourtrailer-Produktion" width="1920" height="1080" loading="lazy" decoding="async">
+            <img src="assets/live-hamburg.jpg" alt="Architekturfotografie in Hamburg mit grafischer Perspektive" width="1708" height="2560" loading="lazy" decoding="async">
           </figure>
           <figure class="photo-tile photo-tile-tall photo-focus-center">
-            <img src="assets/andreas-duolingo.jpg" alt="Werbefilm-Still mit markanter Farb- und Lichtstimmung" width="1920" height="1080" loading="lazy" decoding="async">
+            <img src="assets/live-vietnam.jpg" alt="Reportagefotografie aus Vietnam mit Blick von oben" width="927" height="1400" loading="lazy" decoding="async">
           </figure>
           <figure class="photo-tile photo-tile-wide photo-focus-center">
-            <img src="assets/andreas-virtual-production.jpg" alt="Virtual-Production-Still aus einem Healthcare- und Creative-Tech-Kontext" width="1920" height="1080" loading="lazy" decoding="async">
+            <img src="assets/live-jeep-wrangler-on-hawaii.jpg" alt="Jeep Wrangler auf Hawaii als dynamische Automotive-Fotografie" width="1400" height="934" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-tall photo-focus-face">
+            <img src="assets/live-christoph-goettel-artist-portrait.jpg" alt="Kuenstlerportrait mit reduziertem Licht" width="934" height="1400" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-tall photo-focus-face">
+            <img src="assets/live-valentin-business-portrait.jpg" alt="Business Portrait mit dunklem Studiohintergrund" width="934" height="1400" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-tall photo-focus-face">
+            <img src="assets/live-businessportrait-kurt.jpg" alt="Business Portrait mit ruhiger Lichtsetzung" width="934" height="1400" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-tall photo-focus-face">
+            <img src="assets/live-sportsportrait-irene.jpg" alt="Sportportrait mit fokussiertem Ausdruck" width="933" height="1400" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-wide photo-focus-center">
+            <img src="assets/live-larissa-spring-feels.jpg" alt="Lifestyle Portrait im warmen Gegenlicht" width="1400" height="934" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-wide photo-focus-center">
+            <img src="assets/live-larissa-autumn-spirit.jpg" alt="Editoriales Portrait im Herbstlicht" width="1400" height="934" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-square photo-focus-center">
+            <img src="assets/live-dogportrait-ilvy-co.jpg" alt="Hundeportrait am See mit filmischer Stimmung" width="1400" height="934" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-hero photo-focus-center">
+            <img src="assets/live-hochzeit-albana-max.jpg" alt="Emotionale Hochzeitsreportage mit natuerlichem Moment" width="1400" height="934" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-wide photo-focus-center">
+            <img src="assets/live-mareike-daniel-wedding.jpg" alt="Hochzeitsportrait mit weichem Licht und Naehe" width="1400" height="933" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-tall photo-focus-face">
+            <img src="assets/live-familienportrait-foro.jpg" alt="Familienportrait mit natuerlicher Pose" width="934" height="1400" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-tall photo-focus-center">
+            <img src="assets/live-one-stop-in-venedig.jpg" alt="Venedig Fotografie mit Laternen und Architektur" width="934" height="1400" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-wide photo-focus-center">
+            <img src="assets/500px-le-louvre-during-night.jpg" alt="Architekturfotografie des Louvre bei Nacht mit spiegelndem Licht" width="600" height="400" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-wide photo-focus-center">
+            <img src="assets/500px-bridge-of-sighs.jpg" alt="Bridge of Sighs in Venedig als ruhige Architekturfotografie" width="600" height="400" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-wide photo-focus-center">
+            <img src="assets/500px-lenk-switzerland.jpg" alt="Berglandschaft bei Lenk in der Schweiz mit See und Abendlicht" width="600" height="400" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-wide photo-focus-center">
+            <img src="assets/500px-rock-sea-black-forest.jpg" alt="Schwarzwald-Landschaft mit See und Felsen im Vordergrund" width="600" height="301" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-wide photo-focus-center">
+            <img src="assets/500px-feldberg-tower.jpg" alt="Feldberg Tower als reduzierte Landschafts- und Architekturfotografie" width="600" height="301" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-tall photo-focus-center">
+            <img src="assets/500px-venice-doors.jpg" alt="Detailaufnahme einer Tuere in Venedig mit warmem Licht" width="400" height="600" loading="lazy" decoding="async">
+          </figure>
+          <figure class="photo-tile photo-tile-wide photo-focus-center">
+            <img src="assets/live-praxis-seesemann-commercial-fotografie.jpg" alt="Kommerzielle Fotografie fuer eine Zahnarztpraxis" width="1400" height="934" loading="lazy" decoding="async">
           </figure>
         </section>
       </div>
@@ -408,6 +512,6 @@
         <div class="footer-bottom"><span>© 2026 Andreas Boehler Studio.</span><nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></nav><span>Creating moments not images</span></div>
       </footer>
     </main>
-    <script src="script.js?v=20260609-photowall1"></script>
+    <script src="script.js?v=20260613-menu-close-sync6"></script>
   </body>
 </html>
