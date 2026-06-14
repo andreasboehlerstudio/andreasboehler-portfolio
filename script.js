@@ -3181,25 +3181,6 @@ function syncMenuTray(isOpen) {
   navPanel.style.removeProperty("transition");
   menuButton.style.removeProperty("top");
   menuButton.style.removeProperty("transition");
-
-  if (!isOpen) {
-    return;
-  }
-
-  const navStyle = window.getComputedStyle(nav);
-  const navGutter = parseFloat(navStyle.getPropertyValue("--nav-gutter")) || 0;
-  const panelHeight = navPanel.getBoundingClientRect().height;
-
-  navPanel.style.transition = "none";
-  menuButton.style.transition = "none";
-  navPanel.style.clipPath = "none";
-  navPanel.style.transform = "translate3d(0, 0, 0)";
-  menuButton.style.top = `${navGutter + panelHeight - 1}px`;
-
-  window.requestAnimationFrame(() => {
-    navPanel.style.removeProperty("transition");
-    menuButton.style.removeProperty("transition");
-  });
 }
 
 let menuTraySyncFrame = null;
