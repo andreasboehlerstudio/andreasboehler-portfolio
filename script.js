@@ -105,11 +105,22 @@ function setupBrandMarks() {
 
 function setupNavHoverLabels() {
   document.querySelectorAll(".nav-item span").forEach((label) => {
-    const text = label.textContent.trim();
+    const text = label.textContent.replace(/\s+/g, " ").trim();
 
-    if (text) {
-      label.dataset.text = text;
+    if (!text || label.dataset.accessibleHoverReady === "true") {
+      return;
     }
+
+    const link = label.closest(".nav-item");
+    const context = link?.querySelector("strong")?.textContent.replace(/\s+/g, " ").trim();
+    const accessibleLabel = [text, context].filter(Boolean).join(" — ");
+
+    if (link && accessibleLabel) {
+      link.setAttribute("aria-label", accessibleLabel);
+    }
+
+    label.dataset.text = text;
+    label.dataset.accessibleHoverReady = "true";
   });
 }
 
@@ -3061,14 +3072,19 @@ function setupTextHoverReveals() {
     }
 
     const label = document.createElement("span");
+    const hoverLabel = document.createElement("span");
 
     label.className = "text-hover-reveal__label";
     label.dataset.hoverText = text;
+    hoverLabel.className = "text-hover-reveal__hover";
+    hoverLabel.setAttribute("aria-hidden", "true");
+    hoverLabel.textContent = text;
 
     while (element.firstChild) {
       label.append(element.firstChild);
     }
 
+    label.append(hoverLabel);
     element.append(label);
     element.classList.add("text-hover-reveal");
 
