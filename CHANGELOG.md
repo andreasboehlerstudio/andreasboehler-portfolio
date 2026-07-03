@@ -8,6 +8,17 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.1] - 2026-07-03
+
+### Added
+
+- Changelog direkt in die GitHub-README aufgenommen, damit die wichtigsten Aenderungen sofort auf der Repository-Startseite sichtbar sind.
+
+### Changed
+
+- Version von `0.5.0` auf `0.5.1` angehoben.
+- `README.md`, `CHANGELOG.md` und `VERSION` bleiben fuer kuenftige Pushes synchron.
+
 ## [0.5.0] - 2026-07-03
 
 ### Added
