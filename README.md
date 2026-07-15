@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.2`
+Aktuelle dokumentierte Version: `0.5.3`
 
 ## Inhalt
 
@@ -64,6 +64,29 @@ py -m http.server 4173 --bind 127.0.0.1
 - Externe Videos werden projektbezogen eingebunden und sollten vor Veroeffentlichung auf Erreichbarkeit geprueft werden.
 - Vor groesseren visuellen Aenderungen lokal mit `http://127.0.0.1:4173/` testen.
 
+## Staging
+
+Der Teststand liegt unter:
+
+```text
+https://andreasboehlerstudio.github.io/andreasboehler-portfolio/staging/
+```
+
+- `main` wird als Produktionsseite im Root-Verzeichnis ausgeliefert.
+- `staging` wird automatisch unter `/staging/` aktualisiert.
+- Staging-Seiten erhalten beim Deploy automatisch `noindex`, eine sperrende `robots.txt` und einen sichtbaren `STAGING` Hinweis.
+- Ein Push auf `staging` veraendert den Produktionsstand aus `main` nicht.
+- Nach Freigabe werden die getesteten Aenderungen nach `main` uebernommen und dort als Release versioniert.
+
+Typischer Ablauf:
+
+```powershell
+git switch staging
+git pull origin staging
+# Aenderungen testen und committen
+git push origin staging
+```
+
 ## Versionierung und Changelog
 
 Ab jetzt wird jeder Push versioniert und im Changelog dokumentiert.
@@ -91,6 +114,18 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.3] - 2026-07-15
+
+#### Added
+
+- Eigene `staging` Branch mit automatischem Test-Deploy unter `/staging/` eingerichtet.
+- Staging-Ausgabe wird automatisch mit `noindex`, eigener `robots.txt` und sichtbarer Umgebungsmarkierung versehen.
+
+#### Changed
+
+- GitHub-Pages-Workflow baut Produktion aus `main` und Staging aus `staging` in einem gemeinsamen, getrennten Deployment-Artefakt.
+- Release-Dokumentation um den Staging- und Freigabeablauf erweitert.
 
 ### [0.5.2] - 2026-07-15
 

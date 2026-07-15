@@ -1,9 +1,10 @@
-name: Deploy static site to GitHub Pages
+name: Deploy production and staging to GitHub Pages
 
 on:
   push:
     branches:
       - main
+      - staging
   workflow_dispatch:
 
 permissions:
@@ -13,7 +14,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -24,6 +25,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build production and staging bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main staging
+          rm -rf _site
+          mkdir -p _site/staging
+          git archive --format=tar origin/main | tar -xf - -C _site
+          git archive --format=tar origin/staging | tar -xf - -C _site/staging
+          rm -rf _site/.github _site/staging/.github
+          python .github/scripts/prepare_staging.py _site/staging
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -31,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -8,6 +8,18 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.3] - 2026-07-15
+
+### Added
+
+- Eigene `staging` Branch mit automatischem Test-Deploy unter `/staging/` eingerichtet.
+- Staging-Ausgabe wird automatisch mit `noindex`, eigener `robots.txt` und sichtbarer Umgebungsmarkierung versehen.
+
+### Changed
+
+- GitHub-Pages-Workflow baut Produktion aus `main` und Staging aus `staging` in einem gemeinsamen, getrennten Deployment-Artefakt.
+- Release-Dokumentation um den Staging- und Freigabeablauf erweitert.
+
 ## [0.5.2] - 2026-07-15
 
 ### Added
