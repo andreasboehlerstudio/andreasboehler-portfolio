@@ -4,15 +4,20 @@ const menuButton = document.querySelector(".menu-button");
 const navItems = document.querySelectorAll(".nav-item");
 const hero = document.querySelector(".hero-sequence");
 const heroFrame = document.querySelector(".hero-frame");
-const heroFrameColor = document.querySelector(".hero-frame-color");
+const heroFrameColor = document.querySelector(".hero-frame-color, [data-about-brush-color]");
+const heroVideos = [...document.querySelectorAll("[data-hero-scroll-video]")];
+const heroVideo = heroVideos[0] || null;
+const heroChapters = [...document.querySelectorAll("[data-hero-chapter]")];
+const heroSticky = document.querySelector(".hero-sticky");
 const heroTitle = document.querySelector(".hero-sticky h1");
-const heroBrushSurface = document.querySelector(".hero-sticky");
+const heroBrushSurface = document.querySelector(".hero-sticky, [data-about-brush]");
 const pageShell = document.querySelector(".page-shell");
 const siteFooter = document.querySelector(".site-footer");
 const footerSpacer = document.querySelector(".footer-reveal-spacer");
 const themeStorageKey = "andreas-boehler-theme";
 const consentStorageKey = "andreas-boehler-consent-v1";
-const loaderQuoteStorageKey = "andreas-boehler-loader-quote-seen";
+const loaderQuoteStorageKey = "andreas-boehler-loader-quote-seen-v4";
+const loaderSessionKey = "andreas-boehler-loader-seen-v4";
 const consentCategories = ["statistics", "marketing", "external"];
 const defaultConsent = {
   necessary: true,
@@ -24,6 +29,7 @@ const defaultConsent = {
 };
 const brandMarkPath = "M58.41,25.69l-14.2-2.75c.29-1.1.44-2.35.44-3.75,0-4.69-1.28-7.92-3.84-9.72-2.56-1.79-6.16-2.69-10.81-2.69h-12.17v11.04l-7.26-1.41v9.16l7.26,1.26v.02l10.83,1.61,17.53,2.6-.1.02.28.04-3.14.47s-.01-.01-.02-.02l-9.86,1.6s0,0,0,0l-5.83.95h0s-9.69,1.57-9.69,1.57h0s-7.26,1.18-7.26,1.18v8.85l7.26-1.4v10.32h14.29c9.29,0,13.94-4.69,13.94-14.06,0-.58-.02-1.14-.06-1.69l12.41-2.39v-10.81ZM27.52,13.46h1.83c2.32,0,4.04.46,5.14,1.39,1.1.93,1.65,2.45,1.65,4.58,0,.7-.04,1.34-.12,1.92l-8.51-1.65v-6.24ZM35.28,46c-.96,1.18-2.63,1.77-4.99,1.77h-2.78v-5.33l9.21-1.77c-.03,2.42-.52,4.2-1.44,5.33Z";
 let activeConsent = null;
+let heroVideoScrub = null;
 
 function createBrandGlyph(className = "brand-glyph") {
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -80,7 +86,7 @@ function setupBrandMarks() {
 
     link.className = "site-mark-link";
     link.href = "index.html";
-    link.setAttribute("aria-label", "Andreas Boehler Studio Startseite");
+    link.setAttribute("aria-label", "Andreas Boehler Startseite");
     wordmark.className = "site-mark-wordmark";
     wordmark.setAttribute("aria-hidden", "true");
     wordmark.innerHTML = "<span>ANDREAS</span><span>BOEHLER</span>";
@@ -90,7 +96,7 @@ function setupBrandMarks() {
   }
 
   document.querySelectorAll(".footer-mark").forEach((mark) => {
-    mark.setAttribute("aria-label", "Andreas Boehler Studio Startseite");
+    mark.setAttribute("aria-label", "Andreas Boehler Startseite");
 
     if (!mark.querySelector(".footer-brand-glyph")) {
       mark.prepend(createBrandGlyph("brand-glyph footer-brand-glyph"));
@@ -156,6 +162,58 @@ function setupWorksViewToggle() {
   setView("grid");
 }
 
+function setupWorksCuration() {
+  const grid = document.querySelector(".redox-portfolio-grid");
+
+  if (!grid || grid.dataset.curationReady === "true") {
+    return;
+  }
+
+  const signatureOrder = [
+    "dj-bobo-evolut30n-tour.html",
+    "50-jahre-europa-park.html",
+    "voltron-nevera-tv-werbespot.html",
+    "phantom-der-oper-vr-coastiality.html",
+    "novartis-medportal.html",
+    "acino-swiss-lab-production-tour.html",
+    "duolingo-spec-ad.html",
+    "virtual-production-case-study.html"
+  ];
+  const cards = [...grid.querySelectorAll(".redox-project-card")];
+  const signatureCards = signatureOrder
+    .map((href) => cards.find((card) => card.getAttribute("href") === href))
+    .filter(Boolean);
+  const signatureSet = new Set(signatureCards);
+  const archiveCards = cards.filter((card) => !signatureSet.has(card));
+
+  signatureCards.forEach((card) => {
+    card.classList.add("is-signature");
+    grid.append(card);
+  });
+  archiveCards.forEach((card) => {
+    card.classList.add("is-archive");
+    grid.append(card);
+  });
+
+  if (archiveCards.length) {
+    const archiveToggle = document.createElement("button");
+    archiveToggle.className = "works-archive-toggle";
+    archiveToggle.type = "button";
+    archiveToggle.setAttribute("aria-expanded", "false");
+    archiveToggle.textContent = `Archiv öffnen · ${archiveCards.length} Projekte`;
+    archiveToggle.addEventListener("click", () => {
+      const isOpen = grid.classList.toggle("is-archive-open");
+      archiveToggle.setAttribute("aria-expanded", String(isOpen));
+      archiveToggle.textContent = isOpen
+        ? "Archiv schließen"
+        : `Archiv öffnen · ${archiveCards.length} Projekte`;
+    });
+    grid.after(archiveToggle);
+  }
+
+  grid.dataset.curationReady = "true";
+}
+
 function setupWorksScrollCue() {
   const cue = document.querySelector(".works-scroll-cue");
 
@@ -180,7 +238,7 @@ function setupDynamicCopyright() {
   const currentYear = new Date().getFullYear();
 
   document.querySelectorAll(".footer-bottom > span:first-child").forEach((line) => {
-    line.textContent = `© ${currentYear} Andreas Boehler Studio.`;
+    line.textContent = `© ${currentYear} Andreas Boehler.`;
   });
 }
 
@@ -217,6 +275,7 @@ function setupStudioCursor() {
       ".about-story-panel figure",
       ".brush-feature",
       ".hero-reveal",
+      "[data-about-brush]",
       "[data-cursor='view']"
     ].join(", "),
     action: [
@@ -249,6 +308,7 @@ function setupStudioCursor() {
     label.textContent = nextLabel;
     cursor.classList.toggle("is-hover", nextMode === "hover");
     cursor.classList.toggle("is-view", nextMode === "view");
+    cursor.classList.toggle("is-brush", nextMode === "brush");
     cursor.classList.toggle("is-text", nextMode === "text");
   };
 
@@ -266,12 +326,17 @@ function setupStudioCursor() {
     }
 
     if (target.closest(selectors.view)) {
-      setMode("view", target.closest(".brush-feature, .hero-reveal") ? "REVEAL" : "VIEW");
+      const brushTarget = target.closest(".brush-feature, .hero-reveal, [data-about-brush]");
+      setMode(brushTarget ? "brush" : "view", brushTarget ? "" : "VIEW");
       return;
     }
 
-    if (target.closest(selectors.action)) {
-      setMode("hover", "OPEN");
+    const actionTarget = target.closest(selectors.action);
+    if (actionTarget) {
+      const actionLabel = actionTarget.matches(".menu-button") && nav?.classList.contains("is-open")
+        ? "CLOSE"
+        : "OPEN";
+      setMode("hover", actionLabel);
       return;
     }
 
@@ -320,6 +385,23 @@ function setupPageLoader() {
     return;
   }
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let hasSeenLoader = reduceMotion;
+
+  try {
+    hasSeenLoader = hasSeenLoader || sessionStorage.getItem(loaderSessionKey) === "true";
+    sessionStorage.setItem(loaderSessionKey, "true");
+  } catch (error) {
+    hasSeenLoader = reduceMotion;
+  }
+
+  if (hasSeenLoader) {
+    document.documentElement.classList.add("is-brand-revealed");
+    document.documentElement.classList.remove("is-brand-pending");
+    unlockPageScroll();
+    return;
+  }
+
   const getLoaderSectionLabel = () => {
     const activeNavLabel = document.querySelector(".nav-item.active span")?.textContent.trim();
     const pageLabels = {
@@ -333,7 +415,7 @@ function setupPageLoader() {
       imprint: "Impressum",
       agb: "AGB"
     };
-    const fallbackLabel = pageLabels[document.body?.dataset.page] || document.title.split("|")[0] || "Studio";
+    const fallbackLabel = pageLabels[document.body?.dataset.page] || document.title.split("|")[0] || "Andreas";
 
     return (activeNavLabel || fallbackLabel).replace(/\s+/g, " ").trim().toUpperCase();
   };
@@ -350,10 +432,10 @@ function setupPageLoader() {
   const loaderQuote = document.createElement("div");
   const quoteLine = document.createElement("span");
   const quoteMain = document.createElement("strong");
-  const introDelay = 620;
-  const fillDuration = 1360;
-  const exitDuration = 1680;
-  const progressDuration = 1840 + fillDuration;
+  const introDelay = 100;
+  const fillDuration = 300;
+  const exitDuration = 560;
+  const progressDuration = 1100;
   const progressStartedAt = window.performance?.now?.() ?? Date.now();
   const isHomePage = document.body?.dataset.page === "home";
   let showLoaderQuote = isHomePage;
@@ -494,7 +576,7 @@ function setupPageLoader() {
   }, 40);
 
   const now = () => window.performance?.now?.() ?? Date.now();
-  const readyAt = now() + 1840;
+  const readyAt = now() + 1100;
   const waitAndHide = () => {
     const remaining = Math.max(0, readyAt - now());
     window.setTimeout(hideLoader, remaining);
@@ -506,7 +588,7 @@ function setupPageLoader() {
     document.documentElement.classList.add("is-brand-revealed");
     document.documentElement.classList.remove("is-brand-pending");
     unlockPageScroll();
-  }, 6200);
+  }, 2600);
 }
 
 function unlockPageScroll() {
@@ -1329,9 +1411,9 @@ const liveProjectEnhancements = {
     "title": "Paris – Stadt der Lichter",
     "eyebrow": "Fotografie / Portfolio",
     "image": "assets/live-paris.jpg",
-    "intro": "Paris – Stadt der Lichter aus dem Portfolio von Andreas Boehler Studio.",
+    "intro": "Paris – Stadt der Lichter aus dem Portfolio von Andreas Boehler.",
     "role": "Fotografie, Bildauswahl, Lookentwicklung und visuelle Serie.",
-    "description": "Paris – Stadt der Lichter aus dem Portfolio von Andreas Boehler Studio.",
+    "description": "Paris – Stadt der Lichter aus dem Portfolio von Andreas Boehler.",
     "service": "Markenfotografie",
     "serviceLink": "markenfotografie.html",
     "facts": [
@@ -1887,9 +1969,9 @@ const liveProjectEnhancements = {
     "title": "Larissa – Spring Feels",
     "eyebrow": "Portfolio / Case Study",
     "image": "assets/live-larissa-spring-feels.jpg",
-    "intro": "Larissa – Spring Feels aus dem Portfolio von Andreas Boehler Studio.",
+    "intro": "Larissa – Spring Feels aus dem Portfolio von Andreas Boehler.",
     "role": "Art Direction, visuelles Konzept, Lookentwicklung und digitale Umsetzung.",
-    "description": "Larissa – Spring Feels aus dem Portfolio von Andreas Boehler Studio.",
+    "description": "Larissa – Spring Feels aus dem Portfolio von Andreas Boehler.",
     "service": "Art Direction & Branding",
     "serviceLink": "art-direction.html",
     "facts": [
@@ -2882,8 +2964,9 @@ function setupScrollTextReveals() {
     "main h2:not(.sr-only)",
     "main h3:not(.sr-only)",
     "main h4:not(.sr-only)",
-    "main p",
-    "main li"
+    ".page-hero-copy > p",
+    ".alien-section-label",
+    ".project-depth-head > span"
   ].join(", ");
   const excludedAreas = [
     ".site-nav",
@@ -3097,16 +3180,143 @@ function setupTextHoverReveals() {
 }
 
 function updateHero() {
-  if (!hero || !heroFrame || !heroTitle) {
+  if (!hero || !heroTitle) {
     return;
   }
 
   const rect = hero.getBoundingClientRect();
   const scrollable = hero.offsetHeight - window.innerHeight;
   const progress = clamp(-rect.top / Math.max(scrollable, 1), 0, 1);
+  const pinOffset = Math.round(clamp(-rect.top, 0, Math.max(scrollable, 0)));
 
-  heroTitle.style.opacity = clamp(1 - progress * 1.25, 0, 1);
-  heroTitle.style.transform = `translateY(${-progress * 46}px)`;
+  if (heroSticky) {
+    heroSticky.style.transform = `translate3d(0, ${pinOffset}px, 0)`;
+  }
+  hero.style.setProperty("--hero-scroll-progress", progress.toFixed(4));
+  heroVideoScrub?.setProgress(progress);
+  const introProgress = clamp(progress / 0.23, 0, 1);
+  heroTitle.style.transform = `translate3d(0, ${-introProgress * 46}px, 0)`;
+}
+
+function getHeroPhaseOpacity(progress, start, end, fade = 0.025) {
+  if (progress < start || progress > end) {
+    return 0;
+  }
+
+  const fadeIn = start <= 0 ? 1 : clamp((progress - start) / fade, 0, 1);
+  const fadeOut = end >= 1 ? 1 : clamp((end - progress) / fade, 0, 1);
+  return Math.min(fadeIn, fadeOut);
+}
+
+function setupHeroVideoScrub() {
+  if (!hero || !heroVideos.length) {
+    return;
+  }
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let targetProgress = 0;
+  let renderedProgress = 0;
+  let scrubFrame = null;
+  let hasRendered = false;
+  const videoStates = heroVideos.map((video) => ({
+    video,
+    start: Number.parseFloat(video.dataset.heroStart || "0"),
+    end: Number.parseFloat(video.dataset.heroEnd || "1"),
+    duration: 0
+  }));
+  const chapterStates = heroChapters.map((chapter) => ({
+    chapter,
+    start: Number.parseFloat(chapter.dataset.heroStart || "0"),
+    end: Number.parseFloat(chapter.dataset.heroEnd || "1")
+  }));
+
+  const render = () => {
+    if (reduceMotion || !hasRendered) {
+      renderedProgress = targetProgress;
+      hasRendered = true;
+    } else {
+      renderedProgress += (targetProgress - renderedProgress) * 0.085;
+    }
+
+    hero.style.setProperty("--hero-video-progress", renderedProgress.toFixed(4));
+
+    videoStates.forEach((state, index) => {
+      const { video, start, end, duration } = state;
+      const opacity = reduceMotion && index > 0
+        ? 0
+        : getHeroPhaseOpacity(renderedProgress, start, end);
+      const localProgress = clamp((renderedProgress - start) / Math.max(end - start, 0.001), 0, 1);
+
+      video.style.opacity = opacity.toFixed(4);
+      video.pause();
+
+      if (duration) {
+        const targetTime = reduceMotion
+          ? 0.04
+          : clamp(localProgress * duration, 0.04, Math.max(duration - 0.04, 0.04));
+
+        if (Math.abs(video.currentTime - targetTime) > 0.014) {
+          try {
+            video.currentTime = targetTime;
+          } catch (error) {
+            // Metadata and seek ranges can arrive a frame later on slower connections.
+          }
+        }
+      }
+
+      if (index === 0 && heroFrame) {
+        heroFrame.style.opacity = opacity.toFixed(4);
+      }
+    });
+
+    chapterStates.forEach(({ chapter, start, end }) => {
+      const opacity = reduceMotion && start > 0
+        ? 0
+        : getHeroPhaseOpacity(renderedProgress, start, end);
+      const localProgress = clamp((renderedProgress - start) / Math.max(end - start, 0.001), 0, 1);
+      const translateY = (1 - localProgress) * 24;
+
+      chapter.style.opacity = opacity.toFixed(4);
+      chapter.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0)`;
+      chapter.setAttribute("aria-hidden", opacity > 0.05 ? "false" : "true");
+    });
+
+    if (!reduceMotion && Math.abs(targetProgress - renderedProgress) > 0.0005) {
+      scrubFrame = window.requestAnimationFrame(render);
+    } else {
+      renderedProgress = targetProgress;
+      hero.style.setProperty("--hero-video-progress", renderedProgress.toFixed(4));
+      scrubFrame = null;
+    }
+  };
+
+  const requestRender = () => {
+    if (!scrubFrame) {
+      scrubFrame = window.requestAnimationFrame(render);
+    }
+  };
+
+  heroVideoScrub = {
+    setProgress(progress) {
+      targetProgress = clamp(progress, 0, 1);
+      requestRender();
+    }
+  };
+
+  videoStates.forEach((state) => {
+    const measure = () => {
+      if (Number.isFinite(state.video.duration) && state.video.duration > 0) {
+        state.duration = state.video.duration;
+      }
+      requestRender();
+    };
+
+    state.video.pause();
+    state.video.load();
+    state.video.addEventListener("loadedmetadata", measure, { once: true });
+    state.video.addEventListener("canplay", measure, { once: true });
+    measure();
+  });
 }
 
 function updateFooterReveal() {
@@ -3184,7 +3394,15 @@ function updatePage() {
 function closeMenu() {
   nav.classList.remove("is-open");
   menuButton.setAttribute("aria-expanded", "false");
+  menuButton.querySelector(".sr-only").textContent = "Menü öffnen";
+  document.documentElement.classList.remove("menu-is-open");
   syncMenuTray(false);
+}
+
+function releaseStaleMenuScrollLock() {
+  if (!nav?.classList.contains("is-open")) {
+    document.documentElement.classList.remove("menu-is-open");
+  }
 }
 
 function syncMenuTray(isOpen) {
@@ -3336,7 +3554,7 @@ function setupTalkButton() {
 }
 
 function setupCinematicPageCta() {
-  if (!pageShell || ["contact", "privacy", "agb", "imprint"].includes(document.body.dataset.page) || document.querySelector(".cinematic-page-cta")) {
+  if (!pageShell || ["contact", "privacy", "agb", "imprint"].includes(document.body.dataset.page) || document.querySelector(".cinematic-page-cta") || document.querySelector(".wedding-inquiry")) {
     return;
   }
 
@@ -3344,7 +3562,9 @@ function setupCinematicPageCta() {
     .querySelectorAll(":scope > .seo-link-band, :scope > .alien-final-cta, :scope > .service-big-cta")
     .forEach((block) => block.classList.add("is-pre-cinematic-cta"));
 
-  const page = document.body.dataset.page || "home";
+  const page = document.body.classList.contains("wedding-page")
+    ? "wedding"
+    : document.body.dataset.page || "home";
   const projectTitle = document.querySelector("#projectTitle")?.textContent?.trim();
   const projectBriefingHref = document.querySelector("#projectBriefingLink")?.getAttribute("href") || "contact.html#briefing";
   const studioEmail = "andy@andreasboehler.com";
@@ -3373,8 +3593,7 @@ function setupCinematicPageCta() {
           primaryText: "Projekt starten",
           links: [
             ["Briefing", projectBriefingHref],
-            ["Alle Works", "works.html"],
-            ["Leistungen", "services.html"]
+            ["Alle Works", "works.html"]
           ]
         }
       : {
@@ -3403,8 +3622,21 @@ function setupCinematicPageCta() {
         ["DoP buchen", "dop-kameramann.html"]
       ]
     },
+    wedding: {
+      eyebrow: "Euer Datum",
+      headline: "Erzählt mir, wann und wo ihr heiratet.",
+      text: "Datum, Ort und gewünschte Begleitdauer reichen für den ersten Verfügbarkeitscheck. Danach klären wir persönlich, welches Paket und welche Bildsprache zu euch passen.",
+      marquee: "Freiburg · Basel · Offenburg · Eure Geschichte ·",
+      primaryHref: "contact.html?service=Hochzeitsfotografie#briefing",
+      primaryText: "Datum anfragen",
+      links: [
+        ["Pakete", "hochzeitsfotograf-freiburg.html#pakete"],
+        ["Reportagen", "hochzeitsfotograf-freiburg.html#reportagen"],
+        ["FAQ", "hochzeitsfotograf-freiburg.html#faq-hochzeit"]
+      ]
+    },
     about: {
-      eyebrow: "Studio energy",
+      eyebrow: "Creative energy",
       headline: "Erfahrung ist die Basis. Neugier ist der Motor.",
       text: "Mehr als zehn Jahre zwischen Agentur, Entertainment, Healthcare, Film, Foto, Design und neuen Tools. Der nächste Schritt beginnt mit einer klaren Idee.",
       marquee: "Experience · Curiosity · Cinematic precision ·",
@@ -3445,6 +3677,9 @@ function setupCinematicPageCta() {
   const primary = document.createElement("a");
 
   cta.className = "cinematic-page-cta";
+  if (page === "wedding") {
+    cta.id = "hochzeit-anfragen";
+  }
   cta.setAttribute("aria-labelledby", "cinematicPageCtaTitle");
 
   marquee.className = "cinematic-cta-marquee";
@@ -3663,7 +3898,10 @@ function renderProjectPage() {
   const footerProjectText = document.querySelector("#footerProjectText");
   const heroImage = projectHero.querySelector(".page-hero-image");
 
-  document.title = `${project.title} | Andreas Boehler Studio`;
+  document.querySelector(".project-depth")?.remove();
+  document.querySelector(".seo-link-band")?.remove();
+
+  document.title = `${project.title} | Andreas Boehler`;
   projectHero.style.setProperty("--page-image", `url("${project.image}")`);
   renderProjectVideoSchema(project, slug);
 
@@ -3688,17 +3926,21 @@ function renderProjectPage() {
   if (facts) {
     facts.textContent = "";
 
-    project.facts.forEach(([label, text]) => {
+    project.facts.slice(0, 3).forEach(([label, text]) => {
       const article = document.createElement("article");
       const span = document.createElement("span");
       const heading = document.createElement("h3");
       const paragraph = document.createElement("p");
+      const sentenceBreak = text.indexOf(". ");
 
-      span.textContent = label;
+      span.textContent = label === "SEO-Relevanz" ? "Schwerpunkt" : label;
       heading.textContent = text.split(".")[0];
-      paragraph.textContent = text;
+      paragraph.textContent = sentenceBreak > 0 ? text.slice(sentenceBreak + 2) : "";
 
-      article.append(span, heading, paragraph);
+      article.append(span, heading);
+      if (paragraph.textContent) {
+        article.append(paragraph);
+      }
       facts.append(article);
     });
   }
@@ -3775,7 +4017,7 @@ function updateBriefingSummary() {
 
     text.textContent = parts.length
       ? parts.join(" ")
-      : "Wähle Projekttyp, Ziel, Timing und Budget. Daraus entsteht eine schnelle Orientierung für Umfang, Team und nächste Schritte.";
+      : "Wähle zuerst den Projekttyp. Weitere Angaben kannst du optional ergänzen.";
   }
   if (scope) scope.textContent = scopeText;
   if (next) next.textContent = nextText;
@@ -3828,7 +4070,7 @@ function setupBriefingForm() {
       "",
       "Viele Grüße"
     ];
-    const subject = encodeURIComponent("Projektbriefing Andreas Boehler Studio");
+    const subject = encodeURIComponent("Projektbriefing Andreas Boehler");
     const body = encodeURIComponent(lines.join("\n"));
 
     window.location.href = `mailto:andy@andreasboehler.com?subject=${subject}&body=${body}`;
@@ -3837,9 +4079,514 @@ function setupBriefingForm() {
   updateBriefingSummary();
 }
 
+function setupWeddingInquiryForm() {
+  const form = document.querySelector("#weddingInquiryForm");
+
+  if (!form) {
+    return;
+  }
+
+  const packageSelect = form.querySelector("#weddingPackage");
+  const status = form.querySelector("#weddingFormStatus");
+  const params = new URLSearchParams(window.location.search);
+  const requestedPackage = params.get("package");
+
+  if (requestedPackage && packageSelect) {
+    const matchingOption = Array.from(packageSelect.options).find((option) => option.value === requestedPackage);
+
+    if (matchingOption) {
+      packageSelect.value = matchingOption.value;
+    }
+  }
+
+  document.querySelectorAll("[data-wedding-package]").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (packageSelect) {
+        packageSelect.value = link.dataset.weddingPackage || "Noch offen";
+      }
+    });
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
+    const data = new FormData(form);
+    const fields = [];
+
+    data.forEach((value, key) => {
+      const text = String(value).trim();
+
+      if (text) {
+        fields.push(`${key}: ${text}`);
+      }
+    });
+
+    const date = String(data.get("Hochzeitsdatum") || "").trim();
+    const location = String(data.get("Ort / Location") || "").trim();
+    const subjectParts = ["Hochzeitsanfrage", date, location].filter(Boolean);
+    const lines = [
+      "Hallo Andreas,",
+      "",
+      "wir möchten unsere Hochzeit fotografisch begleiten lassen und senden dir die ersten Eckdaten:",
+      "",
+      ...fields,
+      "",
+      "Viele Grüße"
+    ];
+
+    if (status) {
+      status.textContent = "Euer E-Mail-Programm wird mit der vorbereiteten Anfrage geöffnet.";
+    }
+
+    window.location.href = `mailto:andy@andreasboehler.com?subject=${encodeURIComponent(subjectParts.join(" · "))}&body=${encodeURIComponent(lines.join("\n"))}`;
+  });
+}
+
+function setupHomeClientScroll() {
+  const section = document.querySelector(".home-client-scroll");
+  const sticky = document.querySelector(".home-client-sticky");
+  const label = document.querySelector(".home-client-label");
+  const track = document.querySelector(".home-client-track ul");
+  const cards = Array.from(document.querySelectorAll(".home-client-track li"));
+
+  if (!section || !sticky || !label || !track) {
+    return;
+  }
+
+  let maxShift = 0;
+  let targetProgress = 0;
+  let renderedProgress = 0;
+  let clientFrame = null;
+  let hasRenderedClientScroll = false;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cardDepths = [1.3, 0.68, 1.55, 0.48, 1.08, 0.78];
+  const cardStates = cards.map(() => ({
+    targetX: 0,
+    targetY: 0,
+    x: 0,
+    y: 0,
+    targetEnergy: 0,
+    energy: 0
+  }));
+  let labelX = 0;
+  let labelY = 0;
+  let targetLabelX = 0;
+  let targetLabelY = 0;
+  let labelFrame = null;
+
+  const renderCardTilt = () => {
+    let hasMovingCards = false;
+
+    cards.forEach((card, index) => {
+      const state = cardStates[index];
+      const depth = cardDepths[index % cardDepths.length];
+
+      if (reduceMotion) {
+        state.x = 0;
+        state.y = 0;
+        state.energy = 0;
+      } else {
+        state.x += (state.targetX - state.x) * 0.14;
+        state.y += (state.targetY - state.y) * 0.14;
+        state.energy += (state.targetEnergy - state.energy) * 0.12;
+      }
+
+      if (
+        Math.abs(state.targetX - state.x) > 0.002 ||
+        Math.abs(state.targetY - state.y) > 0.002 ||
+        Math.abs(state.targetEnergy - state.energy) > 0.002
+      ) {
+        hasMovingCards = true;
+      }
+
+      card.style.setProperty("--client-dyn-x", `${(state.x * depth * 36).toFixed(2)}px`);
+      card.style.setProperty("--client-dyn-y", `${(state.y * depth * 24).toFixed(2)}px`);
+      card.style.setProperty("--client-dyn-z", `${(state.energy * depth * 145).toFixed(2)}px`);
+      card.style.setProperty("--client-dyn-rotate-x", `${(-state.y * depth * 18).toFixed(3)}deg`);
+      card.style.setProperty("--client-dyn-rotate-y", `${(state.x * depth * 27).toFixed(3)}deg`);
+      card.style.setProperty("--client-dyn-scale", (1 + state.energy * 0.035).toFixed(4));
+      card.style.setProperty("--client-card-light", (0.012 + state.energy * 0.075).toFixed(4));
+      card.style.setProperty("--client-card-border", (0.15 + state.energy * 0.28).toFixed(4));
+      card.style.setProperty("--client-card-shadow", (0.24 + state.energy * 0.22).toFixed(4));
+    });
+
+    return hasMovingCards;
+  };
+
+  const renderTrack = () => {
+    if (reduceMotion) {
+      renderedProgress = targetProgress;
+    } else if (!hasRenderedClientScroll) {
+      renderedProgress = targetProgress;
+      hasRenderedClientScroll = true;
+    } else {
+      renderedProgress += (targetProgress - renderedProgress) * 0.055;
+    }
+
+    section.style.setProperty("--home-client-progress", renderedProgress.toFixed(4));
+    track.style.transform = `translate3d(${-maxShift * renderedProgress}px, 0, 0)`;
+    const hasMovingCards = renderCardTilt();
+
+    if (!reduceMotion && (Math.abs(targetProgress - renderedProgress) > 0.0006 || hasMovingCards)) {
+      clientFrame = window.requestAnimationFrame(renderTrack);
+    } else {
+      renderedProgress = targetProgress;
+      section.style.setProperty("--home-client-progress", renderedProgress.toFixed(4));
+      track.style.transform = `translate3d(${-maxShift * renderedProgress}px, 0, 0)`;
+      renderCardTilt();
+      clientFrame = null;
+    }
+  };
+
+  const requestTrackFrame = () => {
+    if (!clientFrame) {
+      clientFrame = window.requestAnimationFrame(renderTrack);
+    }
+  };
+
+  const renderLabel = () => {
+    labelX += (targetLabelX - labelX) * 0.16;
+    labelY += (targetLabelY - labelY) * 0.16;
+    label.style.transform = `translate3d(${labelX.toFixed(2)}px, ${labelY.toFixed(2)}px, 0)`;
+
+    if (Math.abs(targetLabelX - labelX) > 0.2 || Math.abs(targetLabelY - labelY) > 0.2) {
+      labelFrame = window.requestAnimationFrame(renderLabel);
+    } else {
+      labelFrame = null;
+    }
+  };
+
+  const requestLabelFrame = () => {
+    if (!labelFrame) {
+      labelFrame = window.requestAnimationFrame(renderLabel);
+    }
+  };
+
+  const resetLabel = () => {
+    targetLabelX = 0;
+    targetLabelY = 0;
+    cardStates.forEach((state) => {
+      state.targetX = 0;
+      state.targetY = 0;
+      state.targetEnergy = 0;
+    });
+    requestLabelFrame();
+    requestTrackFrame();
+  };
+
+  const measure = () => {
+    maxShift = Math.max(track.scrollWidth - window.innerWidth + window.innerWidth * 0.08, 0);
+    update();
+  };
+
+  const update = () => {
+    const rect = section.getBoundingClientRect();
+    const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
+    targetProgress = clamp(-rect.top / scrollable, 0, 1);
+    const pinOffset = Math.round(clamp(-rect.top, 0, scrollable));
+
+    sticky.style.transform = `translate3d(0, ${pinOffset}px, 0)`;
+    requestTrackFrame();
+  };
+
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", measure, { passive: true });
+  section.addEventListener("pointermove", (event) => {
+    if (!window.matchMedia("(pointer: fine)").matches) {
+      return;
+    }
+
+    const stickyRect = sticky.getBoundingClientRect();
+    const labelRect = label.getBoundingClientRect();
+    const labelCenterX = labelRect.left - stickyRect.left - labelX + (labelRect.width / 2);
+    const labelCenterY = labelRect.top - stickyRect.top - labelY + (labelRect.height / 2);
+
+    targetLabelX = clamp((event.clientX - stickyRect.left - labelCenterX) * 0.34, -150, 150);
+    targetLabelY = clamp((event.clientY - stickyRect.top - labelCenterY) * 0.42, -80, 80);
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const state = cardStates[index];
+      const centerX = rect.left + (rect.width / 2);
+      const centerY = rect.top + (rect.height / 2);
+      const localX = clamp((event.clientX - centerX) / Math.max(rect.width / 2, 1), -1, 1);
+      const localY = clamp((event.clientY - centerY) / Math.max(rect.height / 2, 1), -1, 1);
+      const distance = Math.hypot(event.clientX - centerX, event.clientY - centerY);
+      const falloff = Math.max(rect.width * 1.18, 320);
+      const influence = Math.pow(clamp(1 - (distance / falloff), 0, 1), 1.35);
+
+      state.targetX = localX * influence;
+      state.targetY = localY * influence;
+      state.targetEnergy = influence;
+    });
+    requestLabelFrame();
+    requestTrackFrame();
+  }, { passive: true });
+  section.addEventListener("pointerleave", resetLabel, { passive: true });
+  measure();
+}
+
+function setupHomeVideoProcess() {
+  const section = document.querySelector(".home-video-process");
+  const sticky = document.querySelector(".home-video-process-sticky");
+  const video = document.querySelector("[data-scroll-video]");
+
+  if (!section || !sticky || !video) {
+    return;
+  }
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let duration = 0;
+  let targetProgress = 0;
+  let renderedProgress = 0;
+  let ticking = false;
+  let scrubFrame = null;
+  let hasRenderedScrub = false;
+
+  const renderScrub = () => {
+    if (reduceMotion) {
+      renderedProgress = targetProgress;
+    } else if (!hasRenderedScrub) {
+      renderedProgress = targetProgress;
+      hasRenderedScrub = true;
+    } else {
+      renderedProgress += (targetProgress - renderedProgress) * 0.062;
+    }
+
+    section.style.setProperty("--home-video-progress", renderedProgress.toFixed(4));
+
+    if (duration) {
+      const targetTime = clamp(renderedProgress * duration, 0.04, Math.max(duration - 0.04, 0.04));
+
+      video.pause();
+      if (Math.abs(video.currentTime - targetTime) > 0.016) {
+        try {
+          video.currentTime = targetTime;
+        } catch (error) {
+          // Some browsers reject seeks until metadata/ranges are ready; the next frame retries.
+        }
+      }
+    }
+
+    if (!reduceMotion && Math.abs(targetProgress - renderedProgress) > 0.0005) {
+      scrubFrame = window.requestAnimationFrame(renderScrub);
+    } else {
+      renderedProgress = targetProgress;
+      section.style.setProperty("--home-video-progress", renderedProgress.toFixed(4));
+      scrubFrame = null;
+    }
+  };
+
+  const requestScrubFrame = () => {
+    if (!scrubFrame) {
+      scrubFrame = window.requestAnimationFrame(renderScrub);
+    }
+  };
+
+  const measure = () => {
+    if (Number.isFinite(video.duration) && video.duration > 0) {
+      duration = video.duration;
+    }
+    update();
+  };
+
+  const update = () => {
+    ticking = false;
+    const rect = section.getBoundingClientRect();
+    const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
+    targetProgress = clamp(-rect.top / scrollable, 0, 1);
+    const pinOffset = Math.round(clamp(-rect.top, 0, scrollable));
+
+    sticky.style.transform = `translate3d(0, ${pinOffset}px, 0)`;
+
+    if (reduceMotion || !duration) {
+      video.pause();
+      renderedProgress = targetProgress;
+      section.style.setProperty("--home-video-progress", renderedProgress.toFixed(4));
+      return;
+    }
+
+    requestScrubFrame();
+  };
+
+  const requestUpdate = () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  };
+
+  video.pause();
+  video.load();
+  video.addEventListener("loadedmetadata", measure, { once: true });
+  video.addEventListener("canplay", measure, { once: true });
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", measure, { passive: true });
+  measure();
+}
+
+function setupAboutHeroVideoScrub() {
+  const section = document.querySelector(".about-hero-scrub");
+  const sticky = document.querySelector(".about-hero-scrub-sticky");
+  const video = document.querySelector("[data-about-scroll-video]");
+
+  if (!section || !sticky || !video) {
+    return;
+  }
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let duration = 0;
+  let targetProgress = 0;
+  let renderedProgress = 0;
+  let ticking = false;
+  let scrubFrame = null;
+  let hasRenderedScrub = false;
+
+  const renderScrub = () => {
+    if (reduceMotion) {
+      renderedProgress = targetProgress;
+    } else if (!hasRenderedScrub) {
+      renderedProgress = targetProgress;
+      hasRenderedScrub = true;
+    } else {
+      renderedProgress += (targetProgress - renderedProgress) * 0.062;
+    }
+
+    section.style.setProperty("--about-hero-progress", renderedProgress.toFixed(4));
+
+    if (duration) {
+      const targetTime = clamp(renderedProgress * duration, 0.04, Math.max(duration - 0.04, 0.04));
+
+      video.pause();
+      if (Math.abs(video.currentTime - targetTime) > 0.016) {
+        try {
+          video.currentTime = targetTime;
+        } catch (error) {
+          // Scrub seeking can fail before metadata is available; the next frame retries safely.
+        }
+      }
+    }
+
+    if (!reduceMotion && Math.abs(targetProgress - renderedProgress) > 0.0005) {
+      scrubFrame = window.requestAnimationFrame(renderScrub);
+    } else {
+      renderedProgress = targetProgress;
+      section.style.setProperty("--about-hero-progress", renderedProgress.toFixed(4));
+      scrubFrame = null;
+    }
+  };
+
+  const requestScrubFrame = () => {
+    if (!scrubFrame) {
+      scrubFrame = window.requestAnimationFrame(renderScrub);
+    }
+  };
+
+  const measure = () => {
+    if (Number.isFinite(video.duration) && video.duration > 0) {
+      duration = video.duration;
+    }
+    update();
+  };
+
+  const update = () => {
+    ticking = false;
+    const rect = section.getBoundingClientRect();
+    const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
+    targetProgress = clamp(-rect.top / scrollable, 0, 1);
+    const pinOffset = Math.round(clamp(-rect.top, 0, scrollable));
+
+    sticky.style.transform = `translate3d(0, ${pinOffset}px, 0)`;
+
+    if (reduceMotion || !duration) {
+      video.pause();
+      renderedProgress = targetProgress;
+      section.style.setProperty("--about-hero-progress", renderedProgress.toFixed(4));
+      return;
+    }
+
+    requestScrubFrame();
+  };
+
+  const requestUpdate = () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  };
+
+  video.pause();
+  video.load();
+  video.addEventListener("loadedmetadata", measure, { once: true });
+  video.addEventListener("canplay", measure, { once: true });
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", measure, { passive: true });
+  measure();
+}
+
+function setupAiGeneratedLabels() {
+  const aiAssetNames = new Set([
+    "andreas-agb-hero-nano-banana-2.jpg",
+    "andreas-hero-cinematic-nano-banana-2.jpg",
+    "andreas-hero-portrait-ai-reveal.webp",
+    "andreas-hero-portrait-cutout.png",
+    "andreas-hero-portrait-normal.webp",
+    "andreas-moments-analog-model-nano-banana-2.jpg",
+    "andreas-services-cinematic-production-nano-banana-2.jpg",
+    "andreas-services-creative-tech-nano-banana-2.jpg",
+    "andreas-wedding-photographer-ai.webp",
+    "andreas-wedding-photographer-sony-a7rv-ai.webp"
+  ]);
+
+  const labelImages = (root = document) => {
+    const images = root instanceof HTMLImageElement ? [root] : root.querySelectorAll?.("img") || [];
+
+    images.forEach((image) => {
+      const source = image.currentSrc || image.getAttribute("src") || "";
+      const assetName = source.split(/[/?#]/).filter(Boolean).pop()?.toLowerCase();
+
+      if (!assetName || !aiAssetNames.has(assetName)) {
+        return;
+      }
+
+      const container = image.closest(".about-brush-hero, .page-hero, figure, .wedding-person, .split-showcase") || image.parentElement;
+
+      if (!container || container.querySelector(":scope > .ai-generated-label")) {
+        return;
+      }
+
+      container.classList.add("ai-generated-media");
+      const label = document.createElement("span");
+      label.className = "ai-generated-label";
+      label.textContent = "KI-generiert";
+      label.setAttribute("aria-label", "Dieses Bild wurde mit KI generiert");
+      container.append(label);
+    });
+  };
+
+  labelImages();
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node instanceof HTMLElement) {
+          labelImages(node);
+        }
+      });
+    });
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+
 menuButton.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
   menuButton.setAttribute("aria-expanded", String(isOpen));
+  menuButton.querySelector(".sr-only").textContent = isOpen ? "Menü schließen" : "Menü öffnen";
+  document.documentElement.classList.toggle("menu-is-open", isOpen);
   syncMenuTray(isOpen);
 });
 
@@ -3856,6 +4603,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 window.addEventListener("scroll", updatePage, { passive: true });
+window.addEventListener("pageshow", releaseStaleMenuScrollLock);
 window.addEventListener("resize", () => {
   updatePage();
 
@@ -3864,11 +4612,20 @@ window.addEventListener("resize", () => {
   }
 });
 
+releaseStaleMenuScrollLock();
+
 renderProjectPage();
 setupNavHoverLabels();
 setupWorksViewToggle();
+setupWorksCuration();
 setupWorksScrollCue();
+setupHomeClientScroll();
+setupHeroVideoScrub();
+setupHomeVideoProcess();
+setupAboutHeroVideoScrub();
+setupAiGeneratedLabels();
 setupBriefingForm();
+setupWeddingInquiryForm();
 setupTalkButton();
 setupThemeToggle();
 setupCinematicPageCta();

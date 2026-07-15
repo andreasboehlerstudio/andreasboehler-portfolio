@@ -1,6 +1,6 @@
-# Andreas Boehler Studio
+# Andreas Boehler
 
-> Andreas Boehler Studio ist ein Portfolio und Studio-Auftritt fuer Werbefilm, Produktfilm, Markenfotografie, DoP/Kameramann, Art Direction, Branding, Motion Design und Postproduktion im Raum Freiburg/Basel.
+> Andreas Boehler ist Regisseur, Fotograf, DoP und Art Director fuer Werbefilm, Produktfilm, Markenfotografie, Branding, Motion Design und Postproduktion im Raum Freiburg/Basel.
 
 Andreas Boehler ist Regisseur, Fotograf, DoP, Creative Film-Producer und Art Director aus Deutschland. Die Website beschreibt Leistungen, Portfolio-Projekte, Vita, Awards, Arbeitsweise und Kontaktmoeglichkeiten fuer Marken, Agenturen, Unternehmen und Filmproduktionen.
 
@@ -10,7 +10,7 @@ Ausgewaehlte Marken und Organisationen aus Projektarbeit, Agenturkontext, Inhous
 
 ## Core pages
 
-- [Homepage](https://andreasboehler.com/): Studio-Uebersicht, Leistungsbereiche, ausgewaehlte Projekte und Positionierung.
+- [Homepage](https://andreasboehler.com/): Persoenliches Profil, Leistungsbereiche, ausgewaehlte Projekte und Positionierung von Andreas Boehler.
 - [Works](https://andreasboehler.com/works.html): Portfolio mit Filmproduktion, Fotografie, Healthcare, Branding, UI Design, Motion und Awards.
 - [Services](https://andreasboehler.com/services.html): Uebersicht ueber Werbefilm, Produktfilm, Markenfotografie, DoP/Kameramann und Art Direction.
 - [About](https://andreasboehler.com/about.html): Vita, Ausbildung, berufliche Stationen, Skills und Awards.
@@ -21,6 +21,7 @@ Ausgewaehlte Marken und Organisationen aus Projektarbeit, Agenturkontext, Inhous
 
 - [Werbefilm & Produktfilm](https://andreasboehler.com/werbefilm-produktfilm.html): Konzept, Regie, Produktion, Schnitt, VFX, Motion Graphics und Postproduktion.
 - [Markenfotografie](https://andreasboehler.com/markenfotografie.html): Portrait, Lifestyle, Kampagnenbilder, Dokumentation und fotografische Serien.
+- [Hochzeitsfotografie](https://andreasboehler.com/hochzeitsfotograf-freiburg.html): Natürliche, filmische Hochzeitsreportagen und Paarportraits in Freiburg, Offenburg und Basel.
 - [DoP / Kameramann](https://andreasboehler.com/dop-kameramann.html): Kameraarbeit, Licht, RED/ARRI-nahe Workflows, Commercials und Markenproduktion.
 - [Art Direction & Branding](https://andreasboehler.com/art-direction.html): Branding, UI Design, Kampagnenlogik, Motion und visuelle Systeme.
 
@@ -53,6 +54,8 @@ Ausgewaehlte Marken und Organisationen aus Projektarbeit, Agenturkontext, Inhous
 - Filmproduktion Freiburg/Basel
 - Markenfotografie Freiburg/Basel
 - Fotograf Freiburg
+- Hochzeitsfotograf Freiburg
+- Hochzeitsfotografie Offenburg und Basel
 - DoP buchen
 - Kameramann Commercial
 - Healthcare Film

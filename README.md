@@ -1,17 +1,18 @@
-# Andreas Boehler Studio Portfolio
+# Andreas Boehler Portfolio
 
-Statische Portfolio-Website fuer Andreas Boehler Studio mit kuratierten Film-, Foto-, Art-Direction- und Markenprojekten.
+Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, Art-Direction- und Markenprojekten.
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.1`
+Aktuelle dokumentierte Version: `0.5.2`
 
 ## Inhalt
 
-- Startseite mit Studio-Positionierung, Hero-Sequenz und ausgewaehlten Arbeiten
+- Startseite mit persoenlicher Positionierung, Hero-Sequenz und ausgewaehlten Arbeiten
 - Works-Uebersicht mit Projektseiten, Bildmaterial und Video-Einbindungen
 - Still-Photography-Seite mit kuratierter Fotoauswahl
 - Service-Seiten fuer Filmproduktion, Markenfotografie, DoP, Art Direction und Creative Technology
+- Lokale SEO-Landingpages fuer Filmproduktion und Hochzeitsfotografie in Freiburg, Offenburg und Basel
 - About-, Contact-, FAQ-, Impressum-, Datenschutz- und AGB-Seiten
 - SEO-Grundlagen mit `robots.txt`, `sitemap.xml` und `llms.txt`
 
@@ -43,7 +44,7 @@ py -m http.server 4173 --bind 127.0.0.1
 |-- works.html                 # Projektuebersicht
 |-- photography.html           # Still Photography
 |-- services.html              # Service-Uebersicht
-|-- about.html                 # Studio / Vita
+|-- about.html                 # Profil / Vita
 |-- contact.html               # Kontakt
 |-- script.js                  # Interaktionen, Projektdaten, Animationen
 |-- styles.css                 # Layout, Typografie, responsive Design
@@ -90,6 +91,29 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.2] - 2026-07-15
+
+#### Added
+
+- Scrollgesteuerte, mehrteilige Video-Sequenz im Startseiten-Hero mit den Kapiteln Design, Impact und bewegte Marken.
+- Lokale Landingpages fuer Filmproduktion in Freiburg, Offenburg und Basel.
+- Umfangreiche Hochzeitsfotografie-Onepage fuer Freiburg, Basel und Offenburg mit Reportagen, Paketen, Regionen, FAQs und eigenem Anfrageformular.
+- Neue hochaufgeloeste Projektbilder, Portrait-Assets, Video-Poster und weboptimierte Scrollvideos.
+
+#### Changed
+
+- Portfolio konsequent auf Andreas Boehler als Person statt auf eine Studio-Marke ausgerichtet.
+- Startseite, Works, About, Kontakt, Services und Projektseiten mit mehr Weissraum, klarerer Typografie, staerkeren Visuals und responsiven Animationen ueberarbeitet.
+- About-Hero als interaktives Portrait mit Brush-Reveal und klarerer Textstaffelung umgesetzt.
+- Globale Navigation, Footer, interne Verlinkung, strukturierte Daten, Sitemap und lokale SEO-Signale aktualisiert.
+- Unscharfe Projektbilder durch hoeher aufgeloeste Assets ersetzt und Fotoauswahl neu kuratiert.
+
+#### Fixed
+
+- Typografie-Clipping bei grossen Headlines, Umlauten und Prozessbegriffen auf Desktop, Tablet und Mobile behoben.
+- Scrollen im Startseiten-Hero, Video-Scrubbing, Menue-Animation und responsive Menue-Anordnung stabilisiert.
+- Fehlende und falsch zugeordnete Projektbilder korrigiert.
 
 ### [0.5.1] - 2026-07-03
 

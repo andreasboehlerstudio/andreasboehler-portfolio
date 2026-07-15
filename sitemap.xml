@@ -156,6 +156,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://andreasboehler.com/filmproduktion-freiburg.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://andreasboehler.com/filmproduktion-offenburg.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://andreasboehler.com/filmproduktion-basel.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://andreasboehler.com/hamburg.html</loc>
     <lastmod>2026-06-12</lastmod>
     <priority>0.8</priority>
@@ -204,6 +219,11 @@
     <loc>https://andreasboehler.com/markenfotografie.html</loc>
     <lastmod>2026-06-12</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://andreasboehler.com/hochzeitsfotograf-freiburg.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://andreasboehler.com/mercedes-gt-in-der-salzwuste.html</loc>
