@@ -1,0 +1,72 @@
+name: Deploy production to FTP
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Only show planned FTP changes
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ftp-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref_name == 'main'
+    environment:
+      name: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production
+        uses: actions/checkout@v4
+
+      - name: Validate FTP configuration
+        shell: bash
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL }}
+          FTP_TARGET_DIR: ${{ vars.FTP_TARGET_DIR }}
+        run: |
+          set -euo pipefail
+          test -n "$FTP_SERVER"
+          test -n "$FTP_USERNAME"
+          test -n "$FTP_PASSWORD"
+          test -n "$FTP_PORT"
+          case "$FTP_PROTOCOL" in
+            ftp|ftps|ftps-legacy) ;;
+            *) echo "FTP_PROTOCOL must be ftp, ftps or ftps-legacy" >&2; exit 1 ;;
+          esac
+          test "$FTP_TARGET_DIR" = "andreasboehlerpotfolio/"
+
+      - name: Sync website to production folder
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          protocol: ${{ secrets.FTP_PROTOCOL }}
+          local-dir: ./
+          server-dir: ${{ vars.FTP_TARGET_DIR }}
+          dry-run: ${{ inputs.dry_run }}
+          dangerous-clean-slate: false
+          security: strict
+          timeout: 120000
+          log-level: standard
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            README.md
+            CHANGELOG.md
+            VERSION
