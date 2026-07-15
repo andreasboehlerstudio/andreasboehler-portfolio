@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.3`
+Aktuelle dokumentierte Version: `0.5.4`
 
 ## Inhalt
 
@@ -114,6 +114,13 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.4] - 2026-07-15
+
+#### Fixed
+
+- Staging-Pushes starten den erlaubten Pages-Deploy jetzt per `workflow_dispatch` auf `main`, statt an der Branch-Freigabe der GitHub-Pages-Umgebung zu scheitern.
+- Der kombinierte Deploy liest weiterhin Produktion aus `main` und den Teststand aus `staging`.
 
 ### [0.5.3] - 2026-07-15
 
