@@ -4,6 +4,13 @@ RewriteEngine On
 RewriteRule ^\.well-known(?:/|$) - [L]
 RewriteRule ^andreasboehlerportfolio(?:/|$) - [L]
 
-# Serve the production build from the subfolder while keeping clean public URLs.
+# Serve the homepage from the production build.
 RewriteRule ^$ andreasboehlerportfolio/index.html [L]
+
+# Keep existing real files and folders available for maintenance and rollback.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Serve all new public routes from the production build while keeping clean URLs.
 RewriteRule ^(.+)$ andreasboehlerportfolio/$1 [L]

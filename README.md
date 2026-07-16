@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.12`
+Aktuelle dokumentierte Version: `0.5.13`
 
 ## Inhalt
 
@@ -92,7 +92,7 @@ git push origin staging
 Der manuelle Workflow `.github/workflows/ftp-production.yml` verwendet das GitHub-Environment `production`.
 
 - Zugangsdaten kommen ausschliesslich aus den Environment-Secrets.
-- `FTP_SERVER_DIR` bezeichnet den Webroot, zum Beispiel `public_html/`.
+- `FTP_SERVER_DIR` bezeichnet den Webroot. Beim aktuellen Hostinger-FTP-Zugang ist das bereits der Login-Root, daher lautet der Wert `./`.
 - Live liegt darunter in `andreasboehlerportfolio/`.
 - Staging liegt daneben in `andreasboehlerportfolio-staging/`.
 - Der Workflow akzeptiert `ftp`, `ftps`, `ftps-legacy` und `sftp`.
@@ -137,6 +137,12 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.13] - 2026-07-16
+
+#### Fixed
+
+- Der verifizierte Hostinger-Webroot ist nun als `FTP_SERVER_DIR=./` dokumentiert. Die Live-`.htaccess` leitet die Hauptdomain auf das Portfolio, laesst vorhandene reale Dateien und Wartungsverzeichnisse aber erreichbar.
 
 ### [0.5.12] - 2026-07-16
 

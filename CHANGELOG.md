@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.13] - 2026-07-16
+
+### Fixed
+
+- Der verifizierte Hostinger-Webroot ist nun als `FTP_SERVER_DIR=./` dokumentiert. Die Live-`.htaccess` leitet die Hauptdomain auf das Portfolio, laesst vorhandene reale Dateien und Wartungsverzeichnisse aber erreichbar.
+
 ## [0.5.12] - 2026-07-16
 
 ### Added
