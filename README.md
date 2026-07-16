@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.18`
+Aktuelle dokumentierte Version: `0.5.19`
 
 ## Inhalt
 
@@ -139,6 +139,17 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.19] - 2026-07-16
+
+#### Changed
+
+- Die vier freigegebenen Film-Cases wurden als ruhiges, zusammenhaengendes Detailseiten-System neu gewichtet: grosse 16:9-Player direkt nach dem Hero, mehr Weissraum, kleinere Informationstypografie und reduzierte Faktenzeilen statt lauter Karten.
+- Die Photography-Seite zeigt alle kuratierten Motive nun in gleich grossen filmischen 16:9-Frames: zweispaltig auf Desktop und einspaltig auf Mobile.
+
+#### Fixed
+
+- "Filmische Markenwelten" bleibt nun auch in mittleren und besonders flachen Viewports vollstaendig sichtbar.
 
 ### [0.5.18] - 2026-07-16
 

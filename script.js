@@ -3880,7 +3880,11 @@ function renderProjectVideos(project) {
   header.append(label, heading, intro);
   section.append(header, grid);
 
-  if (facts) {
+  const projectHero = document.querySelector("#projectHero");
+
+  if (projectHero) {
+    projectHero.after(section);
+  } else if (facts) {
     facts.before(section);
   }
 

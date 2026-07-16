@@ -8,6 +8,17 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.19] - 2026-07-16
+
+### Changed
+
+- Die vier freigegebenen Film-Cases wurden als ruhiges, zusammenhaengendes Detailseiten-System neu gewichtet: grosse 16:9-Player direkt nach dem Hero, mehr Weissraum, kleinere Informationstypografie und reduzierte Faktenzeilen statt lauter Karten.
+- Die Photography-Seite zeigt alle kuratierten Motive nun in gleich grossen filmischen 16:9-Frames: zweispaltig auf Desktop und einspaltig auf Mobile.
+
+### Fixed
+
+- "Filmische Markenwelten" bleibt nun auch in mittleren und besonders flachen Viewports vollstaendig sichtbar.
+
 ## [0.5.18] - 2026-07-16
 
 ### Changed
