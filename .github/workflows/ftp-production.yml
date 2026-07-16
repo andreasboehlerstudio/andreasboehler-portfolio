@@ -50,14 +50,21 @@ jobs:
             *ftp*) protocol="ftp" ;;
             *) echo "FTP_PROTOCOL must be ftp, ftps or ftps-legacy" >&2; exit 1 ;;
           esac
+          server="$(printf '%s' "$FTP_SERVER" | tr -d '[:space:]')"
+          server="${server#ftp://}"
+          server="${server#ftps://}"
+          server="${server#sftp://}"
+          server="${server%%/*}"
+          test -n "$server"
           test "$FTP_TARGET_DIR" = "andreasboehlerportfolio/"
           echo "protocol=$protocol" >> "$GITHUB_OUTPUT"
+          echo "server=$server" >> "$GITHUB_OUTPUT"
 
       - name: Sync website to production folder
         if: steps.ftp-config.outputs.protocol != 'sftp'
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ${{ steps.ftp-config.outputs.server }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
@@ -82,7 +89,7 @@ jobs:
         if: steps.ftp-config.outputs.protocol != 'sftp'
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ${{ steps.ftp-config.outputs.server }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
@@ -106,7 +113,7 @@ jobs:
         if: steps.ftp-config.outputs.protocol == 'sftp'
         shell: bash
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_SERVER: ${{ steps.ftp-config.outputs.server }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}

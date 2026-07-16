@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.9] - 2026-07-16
+
+### Fixed
+
+- Die FTP-/SFTP-Serveradresse wird vor dem Verbindungsaufbau normalisiert, damit Environment-Werte mit Protokollpraefix oder abschliessendem Pfad korrekt funktionieren.
+
 ## [0.5.8] - 2026-07-16
 
 ### Added
