@@ -35,7 +35,6 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
           FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
           FTP_TARGET_DIR: ${{ vars.FTP_TARGET_DIR }}
         run: |
           set -euo pipefail
@@ -43,18 +42,15 @@ jobs:
           test -n "$FTP_USERNAME"
           test -n "$FTP_PASSWORD"
           test -n "$FTP_PORT"
-          test -n "$FTP_SERVER_DIR"
-          protocol="$(printf '%s' "$FTP_PROTOCOL" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
-          protocol="${protocol%://}"
-          case "$protocol" in
-            ftp|ftps|ftps-legacy) ;;
+          protocol_raw="$(printf '%s' "$FTP_PROTOCOL" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
+          case "$protocol_raw" in
+            *sftp*|*ssh*) echo "SFTP is not supported by this FTP workflow" >&2; exit 1 ;;
+            *legacy*) protocol="ftps-legacy" ;;
+            *ftps*|*tls*|*ssl*) protocol="ftps" ;;
+            *ftp*) protocol="ftp" ;;
             *) echo "FTP_PROTOCOL must be ftp, ftps or ftps-legacy" >&2; exit 1 ;;
           esac
           test "$FTP_TARGET_DIR" = "andreasboehlerportfolio/"
-          case "$FTP_SERVER_DIR" in
-            */) ;;
-            *) echo "FTP_SERVER_DIR must end with a slash" >&2; exit 1 ;;
-          esac
           echo "protocol=$protocol" >> "$GITHUB_OUTPUT"
 
       - name: Sync website to production folder
@@ -90,7 +86,7 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           protocol: ${{ steps.ftp-config.outputs.protocol }}
           local-dir: ./.github/deploy-root/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ./
           dry-run: ${{ inputs.dry_run }}
           dangerous-clean-slate: false
           security: strict
