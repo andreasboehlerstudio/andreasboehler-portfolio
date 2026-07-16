@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.12] - 2026-07-16
+
+### Added
+
+- Ein manueller, read-only Hosting-Pfadcheck vergleicht FTP-Login-Root, konfigurierten Webroot und den Hash der deployten Root-`.htaccess`.
+
 ## [0.5.11] - 2026-07-16
 
 ### Added

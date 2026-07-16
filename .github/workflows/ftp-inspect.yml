@@ -1,0 +1,64 @@
+name: Inspect hosting paths
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    if: github.ref_name == 'main'
+    environment:
+      name: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install FTP client
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes lftp
+
+      - name: Inspect login root and configured webroot
+        shell: bash
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          set -euo pipefail
+          server="$(printf '%s' "$FTP_SERVER" | tr -d '[:space:]')"
+          server="${server#ftp://}"
+          server="${server#ftps://}"
+          server="${server%%/*}"
+
+          echo "::group::FTP login root"
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -p "$FTP_PORT" "ftp://$server" <<EOF
+          set cmd:fail-exit yes
+          set ftp:ssl-allow no
+          pwd
+          cls -la ./
+          bye
+          EOF
+          echo "::endgroup::"
+
+          echo "::group::Configured webroot"
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -p "$FTP_PORT" "ftp://$server" <<EOF
+          set cmd:fail-exit yes
+          set ftp:ssl-allow no
+          cls -la "$FTP_SERVER_DIR"
+          get "${FTP_SERVER_DIR%/}/.htaccess" -o /tmp/remote.htaccess
+          bye
+          EOF
+          echo "::endgroup::"
+
+          echo "Local routing hash:"
+          sha256sum .github/deploy-root/.htaccess
+          echo "Remote routing hash:"
+          sha256sum /tmp/remote.htaccess
