@@ -8,6 +8,14 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.20] - 2026-07-16
+
+### Changed
+
+- Die Photography-Seite nutzt ein dichteres, randnahes Editorial-Raster mit vier Spalten auf grossen Screens, zwei Spalten auf mittleren Viewports und einer Spalte auf Mobile. Alle Motive bleiben gleich gross und filmisch im Querformat.
+- Die Service-Bereiche sind als monochromes Kachelraster mit wechselnden Breiten, klarer Hierarchie und reduzierten Hover-Bewegungen angeordnet.
+- Der Contact-Hero verbindet das grosse "Let's talk" mit dem Statement "Gute Bilder beginnen nicht mit der Kamera. Sie beginnen mit einer klaren Idee."
+
 ## [0.5.19] - 2026-07-16
 
 ### Changed

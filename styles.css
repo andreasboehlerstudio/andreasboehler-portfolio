@@ -14876,3 +14876,257 @@ body[data-page="home"] .hero-video--impact {
     display: none;
   }
 }
+
+/* Dense editorial photography grid inspired by contact-sheet layouts. */
+body:has(.photo-editorial-intro) .photography-wall {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(4px, 0.55vw, 9px);
+  padding: clamp(4px, 0.55vw, 9px);
+  background: #0b0c0c;
+}
+
+body:has(.photo-editorial-intro) .photography-wall .photo-tile {
+  aspect-ratio: 16 / 9;
+  background: #111;
+}
+
+body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body:has(.photo-editorial-intro) .photography-wall .photo-tile:hover img {
+  transform: scale(1.025);
+}
+
+/* Monochrome service tiles: varied scale without decorative color blocks. */
+body[data-page="services"] .service-discipline-list--lite {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(10px, 1.15vw, 20px);
+  padding: clamp(70px, 9vw, 140px) var(--section-x-slim);
+  background: var(--paper);
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card {
+  grid-column: span 6;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "index"
+    "main"
+    "details"
+    "meta";
+  grid-template-rows: auto 1fr auto auto;
+  gap: clamp(28px, 3vw, 52px);
+  min-height: clamp(540px, 48vw, 720px);
+  padding: clamp(30px, 3.4vw, 56px);
+  border: 1px solid var(--line);
+  background: transparent;
+  transition:
+    border-color 320ms ease,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card:nth-child(1),
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card:nth-child(4) {
+  grid-column: span 7;
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card:nth-child(2),
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card:nth-child(3) {
+  grid-column: span 5;
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card:nth-child(5) {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(78px, 0.18fr) minmax(300px, 1.1fr) minmax(220px, 0.7fr) minmax(160px, 0.42fr);
+  grid-template-areas: "index main details meta";
+  grid-template-rows: auto;
+  min-height: clamp(360px, 34vw, 520px);
+  align-items: center;
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-index {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-index strong {
+  font-size: clamp(2.1rem, 3.2vw, 4.7rem);
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-index span {
+  margin-top: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-main h2 {
+  max-width: 11ch;
+  font-size: clamp(2.65rem, 4.2vw, 5.8rem);
+  line-height: 0.92;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card:nth-child(2) .service-discipline-main h2,
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card:nth-child(3) .service-discipline-main h2 {
+  font-size: clamp(2.35rem, 3.15vw, 4.45rem);
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-main p {
+  max-width: 48ch;
+  font-size: clamp(0.98rem, 1.05vw, 1.15rem);
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-details,
+body[data-page="services"] .service-discipline-list--lite .service-discipline-meta {
+  align-self: end;
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-meta {
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card:hover {
+  border-color: currentColor;
+  transform: translateY(-4px);
+}
+
+body[data-page="services"] .service-discipline-list--lite .service-discipline-card:hover h2 {
+  color: inherit;
+  transform: translateX(7px);
+}
+
+/* Contact hero with a quiet statement behind the main invitation. */
+body[data-page="contact"] .contact-hero {
+  position: relative;
+  min-height: 100svh;
+  align-items: stretch;
+  padding-top: clamp(118px, 14vh, 164px);
+}
+
+body[data-page="contact"] .contact-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - clamp(162px, 20vh, 240px));
+}
+
+body[data-page="contact"] .contact-hero header {
+  position: relative;
+  z-index: 2;
+}
+
+body[data-page="contact"] .contact-hero-quote {
+  position: absolute;
+  top: 18%;
+  right: 3%;
+  z-index: 0;
+  width: min(58vw, 920px);
+  margin: 0;
+  color: rgba(17, 17, 17, 0.14);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.6vw, 6.4rem);
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+body[data-page="contact"] .contact-hero-quote p {
+  margin: 0;
+}
+
+body[data-page="contact"] .contact-hero h1 {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  font-size: clamp(6rem, 14.4vw, 14rem);
+  line-height: 0.78;
+  white-space: nowrap;
+}
+
+body[data-page="contact"] .contact-hero-footer {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(34px, 5vh, 62px);
+}
+
+html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote {
+  color: rgba(247, 244, 238, 0.14);
+}
+
+@media (max-width: 1100px) {
+  body:has(.photo-editorial-intro) .photography-wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body[data-page="services"] .service-discipline-list--lite .service-discipline-card,
+  body[data-page="services"] .service-discipline-list--lite .service-discipline-card:nth-child(n) {
+    grid-column: span 6;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "index"
+      "main"
+      "details"
+      "meta";
+    grid-template-rows: auto 1fr auto auto;
+    min-height: 560px;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 700px) {
+  body:has(.photo-editorial-intro) .photography-wall {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 6px;
+  }
+
+  body[data-page="services"] .service-discipline-list--lite {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 74px 12px;
+  }
+
+  body[data-page="services"] .service-discipline-list--lite .service-discipline-card,
+  body[data-page="services"] .service-discipline-list--lite .service-discipline-card:nth-child(n) {
+    grid-column: 1;
+    min-height: 520px;
+    padding: 28px 22px;
+  }
+
+  body[data-page="services"] .service-discipline-list--lite .service-discipline-main h2 {
+    font-size: clamp(2.6rem, 12vw, 4.2rem);
+  }
+
+  body[data-page="contact"] .contact-hero {
+    min-height: 100svh;
+    padding: 112px 22px 34px;
+  }
+
+  body[data-page="contact"] .contact-hero-inner {
+    min-height: calc(100svh - 146px);
+  }
+
+  body[data-page="contact"] .contact-hero-quote {
+    position: static;
+    right: auto;
+    width: 100%;
+    max-width: 11ch;
+    margin: clamp(58px, 10vh, 90px) 0 0;
+    color: rgba(17, 17, 17, 0.3);
+    font-size: clamp(1.95rem, 8.4vw, 2.7rem);
+  }
+
+  body[data-page="contact"] .contact-hero h1 {
+    font-size: clamp(3.25rem, 14.5vw, 5.2rem);
+    line-height: 0.82;
+  }
+
+  html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote {
+    color: rgba(247, 244, 238, 0.3);
+  }
+}
