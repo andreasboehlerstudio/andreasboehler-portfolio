@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.18] - 2026-07-16
+
+### Changed
+
+- Versionierte Tags (`v*`) starten den geschuetzten Production-Workflow jetzt automatisch als echten Live-Deploy. Normale Main- und Staging-Pushes bleiben davon unberuehrt.
+
 ## [0.5.17] - 2026-07-16
 
 ### Fixed

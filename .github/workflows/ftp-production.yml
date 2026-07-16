@@ -1,6 +1,9 @@
 name: Deploy production to FTP
 
 on:
+  push:
+    tags:
+      - "v*"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -18,7 +21,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.ref_name == 'main'
+    if: github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v')
     environment:
       name: production
     runs-on: ubuntu-latest
@@ -83,7 +86,7 @@ jobs:
           protocol: ${{ steps.ftp-config.outputs.protocol }}
           local-dir: ./_production-site/
           server-dir: ${{ format('{0}{1}', secrets.FTP_SERVER_DIR, vars.FTP_TARGET_DIR) }}
-          dry-run: ${{ inputs.dry_run }}
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
           dangerous-clean-slate: false
           security: strict
           timeout: 120000
@@ -108,7 +111,7 @@ jobs:
           protocol: ${{ steps.ftp-config.outputs.protocol }}
           local-dir: ./.github/deploy-root/
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          dry-run: ${{ inputs.dry_run }}
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
           dangerous-clean-slate: false
           security: strict
           timeout: 120000
@@ -131,7 +134,7 @@ jobs:
           FTP_PORT: ${{ secrets.FTP_PORT }}
           FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
           FTP_TARGET_DIR: ${{ vars.FTP_TARGET_DIR }}
-          DRY_RUN: ${{ inputs.dry_run }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
         run: |
           set -euo pipefail
           remote_dir="${FTP_SERVER_DIR%/}/${FTP_TARGET_DIR}"
@@ -146,7 +149,7 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
           FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
-          DRY_RUN: ${{ inputs.dry_run }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
         run: |
           set -euo pipefail
           remote_dir="${FTP_SERVER_DIR%/}/"
