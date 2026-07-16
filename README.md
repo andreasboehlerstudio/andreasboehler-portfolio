@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.15`
+Aktuelle dokumentierte Version: `0.5.16`
 
 ## Inhalt
 
@@ -139,6 +139,16 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.16] - 2026-07-16
+
+#### Fixed
+
+- Der Startseiten-Titel "Filmische Markenwelten" hat mehr Zeilenraum und einen sichereren responsiven Rand, damit die Typografie nicht mehr abgeschnitten wird.
+
+#### Security
+
+- Der Staging-Build ist nicht mehr ueber einen Ordnerpfad der Live-Domain erreichbar. Nur `staging.andreasboehler.com` darf auf `andreasboehlerportfolio-staging/` zugreifen.
 
 ### [0.5.15] - 2026-07-16
 

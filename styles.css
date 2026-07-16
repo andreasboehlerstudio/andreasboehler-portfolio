@@ -13182,6 +13182,21 @@ body[data-page="home"] .hero-scroll-sequence .hero-sticky {
   }
 }
 
+/* Keep the opening statement clear of the reveal mask and viewport edges. */
+body[data-page="home"] .hero-chapter-intro h1 {
+  box-sizing: border-box;
+  padding: 0.1em 0.04em 0.14em;
+  line-height: 0.98;
+}
+
+@media (max-width: 700px) {
+  body[data-page="home"] .hero-chapter-intro h1 {
+    width: calc(100% - 48px);
+    font-size: clamp(2.1rem, 9.7vw, 4.1rem);
+    line-height: 1;
+  }
+}
+
 /* Discreet disclosure for AI-generated visual assets */
 .ai-generated-media {
   position: relative;

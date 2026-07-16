@@ -8,6 +8,16 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.16] - 2026-07-16
+
+### Fixed
+
+- Der Startseiten-Titel "Filmische Markenwelten" hat mehr Zeilenraum und einen sichereren responsiven Rand, damit die Typografie nicht mehr abgeschnitten wird.
+
+### Security
+
+- Der Staging-Build ist nicht mehr ueber einen Ordnerpfad der Live-Domain erreichbar. Nur `staging.andreasboehler.com` darf auf `andreasboehlerportfolio-staging/` zugreifen.
+
 ## [0.5.15] - 2026-07-16
 
 ### Changed
