@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Keep certificate validation and the physical production folder reachable.
+RewriteRule ^\.well-known(?:/|$) - [L]
+RewriteRule ^andreasboehlerportfolio(?:/|$) - [L]
+
+# Serve the production build from the subfolder while keeping clean public URLs.
+RewriteRule ^$ andreasboehlerportfolio/index.html [L]
+RewriteRule ^(.+)$ andreasboehlerportfolio/$1 [L]

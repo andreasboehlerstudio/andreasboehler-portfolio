@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.5`
+Aktuelle dokumentierte Version: `0.5.6`
 
 ## Inhalt
 
@@ -92,9 +92,10 @@ git push origin staging
 Der manuelle Workflow `.github/workflows/ftp-production.yml` verwendet das GitHub-Environment `production`.
 
 - Zugangsdaten kommen ausschliesslich aus den Environment-Secrets.
-- Das Ziel ist ueber `FTP_TARGET_DIR=andreasboehlerpotfolio/` festgelegt.
+- Das Ziel ist ueber `FTP_TARGET_DIR=andreasboehlerportfolio/` festgelegt.
 - Der Workflow akzeptiert nur `ftp`, `ftps` oder `ftps-legacy`.
 - Vor einem echten Upload wird der Workflow mit `dry_run=true` getestet.
+- Nach dem Website-Upload wird die Root-`.htaccess` aktualisiert. Sie liefert die Live-Version intern aus `andreasboehlerportfolio/` aus, waehrend die oeffentlichen URLs unter der Hauptdomain bleiben.
 - `dangerous-clean-slate` bleibt deaktiviert.
 - Repository-Metadaten, Workflows und Release-Dokumente werden nicht hochgeladen.
 
@@ -125,6 +126,13 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.6] - 2026-07-16
+
+#### Fixed
+
+- `FTP_PROTOCOL` wird vor dem Deploy normalisiert, sodass Grossschreibung, Leerzeichen und Werte mit `://` den sicheren Dry-Run nicht mehr unnoetig blockieren.
+- Der korrigierte Produktionsordner lautet `andreasboehlerportfolio/`; eine kontrolliert deployte Root-`.htaccess` schaltet die Hauptdomain auf diese Live-Version um.
 
 ### [0.5.5] - 2026-07-15
 
