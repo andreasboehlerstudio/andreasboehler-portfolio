@@ -3187,15 +3187,22 @@ function updateHero() {
   const rect = hero.getBoundingClientRect();
   const scrollable = hero.offsetHeight - window.innerHeight;
   const progress = clamp(-rect.top / Math.max(scrollable, 1), 0, 1);
-  const pinOffset = Math.round(clamp(-rect.top, 0, Math.max(scrollable, 0)));
-
-  if (heroSticky) {
-    heroSticky.style.transform = `translate3d(0, ${pinOffset}px, 0)`;
-  }
+  syncScrollPin(hero, heroSticky, rect);
   hero.style.setProperty("--hero-scroll-progress", progress.toFixed(4));
   heroVideoScrub?.setProgress(progress);
-  const introProgress = clamp(progress / 0.23, 0, 1);
-  heroTitle.style.transform = `translate3d(0, ${-introProgress * 46}px, 0)`;
+}
+
+function syncScrollPin(section, sticky, rect = section?.getBoundingClientRect()) {
+  if (!section || !sticky || !rect) {
+    return;
+  }
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const isActive = rect.top <= 0 && rect.bottom > viewportHeight;
+  const isEnded = rect.bottom <= viewportHeight;
+
+  sticky.classList.toggle("is-scroll-fixed", isActive);
+  sticky.classList.toggle("is-scroll-ended", isEnded);
 }
 
 function getHeroPhaseOpacity(progress, start, end, fade = 0.025) {
@@ -3239,6 +3246,11 @@ function setupHeroVideoScrub() {
     }
 
     hero.style.setProperty("--hero-video-progress", renderedProgress.toFixed(4));
+
+    if (heroTitle) {
+      const introProgress = clamp(renderedProgress / 0.23, 0, 1);
+      heroTitle.style.transform = `translate3d(0, ${(-introProgress * 46).toFixed(2)}px, 0)`;
+    }
 
     videoStates.forEach((state, index) => {
       const { video, start, end, duration } = state;
@@ -4287,9 +4299,7 @@ function setupHomeClientScroll() {
     const rect = section.getBoundingClientRect();
     const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
     targetProgress = clamp(-rect.top / scrollable, 0, 1);
-    const pinOffset = Math.round(clamp(-rect.top, 0, scrollable));
-
-    sticky.style.transform = `translate3d(0, ${pinOffset}px, 0)`;
+    syncScrollPin(section, sticky, rect);
     requestTrackFrame();
   };
 
@@ -4398,9 +4408,7 @@ function setupHomeVideoProcess() {
     const rect = section.getBoundingClientRect();
     const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
     targetProgress = clamp(-rect.top / scrollable, 0, 1);
-    const pinOffset = Math.round(clamp(-rect.top, 0, scrollable));
-
-    sticky.style.transform = `translate3d(0, ${pinOffset}px, 0)`;
+    syncScrollPin(section, sticky, rect);
 
     if (reduceMotion || !duration) {
       video.pause();
@@ -4497,9 +4505,7 @@ function setupAboutHeroVideoScrub() {
     const rect = section.getBoundingClientRect();
     const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
     targetProgress = clamp(-rect.top / scrollable, 0, 1);
-    const pinOffset = Math.round(clamp(-rect.top, 0, scrollable));
-
-    sticky.style.transform = `translate3d(0, ${pinOffset}px, 0)`;
+    syncScrollPin(section, sticky, rect);
 
     if (reduceMotion || !duration) {
       video.pause();
@@ -4602,10 +4608,22 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-window.addEventListener("scroll", updatePage, { passive: true });
+let pageUpdateFrame = null;
+const requestPageUpdate = () => {
+  if (pageUpdateFrame) {
+    return;
+  }
+
+  pageUpdateFrame = window.requestAnimationFrame(() => {
+    pageUpdateFrame = null;
+    updatePage();
+  });
+};
+
+window.addEventListener("scroll", requestPageUpdate, { passive: true });
 window.addEventListener("pageshow", releaseStaleMenuScrollLock);
 window.addEventListener("resize", () => {
-  updatePage();
+  requestPageUpdate();
 
   if (nav.classList.contains("is-open")) {
     scheduleMenuTraySync();

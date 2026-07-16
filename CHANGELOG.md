@@ -8,6 +8,14 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.17] - 2026-07-16
+
+### Fixed
+
+- Scrollbare Video-, About- und Markenbereiche nutzen nur noch natives CSS-Sticky. Die zusaetzliche pixelweise JavaScript-Verschiebung wurde entfernt, Video- und Textfortschritt laufen gemeinsam geglaettet ueber `requestAnimationFrame`.
+- Der Contact-Hero "Let's talk" verwendet im Dark Mode nun denselben dunklen Grund und Off-White-Kontrast wie die anderen filmischen Header.
+- Alte WordPress-Hauptseiten, Portfolio-Items, redaktionelle Inhalte, Fotokategorien und Shop-Pfade werden mit direkten 301-Weiterleitungen auf die jeweils passendste neue Seite gefuehrt. WordPress-Systempfade antworten bewusst mit 410 statt als Soft 404 auf der Startseite zu landen.
+
 ## [0.5.16] - 2026-07-16
 
 ### Fixed

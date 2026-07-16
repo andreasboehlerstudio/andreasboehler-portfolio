@@ -15,6 +15,64 @@ RewriteRule ^(.+)$ andreasboehlerportfolio-staging/$1 [L]
 RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
 RewriteRule ^andreasboehlerportfolio-staging(?:/|$) - [R=404,L]
 
+# Preserve authority from the former WordPress site with relevant one-hop redirects.
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:home|homepage)/?$ / [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^about/?$ /about.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^contact/?$ /contact.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^services/?$ /services.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:works|works/film|works/page/[0-9]+|works/film/page/[0-9]+|clients|clients-2)/?$ /works.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:photography|works/fotografie|works/fotografie/page/[0-9]+)/?$ /photography.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^helpie_faq_page/?$ /faq.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(agb|datenschutz|impressum)/?$ /$1.html [R=301,L,NC,QSD]
+
+# Keep the four released portfolio cases on their closest canonical detail pages.
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^portfolio-item/50-jahre-europa-park/?$ /50-jahre-europa-park.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^portfolio-item/dj-bobo-evolut30n(?:-tour)?/?$ /dj-bobo-evolut30n-tour.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^portfolio-item/voltron-nevera(?:-tv-werbespot)?/?$ /voltron-nevera-tv-werbespot.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^portfolio-item/phantom-der-oper(?:-vr-coastiality)?/?$ /phantom-der-oper-vr-coastiality.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^portfolio-item/(?:.+)/?$ /works.html [R=301,L,NC,QSD]
+
+# Consolidate old editorial URLs by their original subject instead of dumping them on the homepage.
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^allgemein/(?:filmproduktion-in-lenk-schweiz|imagefilmproduktion-wie-sie-ihre-marke-inszenieren-koennen)/?$ /werbefilm-produktfilm.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^allgemein/(?:3d-gaussian-splats-in-unreal-engine|adobe-premiere-pro-ki-revolutioniert-videobearbeitung-mit-firefly-sora-und-runway|ai-video-was-ist-das-und-wie-kann-es-ihnen-helfen|ki-bilder-wie-du-mit-midjourney-ki-bilder-fuer-deine-projekte-erstellen-kannst|kuenstliche-intelligenz-in-der-filmproduktion|virtual-production-mit-der-unreal-engine)/?$ /services.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^allgemein/(?:black-forest-hike|fotografie-im-europa-park|fotografie-in-kauai-hawaii)/?$ /photography.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:allgemein|journal)(?:/.*)?$ /about.html [R=301,L,NC,QSD]
+
+# Former photo-shop, image taxonomies and archives now lead to the curated photography portfolio.
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^category/(?:blog/)?(?:fotografie|photography)(?:/.*)?$ /photography.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:afrika-bilder|american-bilder|amerika-bilder|asien-bilder|blumen|deutschland-bilder|europa-bilder|freiburg-bilder|hawaii-bilder|kunst|landschaft|menschen|new-york-bilder|schwarzwald-bilder|staedte|storys|tiere)(?:/.*)?$ /photography.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:shop|shop-categories|shop-wandkunstdrucke)(?:/.*)?$ /photography.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:shop-overview|warenkorb|cart|checkout-2|refund_returns|groesse)(?:/.*)?$ /photography.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:category|tag)(?:/.*)?$ /about.html [R=301,L,NC,QSD]
+
+# WordPress internals have no equivalent content and must not become soft 404 redirects.
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:wp-admin|wp-content|wp-includes|wp-json)(?:/.*)?$ - [R=410,L,NC]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:wp-login\.php|xmlrpc\.php)$ - [R=410,L,NC]
+
 # Keep the physical production folder reachable on the live hostname.
 RewriteRule ^(?:andreasboehlerportfolio/)?(?:abbvie-oncology|acino-pain-management|acino-swiss-lab-production-tour|adesso-life-sciences-imagemovie|arcondis-brand-identity|austellung-around-the-world|austellung-movin|bongrain-savencia|businessportrait-kurt|chris-blair-engagement-video|christoph-goettel-artist-portrait|desert-mustang|destiny|dogportrait-ilvy-co|dr-martin-klein|duolingo-spec-ad|energize-your-communications-commercial|europa-park-dinnershow-2022|europa-park-neuheiten-2023|evoke-emotions-commercial|familienportrait-foro|hamburg|hochzeit-albana-max|hochzeit-lucas-valerie|jeep-wrangler-on-hawaii|kaeppeli-recruitngfilm|larissa-autumn-spirit|larissa-spring-feels|mareike-daniel-wedding|mercedes-gt-in-der-salzwuste|messe-basel-imagemovie|movicol-mode-of-action|movin-recruitingfilm|novartis-medportal|ocean-coast|one-stop-in-venedig|paris|praxis-seesemann-commercial-fotografie|projekt|rockstar-musicvideo|smt-imagefilm-qualitaet|songwon-corporate-movie|sportsportrait-irene|syngenta-campaign|ttp-group-imagefilm|uniimmo-portraits|valentin-business-portrait|vietnam|virtual-production-case-study|x-ray-website|zum-park-recruitngfilm)\.html$ - [R=404,L,NC]
 RewriteRule ^andreasboehlerportfolio(?:/|$) - [L]
@@ -26,6 +84,10 @@ RewriteRule ^$ andreasboehlerportfolio/index.html [L]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+
+# Explicitly retire obsolete trailing-slash WordPress URLs without a relevant successor.
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^.+/$ - [R=410,L,NC]
 
 # Serve all new public routes from the production build while keeping clean URLs.
 RewriteRule ^(.+)$ andreasboehlerportfolio/$1 [L]
