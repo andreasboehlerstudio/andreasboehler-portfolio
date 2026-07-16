@@ -4537,6 +4537,67 @@ function setupAboutHeroVideoScrub() {
   measure();
 }
 
+function setupContactQuoteReveal() {
+  const hero = document.querySelector('body[data-page="contact"] .contact-hero');
+  const quote = hero?.querySelector(".contact-hero-quote");
+  const supportsPointerReveal = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!hero || !quote || !supportsPointerReveal || reduceMotion) {
+    return;
+  }
+
+  let targetX = quote.clientWidth * 0.5;
+  let targetY = quote.clientHeight * 0.5;
+  let currentX = targetX;
+  let currentY = targetY;
+  let targetSize = 0;
+  let currentSize = 0;
+  let revealFrame = null;
+
+  const render = () => {
+    currentX += (targetX - currentX) * 0.14;
+    currentY += (targetY - currentY) * 0.14;
+    currentSize += (targetSize - currentSize) * 0.12;
+
+    quote.style.setProperty("--quote-reveal-x", `${currentX.toFixed(2)}px`);
+    quote.style.setProperty("--quote-reveal-y", `${currentY.toFixed(2)}px`);
+    quote.style.setProperty("--quote-reveal-size", `${currentSize.toFixed(2)}px`);
+
+    const isMoving =
+      Math.abs(targetX - currentX) > 0.15 ||
+      Math.abs(targetY - currentY) > 0.15 ||
+      Math.abs(targetSize - currentSize) > 0.15;
+
+    if (isMoving) {
+      revealFrame = window.requestAnimationFrame(render);
+    } else {
+      revealFrame = null;
+    }
+  };
+
+  const requestRender = () => {
+    if (!revealFrame) {
+      revealFrame = window.requestAnimationFrame(render);
+    }
+  };
+
+  const updatePointer = (event) => {
+    const rect = quote.getBoundingClientRect();
+    targetX = event.clientX - rect.left;
+    targetY = event.clientY - rect.top;
+    targetSize = clamp(Math.min(window.innerWidth, window.innerHeight) * 0.2, 120, 210);
+    requestRender();
+  };
+
+  hero.addEventListener("pointerenter", updatePointer);
+  hero.addEventListener("pointermove", updatePointer, { passive: true });
+  hero.addEventListener("pointerleave", () => {
+    targetSize = 0;
+    requestRender();
+  });
+}
+
 function setupAiGeneratedLabels() {
   const aiAssetNames = new Set([
     "andreas-agb-hero-nano-banana-2.jpg",
@@ -4645,6 +4706,7 @@ setupHomeClientScroll();
 setupHeroVideoScrub();
 setupHomeVideoProcess();
 setupAboutHeroVideoScrub();
+setupContactQuoteReveal();
 setupAiGeneratedLabels();
 setupBriefingForm();
 setupWeddingInquiryForm();

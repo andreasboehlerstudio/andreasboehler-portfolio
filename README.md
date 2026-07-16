@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.21`
+Aktuelle dokumentierte Version: `0.5.22`
 
 ## Inhalt
 
@@ -139,6 +139,12 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.22] - 2026-07-16
+
+#### Added
+
+- Das Statement im Contact-Hero besitzt nun einen weichen Mouse-Reveal: Eine klare Textkopie wird innerhalb einer nachlaufenden radialen Maske sichtbar. Touch und Reduced Motion erhalten eine statische, gut lesbare Variante.
 
 ### [0.5.21] - 2026-07-16
 

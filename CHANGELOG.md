@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.22] - 2026-07-16
+
+### Added
+
+- Das Statement im Contact-Hero besitzt nun einen weichen Mouse-Reveal: Eine klare Textkopie wird innerhalb einer nachlaufenden radialen Maske sichtbar. Touch und Reduced Motion erhalten eine statische, gut lesbare Variante.
+
 ## [0.5.21] - 2026-07-16
 
 ### Changed

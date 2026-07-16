@@ -14920,6 +14920,9 @@ body[data-page="contact"] .contact-hero header {
 }
 
 body[data-page="contact"] .contact-hero-quote {
+  --quote-reveal-x: 50%;
+  --quote-reveal-y: 50%;
+  --quote-reveal-size: 0px;
   position: absolute;
   top: 18%;
   right: 3%;
@@ -14934,7 +14937,38 @@ body[data-page="contact"] .contact-hero-quote {
 }
 
 body[data-page="contact"] .contact-hero-quote p {
+  position: relative;
   margin: 0;
+}
+
+body[data-page="contact"] .contact-hero-quote-base,
+body[data-page="contact"] .contact-hero-quote-reveal {
+  display: block;
+}
+
+body[data-page="contact"] .contact-hero-quote-base {
+  color: inherit;
+}
+
+body[data-page="contact"] .contact-hero-quote-reveal {
+  position: absolute;
+  inset: 0;
+  color: rgba(17, 17, 17, 0.9);
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(
+    circle var(--quote-reveal-size) at var(--quote-reveal-x) var(--quote-reveal-y),
+    #000 0%,
+    #000 54%,
+    rgba(0, 0, 0, 0.72) 70%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle var(--quote-reveal-size) at var(--quote-reveal-x) var(--quote-reveal-y),
+    #000 0%,
+    #000 54%,
+    rgba(0, 0, 0, 0.72) 70%,
+    transparent 100%
+  );
 }
 
 body[data-page="contact"] .contact-hero h1 {
@@ -14954,6 +14988,10 @@ body[data-page="contact"] .contact-hero-footer {
 
 html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote {
   color: rgba(247, 244, 238, 0.14);
+}
+
+html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote-reveal {
+  color: rgba(247, 244, 238, 0.94);
 }
 
 @media (max-width: 1100px) {
@@ -14995,5 +15033,19 @@ html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote {
 
   html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote {
     color: rgba(247, 244, 238, 0.3);
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  body[data-page="contact"] .contact-hero-quote-base {
+    color: rgba(17, 17, 17, 0.52);
+  }
+
+  body[data-page="contact"] .contact-hero-quote-reveal {
+    display: none;
+  }
+
+  html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote-base {
+    color: rgba(247, 244, 238, 0.52);
   }
 }
