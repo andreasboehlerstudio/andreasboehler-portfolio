@@ -62,6 +62,16 @@ jobs:
           echo "protocol=$protocol" >> "$GITHUB_OUTPUT"
           echo "server=$server" >> "$GITHUB_OUTPUT"
 
+      - name: Prepare curated production bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _production-site
+          git archive --format=tar HEAD | tar -xf - -C _production-site
+          python .github/scripts/prepare_production.py _production-site
+          rm -rf _production-site/.github
+          rm -f _production-site/README.md _production-site/CHANGELOG.md _production-site/VERSION
+
       - name: Sync website to production folder
         if: steps.ftp-config.outputs.protocol != 'sftp'
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
@@ -71,7 +81,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           protocol: ${{ steps.ftp-config.outputs.protocol }}
-          local-dir: ./
+          local-dir: ./_production-site/
           server-dir: ${{ format('{0}{1}', secrets.FTP_SERVER_DIR, vars.FTP_TARGET_DIR) }}
           dry-run: ${{ inputs.dry_run }}
           dangerous-clean-slate: false
@@ -125,7 +135,7 @@ jobs:
         run: |
           set -euo pipefail
           remote_dir="${FTP_SERVER_DIR%/}/${FTP_TARGET_DIR}"
-          bash ./.github/scripts/deploy_sftp.sh ./ "$remote_dir" "$DRY_RUN"
+          bash ./.github/scripts/deploy_sftp.sh ./_production-site/ "$remote_dir" "$DRY_RUN"
 
       - name: Point live domain over SFTP
         if: steps.ftp-config.outputs.protocol == 'sftp'

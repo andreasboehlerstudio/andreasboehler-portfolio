@@ -11719,6 +11719,10 @@ html.is-brand-revealed .site-nav.is-open .site-mark-link {
   transform: translateY(-6px) !important;
 }
 
+body[data-live-projects="curated-four"] .redox-project-card:not([href="dj-bobo-evolut30n-tour.html"]):not([href="50-jahre-europa-park.html"]):not([href="voltron-nevera-tv-werbespot.html"]):not([href="phantom-der-oper-vr-coastiality.html"]) {
+  display: none !important;
+}
+
 /* Awwwards submission pass: editorial rhythm, focused motion and stable mobile UI */
 .scroll-text-reveal {
   --scroll-text-distance: clamp(20px, 2.4vw, 42px);
@@ -12865,7 +12869,8 @@ body[data-works-view="list"] .redox-project-card h2,
 }
 
 .local-proof > span,
-.local-proof > a {
+.local-proof > a,
+.local-proof > div {
   padding: 28px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -12877,13 +12882,18 @@ body[data-works-view="list"] .redox-project-card h2,
   text-transform: uppercase;
 }
 
-.local-proof > a {
+.local-proof > a,
+.local-proof > div {
   grid-column: 2;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 24px;
   color: inherit;
+}
+
+.local-proof > div {
+  grid-column: 2;
 }
 
 .local-proof strong {
@@ -12915,12 +12925,14 @@ body[data-project-slug] .project-facts.text-grid article {
   }
 
   .local-proof > span,
-  .local-proof > a {
+  .local-proof > a,
+  .local-proof > div {
     grid-column: 1;
     grid-row: auto;
   }
 
-  .local-proof > a {
+  .local-proof > a,
+  .local-proof > div {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
@@ -13477,7 +13489,8 @@ body[data-page="home"] .hero-scroll-sequence .hero-sticky {
 }
 
 .wedding-section-head > span,
-.wedding-reference-grid > a > span {
+.wedding-reference-grid > a > span,
+.wedding-reference-grid > article > span {
   color: var(--ember);
   font-family: var(--font-mono);
   font-size: clamp(0.68rem, 0.75vw, 0.82rem);
@@ -13502,12 +13515,14 @@ body[data-page="home"] .hero-scroll-sequence .hero-sticky {
   align-items: start;
 }
 
-.wedding-reference-grid > a {
+.wedding-reference-grid > a,
+.wedding-reference-grid > article {
   grid-column: span 4;
   color: inherit;
 }
 
-.wedding-reference-grid > a:nth-child(2) {
+.wedding-reference-grid > a:nth-child(2),
+.wedding-reference-grid > article:nth-child(2) {
   margin-top: clamp(64px, 9vw, 150px);
 }
 
@@ -13525,15 +13540,18 @@ body[data-page="home"] .hero-scroll-sequence .hero-sticky {
   transition: transform 700ms cubic-bezier(0.2, 0.72, 0.2, 1), filter 500ms ease;
 }
 
-.wedding-reference-grid > a:first-child img {
+.wedding-reference-grid > a:first-child img,
+.wedding-reference-grid > article:first-child img {
   object-position: 54% center;
 }
 
-.wedding-reference-grid > a:nth-child(2) img {
+.wedding-reference-grid > a:nth-child(2) img,
+.wedding-reference-grid > article:nth-child(2) img {
   object-position: 47% center;
 }
 
-.wedding-reference-grid > a:last-child img {
+.wedding-reference-grid > a:last-child img,
+.wedding-reference-grid > article:last-child img {
   object-position: center 38%;
 }
 
@@ -14168,11 +14186,13 @@ body[data-page="home"] .hero-scroll-sequence .hero-sticky {
     gap: 48px;
   }
 
-  .wedding-reference-grid > a {
+  .wedding-reference-grid > a,
+  .wedding-reference-grid > article {
     grid-column: 1;
   }
 
-  .wedding-reference-grid > a:nth-child(2) {
+  .wedding-reference-grid > a:nth-child(2),
+  .wedding-reference-grid > article:nth-child(2) {
     margin-top: 0;
   }
 

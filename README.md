@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.14`
+Aktuelle dokumentierte Version: `0.5.15`
 
 ## Inhalt
 
@@ -139,6 +139,17 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.15] - 2026-07-16
+
+#### Changed
+
+- Die Live-Seite zeigt vorerst nur vier freigegebene Entertainment-Cases: DJ BoBo EVOLUT30N, 50 Jahre Europa-Park, Voltron Nevera und Phantom der Oper VR. Der vollstaendige Projektbestand bleibt im getrennten Staging erhalten.
+
+#### Security
+
+- Nicht freigegebene Projekt-Unterseiten werden auf der Live-Domain mit HTTP 404 gesperrt und aus strukturierten Projektdaten sowie der Live-Sitemap entfernt.
+- Der Production-Workflow erzeugt ein kuratiertes Live-Bundle ohne die 51 nicht freigegebenen Projekt-HTML-Dateien. Der Staging-Build behaelt den vollstaendigen Projektbestand.
 
 ### [0.5.14] - 2026-07-16
 

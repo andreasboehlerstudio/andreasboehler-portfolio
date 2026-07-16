@@ -12,6 +12,7 @@ RewriteCond %{HTTP_HOST} ^staging\.andreasboehler\.com$ [NC]
 RewriteRule ^(.+)$ andreasboehlerportfolio-staging/$1 [L]
 
 # Keep the physical production folder reachable on the live hostname.
+RewriteRule ^(?:andreasboehlerportfolio/)?(?:abbvie-oncology|acino-pain-management|acino-swiss-lab-production-tour|adesso-life-sciences-imagemovie|arcondis-brand-identity|austellung-around-the-world|austellung-movin|bongrain-savencia|businessportrait-kurt|chris-blair-engagement-video|christoph-goettel-artist-portrait|desert-mustang|destiny|dogportrait-ilvy-co|dr-martin-klein|duolingo-spec-ad|energize-your-communications-commercial|europa-park-dinnershow-2022|europa-park-neuheiten-2023|evoke-emotions-commercial|familienportrait-foro|hamburg|hochzeit-albana-max|hochzeit-lucas-valerie|jeep-wrangler-on-hawaii|kaeppeli-recruitngfilm|larissa-autumn-spirit|larissa-spring-feels|mareike-daniel-wedding|mercedes-gt-in-der-salzwuste|messe-basel-imagemovie|movicol-mode-of-action|movin-recruitingfilm|novartis-medportal|ocean-coast|one-stop-in-venedig|paris|praxis-seesemann-commercial-fotografie|projekt|rockstar-musicvideo|smt-imagefilm-qualitaet|songwon-corporate-movie|sportsportrait-irene|syngenta-campaign|ttp-group-imagefilm|uniimmo-portraits|valentin-business-portrait|vietnam|virtual-production-case-study|x-ray-website|zum-park-recruitngfilm)\.html$ - [R=404,L,NC]
 RewriteRule ^andreasboehlerportfolio(?:/|$) - [L]
 
 # Serve the homepage from the production build.
