@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  dispatch:
+  deploy-pages:
     runs-on: ubuntu-latest
     steps:
       - name: Dispatch Pages workflow from main
@@ -21,3 +21,16 @@ jobs:
             --method POST \
             "repos/${{ github.repository }}/actions/workflows/pages.yml/dispatches" \
             -f ref=main
+
+  deploy-hosting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch trusted staging hosting workflow from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          printf '%s' '{"ref":"main","inputs":{"dry_run":"false","source_ref":"staging"}}' | \
+            gh api \
+              --method POST \
+              "repos/${{ github.repository }}/actions/workflows/ftp-staging.yml/dispatches" \
+              --input -

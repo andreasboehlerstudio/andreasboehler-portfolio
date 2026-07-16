@@ -1,16 +1,18 @@
-name: Deploy staging to SFTP
+name: Deploy staging to hosting
 
 on:
-  push:
-    branches:
-      - staging
   workflow_dispatch:
     inputs:
       dry_run:
-        description: Only show planned SFTP changes
+        description: Only show planned hosting changes
         required: true
         default: true
         type: boolean
+      source_ref:
+        description: Branch or commit to deploy
+        required: true
+        default: staging
+        type: string
 
 permissions:
   contents: read
@@ -21,17 +23,22 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.ref_name == 'staging'
+    if: github.ref_name == 'main'
     environment:
-      name: staging
-      url: ${{ vars.PUBLIC_URL }}
+      name: production
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout staging
+      - name: Checkout trusted deployment code
         uses: actions/checkout@v4
 
-      - name: Validate staging configuration
-        id: sftp-config
+      - name: Checkout staging content
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref }}
+          path: _staging-source
+
+      - name: Validate hosting configuration
+        id: ftp-config
         shell: bash
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
@@ -40,7 +47,6 @@ jobs:
           FTP_PORT: ${{ secrets.FTP_PORT }}
           FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL }}
           FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
-          FTP_TARGET_DIR: ${{ vars.FTP_TARGET_DIR }}
         run: |
           set -euo pipefail
           test -n "$FTP_SERVER"
@@ -48,16 +54,21 @@ jobs:
           test -n "$FTP_PASSWORD"
           test -n "$FTP_PORT"
           test -n "$FTP_SERVER_DIR"
-          protocol="$(printf '%s' "$FTP_PROTOCOL" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
-          case "$protocol" in
-            *sftp*|*ssh*) ;;
-            *) echo "Staging deployment requires SFTP" >&2; exit 1 ;;
+          protocol_raw="$(printf '%s' "$FTP_PROTOCOL" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
+          case "$protocol_raw" in
+            *sftp*|*ssh*) protocol="sftp" ;;
+            *legacy*) protocol="ftps-legacy" ;;
+            *ftps*|*tls*|*ssl*) protocol="ftps" ;;
+            *ftp*) protocol="ftp" ;;
+            *) echo "Unsupported hosting protocol" >&2; exit 1 ;;
           esac
           server="$(printf '%s' "$FTP_SERVER" | tr -d '[:space:]')"
+          server="${server#ftp://}"
+          server="${server#ftps://}"
           server="${server#sftp://}"
           server="${server%%/*}"
           test -n "$server"
-          test "$FTP_TARGET_DIR" = "andreasboehlerportfolio-staging/"
+          echo "protocol=$protocol" >> "$GITHUB_OUTPUT"
           echo "server=$server" >> "$GITHUB_OUTPUT"
 
       - name: Prepare noindex staging bundle
@@ -65,29 +76,47 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _staging-site
-          git archive --format=tar HEAD | tar -xf - -C _staging-site
+          git -C _staging-source archive --format=tar HEAD | tar -xf - -C _staging-site
           rm -rf _staging-site/.github
           rm -f _staging-site/README.md _staging-site/CHANGELOG.md _staging-site/VERSION
           python .github/scripts/prepare_staging.py _staging-site
           cp .github/deploy-staging/.htaccess _staging-site/.htaccess
 
+      - name: Sync staging over FTP or FTPS
+        if: steps.ftp-config.outputs.protocol != 'sftp'
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ steps.ftp-config.outputs.server }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          protocol: ${{ steps.ftp-config.outputs.protocol }}
+          local-dir: ./_staging-site/
+          server-dir: ${{ format('{0}andreasboehlerportfolio-staging/', secrets.FTP_SERVER_DIR) }}
+          dry-run: ${{ inputs.dry_run }}
+          dangerous-clean-slate: false
+          security: strict
+          timeout: 120000
+          log-level: standard
+
       - name: Install SFTP client
+        if: steps.ftp-config.outputs.protocol == 'sftp'
         shell: bash
         run: |
           sudo apt-get update
           sudo apt-get install --yes lftp
 
-      - name: Sync staging folder
+      - name: Sync staging over SFTP
+        if: steps.ftp-config.outputs.protocol == 'sftp'
         shell: bash
         env:
-          FTP_SERVER: ${{ steps.sftp-config.outputs.server }}
+          FTP_SERVER: ${{ steps.ftp-config.outputs.server }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
           FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
-          FTP_TARGET_DIR: ${{ vars.FTP_TARGET_DIR }}
-          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
           set -euo pipefail
-          remote_dir="${FTP_SERVER_DIR%/}/${FTP_TARGET_DIR}"
+          remote_dir="${FTP_SERVER_DIR%/}/andreasboehlerportfolio-staging/"
           bash ./.github/scripts/deploy_sftp.sh ./_staging-site/ "$remote_dir" "$DRY_RUN"

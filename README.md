@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.13`
+Aktuelle dokumentierte Version: `0.5.14`
 
 ## Inhalt
 
@@ -105,10 +105,12 @@ Der Workflow `.github/workflows/ftp-staging.yml` deployt den Branch `staging` se
 
 - Ziel: `andreasboehlerportfolio-staging/`
 - Vorgesehene URL: `https://staging.andreasboehler.com/`
+- Die Root-`.htaccess` routet diesen Hostnamen automatisch in den Staging-Ordner, sobald die Subdomain beim Hoster auf dieselbe Website zeigt.
 - Alle HTML-Seiten erhalten `noindex`, `nofollow` und einen sichtbaren `STAGING` Hinweis.
 - Eine eigene `.htaccess` setzt zusaetzlich den HTTP-Header `X-Robots-Tag` und verhindert Verzeichnislisten.
 - Der Staging-Deploy veraendert weder den Live-Ordner noch die Root-`.htaccess`.
-- Das GitHub-Environment `staging` verwendet dieselben sechs Verbindungs-Secrets wie `production`, aber eigene Variablen fuer Zielordner und URL.
+- Der Staging-Workflow laeuft als vertrauenswuerdiger Workflow aus `main`, liest nur die Inhalte des Branches `staging` und verwendet die vorhandenen Hosting-Secrets aus `production`.
+- Der Zielordner `andreasboehlerportfolio-staging/` ist im Workflow fest verdrahtet; ein Staging-Deploy kann weder den Live-Ordner noch die Root-`.htaccess` beschreiben.
 
 ## Versionierung und Changelog
 
@@ -137,6 +139,12 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.14] - 2026-07-16
+
+#### Changed
+
+- Staging wird ueber einen vertrauenswuerdigen Workflow aus `main` in den fest getrennten Ordner `andreasboehlerportfolio-staging/` deployt. Ein Push auf `staging` aktualisiert GitHub Pages und das Hosting-Staging automatisch, ohne Zugriff auf die Live-Umschaltung. Die Root-`.htaccess` routet `staging.andreasboehler.com` hostbasiert in diesen Ordner.
 
 ### [0.5.13] - 2026-07-16
 

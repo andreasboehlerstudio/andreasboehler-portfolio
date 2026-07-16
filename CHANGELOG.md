@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.14] - 2026-07-16
+
+### Changed
+
+- Staging wird ueber einen vertrauenswuerdigen Workflow aus `main` in den fest getrennten Ordner `andreasboehlerportfolio-staging/` deployt. Ein Push auf `staging` aktualisiert GitHub Pages und das Hosting-Staging automatisch, ohne Zugriff auf die Live-Umschaltung. Die Root-`.htaccess` routet `staging.andreasboehler.com` hostbasiert in diesen Ordner.
+
 ## [0.5.13] - 2026-07-16
 
 ### Fixed

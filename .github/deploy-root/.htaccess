@@ -1,7 +1,17 @@
 RewriteEngine On
 
-# Keep certificate validation and the physical production folder reachable.
+# Keep certificate validation reachable on every hostname.
 RewriteRule ^\.well-known(?:/|$) - [L]
+
+# Serve the isolated noindex build on the staging hostname.
+RewriteCond %{HTTP_HOST} ^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^andreasboehlerportfolio-staging(?:/|$) - [L]
+RewriteCond %{HTTP_HOST} ^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^$ andreasboehlerportfolio-staging/index.html [L]
+RewriteCond %{HTTP_HOST} ^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(.+)$ andreasboehlerportfolio-staging/$1 [L]
+
+# Keep the physical production folder reachable on the live hostname.
 RewriteRule ^andreasboehlerportfolio(?:/|$) - [L]
 
 # Serve the homepage from the production build.
