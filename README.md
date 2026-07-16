@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.10`
+Aktuelle dokumentierte Version: `0.5.11`
 
 ## Inhalt
 
@@ -87,17 +87,28 @@ git pull origin staging
 git push origin staging
 ```
 
-## FTP Production Deploy
+## Server Deployments
 
 Der manuelle Workflow `.github/workflows/ftp-production.yml` verwendet das GitHub-Environment `production`.
 
 - Zugangsdaten kommen ausschliesslich aus den Environment-Secrets.
-- Das Ziel ist ueber `FTP_TARGET_DIR=andreasboehlerportfolio/` festgelegt.
-- Der Workflow akzeptiert nur `ftp`, `ftps` oder `ftps-legacy`.
+- `FTP_SERVER_DIR` bezeichnet den Webroot, zum Beispiel `public_html/`.
+- Live liegt darunter in `andreasboehlerportfolio/`.
+- Staging liegt daneben in `andreasboehlerportfolio-staging/`.
+- Der Workflow akzeptiert `ftp`, `ftps`, `ftps-legacy` und `sftp`.
 - Vor einem echten Upload wird der Workflow mit `dry_run=true` getestet.
 - Nach dem Website-Upload wird die Root-`.htaccess` aktualisiert. Sie liefert die Live-Version intern aus `andreasboehlerportfolio/` aus, waehrend die oeffentlichen URLs unter der Hauptdomain bleiben.
 - `dangerous-clean-slate` bleibt deaktiviert.
 - Repository-Metadaten, Workflows und Release-Dokumente werden nicht hochgeladen.
+
+Der Workflow `.github/workflows/ftp-staging.yml` deployt den Branch `staging` separat:
+
+- Ziel: `andreasboehlerportfolio-staging/`
+- Vorgesehene URL: `https://staging.andreasboehler.com/`
+- Alle HTML-Seiten erhalten `noindex`, `nofollow` und einen sichtbaren `STAGING` Hinweis.
+- Eine eigene `.htaccess` setzt zusaetzlich den HTTP-Header `X-Robots-Tag` und verhindert Verzeichnislisten.
+- Der Staging-Deploy veraendert weder den Live-Ordner noch die Root-`.htaccess`.
+- Das GitHub-Environment `staging` verwendet dieselben sechs Verbindungs-Secrets wie `production`, aber eigene Variablen fuer Zielordner und URL.
 
 ## Versionierung und Changelog
 
@@ -126,6 +137,16 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.11] - 2026-07-16
+
+#### Added
+
+- Live und Staging besitzen getrennte Serverordner und Workflows. Der neue Staging-Deploy erzeugt ein gekennzeichnetes, nicht indexierbares Test-Bundle fuer `staging.andreasboehler.com`.
+
+#### Fixed
+
+- Production-Uploads verwenden `FTP_SERVER_DIR` wieder explizit als Webroot, sodass Live-Ordner und Root-`.htaccess` am richtigen Ort liegen.
 
 ### [0.5.10] - 2026-07-16
 

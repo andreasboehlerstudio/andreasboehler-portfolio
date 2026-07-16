@@ -8,6 +8,16 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.11] - 2026-07-16
+
+### Added
+
+- Live und Staging besitzen getrennte Serverordner und Workflows. Der neue Staging-Deploy erzeugt ein gekennzeichnetes, nicht indexierbares Test-Bundle fuer `staging.andreasboehler.com`.
+
+### Fixed
+
+- Production-Uploads verwenden `FTP_SERVER_DIR` wieder explizit als Webroot, sodass Live-Ordner und Root-`.htaccess` am richtigen Ort liegen.
+
 ## [0.5.10] - 2026-07-16
 
 ### Fixed

@@ -35,6 +35,7 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
           FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
           FTP_TARGET_DIR: ${{ vars.FTP_TARGET_DIR }}
         run: |
           set -euo pipefail
@@ -42,6 +43,7 @@ jobs:
           test -n "$FTP_USERNAME"
           test -n "$FTP_PASSWORD"
           test -n "$FTP_PORT"
+          test -n "$FTP_SERVER_DIR"
           protocol_raw="$(printf '%s' "$FTP_PROTOCOL" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
           case "$protocol_raw" in
             *sftp*|*ssh*) protocol="sftp" ;;
@@ -70,7 +72,7 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           protocol: ${{ steps.ftp-config.outputs.protocol }}
           local-dir: ./
-          server-dir: ${{ vars.FTP_TARGET_DIR }}
+          server-dir: ${{ format('{0}{1}', secrets.FTP_SERVER_DIR, vars.FTP_TARGET_DIR) }}
           dry-run: ${{ inputs.dry_run }}
           dangerous-clean-slate: false
           security: strict
@@ -95,7 +97,7 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           protocol: ${{ steps.ftp-config.outputs.protocol }}
           local-dir: ./.github/deploy-root/
-          server-dir: ./
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
           dry-run: ${{ inputs.dry_run }}
           dangerous-clean-slate: false
           security: strict
@@ -117,41 +119,13 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
           FTP_TARGET_DIR: ${{ vars.FTP_TARGET_DIR }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           set -euo pipefail
-          dry_option=""
-          if [ "$DRY_RUN" = "true" ]; then
-            dry_option="--dry-run"
-          fi
-
-          for attempt in 1 2 3 4; do
-            if lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -p "$FTP_PORT" "sftp://$FTP_SERVER" <<EOF
-          set cmd:fail-exit yes
-          set net:timeout 120
-          set net:max-retries 3
-          set net:reconnect-interval-base 5
-          set net:reconnect-interval-max 30
-          set sftp:auto-confirm yes
-          mirror --reverse --continue --verbose --no-perms $dry_option \
-            --exclude-glob .git* \
-            --exclude-glob .github/** \
-            --exclude-glob node_modules/** \
-            --exclude-glob README.md \
-            --exclude-glob CHANGELOG.md \
-            --exclude-glob VERSION \
-            ./ "$FTP_TARGET_DIR"
-          bye
-          EOF
-            then
-              break
-            fi
-            if [ "$attempt" -eq 4 ]; then
-              exit 1
-            fi
-            sleep $((attempt * 10))
-          done
+          remote_dir="${FTP_SERVER_DIR%/}/${FTP_TARGET_DIR}"
+          bash ./.github/scripts/deploy_sftp.sh ./ "$remote_dir" "$DRY_RUN"
 
       - name: Point live domain over SFTP
         if: steps.ftp-config.outputs.protocol == 'sftp'
@@ -161,31 +135,9 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           set -euo pipefail
-          dry_option=""
-          if [ "$DRY_RUN" = "true" ]; then
-            dry_option="--dry-run"
-          fi
-
-          for attempt in 1 2 3 4; do
-            if lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -p "$FTP_PORT" "sftp://$FTP_SERVER" <<EOF
-          set cmd:fail-exit yes
-          set net:timeout 120
-          set net:max-retries 3
-          set net:reconnect-interval-base 5
-          set net:reconnect-interval-max 30
-          set sftp:auto-confirm yes
-          mirror --reverse --continue --verbose --no-perms $dry_option \
-            ./.github/deploy-root/ ./
-          bye
-          EOF
-            then
-              break
-            fi
-            if [ "$attempt" -eq 4 ]; then
-              exit 1
-            fi
-            sleep $((attempt * 10))
-          done
+          remote_dir="${FTP_SERVER_DIR%/}/"
+          bash ./.github/scripts/deploy_sftp.sh ./.github/deploy-root/ "$remote_dir" "$DRY_RUN"
