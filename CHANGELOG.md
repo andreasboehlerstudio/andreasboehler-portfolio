@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.10] - 2026-07-16
+
+### Fixed
+
+- SFTP-Uploads werden bei hosterseitigen Verbindungsabbruechen fortgesetzt und automatisch wiederholt. Die Root-`.htaccess` wird erst in einem separaten Schritt nach einem vollstaendigen Website-Upload gesetzt.
+
 ## [0.5.9] - 2026-07-16
 
 ### Fixed
