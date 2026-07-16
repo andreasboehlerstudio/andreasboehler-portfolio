@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.21] - 2026-07-16
+
+### Changed
+
+- Die Services-Seite verwendet wieder das vorherige ruhige Zeilenlayout statt des asymmetrischen Kachelrasters. Photography-Raster und Contact-Hero bleiben unveraendert.
+
 ## [0.5.20] - 2026-07-16
 
 ### Changed
