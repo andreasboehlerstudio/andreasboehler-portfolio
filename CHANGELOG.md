@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.8] - 2026-07-16
+
+### Added
+
+- Der Production-Workflow unterstuetzt jetzt auch SFTP mit einem nicht schreibenden `lftp`-Dry-Run und einem anschliessenden Upload ohne Loesch-Synchronisation.
+
 ## [0.5.7] - 2026-07-16
 
 ### Fixed
