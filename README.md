@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.22`
+Aktuelle dokumentierte Version: `0.5.23`
 
 ## Inhalt
 
@@ -139,6 +139,13 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.23] - 2026-07-17
+
+#### Changed
+
+- Der Contact-Hero verdeckt sein Statement nun vollstaendig unter einer Canvas-Ebene. Mausbewegungen radieren diese Ebene mit einer weichen, zusammenhaengenden und bleibenden Pinselspur aus; "Let's talk" bleibt dabei als Vordergrundebene erhalten.
+- Touchgeraete und Nutzer mit reduzierter Bewegung erhalten weiterhin eine statische, gut lesbare Textvariante.
 
 ### [0.5.22] - 2026-07-16
 

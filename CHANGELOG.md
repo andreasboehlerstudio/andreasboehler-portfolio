@@ -8,6 +8,13 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.23] - 2026-07-17
+
+### Changed
+
+- Der Contact-Hero verdeckt sein Statement nun vollstaendig unter einer Canvas-Ebene. Mausbewegungen radieren diese Ebene mit einer weichen, zusammenhaengenden und bleibenden Pinselspur aus; "Let's talk" bleibt dabei als Vordergrundebene erhalten.
+- Touchgeraete und Nutzer mit reduzierter Bewegung erhalten weiterhin eine statische, gut lesbare Textvariante.
+
 ## [0.5.22] - 2026-07-16
 
 ### Added

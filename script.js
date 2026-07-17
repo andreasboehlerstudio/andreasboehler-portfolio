@@ -4540,62 +4540,108 @@ function setupAboutHeroVideoScrub() {
 function setupContactQuoteReveal() {
   const hero = document.querySelector('body[data-page="contact"] .contact-hero');
   const quote = hero?.querySelector(".contact-hero-quote");
+  const cover = quote?.querySelector(".contact-hero-quote-cover");
   const supportsPointerReveal = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (!hero || !quote || !supportsPointerReveal || reduceMotion) {
+  if (!hero || !quote || !cover || !supportsPointerReveal || reduceMotion) {
     return;
   }
 
-  let targetX = quote.clientWidth * 0.5;
-  let targetY = quote.clientHeight * 0.5;
-  let currentX = targetX;
-  let currentY = targetY;
-  let targetSize = 0;
-  let currentSize = 0;
-  let revealFrame = null;
+  const context = cover.getContext("2d", { alpha: true });
+  if (!context) {
+    return;
+  }
 
-  const render = () => {
-    currentX += (targetX - currentX) * 0.14;
-    currentY += (targetY - currentY) * 0.14;
-    currentSize += (targetSize - currentSize) * 0.12;
+  let lastPoint = null;
+  let resetFrame = null;
 
-    quote.style.setProperty("--quote-reveal-x", `${currentX.toFixed(2)}px`);
-    quote.style.setProperty("--quote-reveal-y", `${currentY.toFixed(2)}px`);
-    quote.style.setProperty("--quote-reveal-size", `${currentSize.toFixed(2)}px`);
-
-    const isMoving =
-      Math.abs(targetX - currentX) > 0.15 ||
-      Math.abs(targetY - currentY) > 0.15 ||
-      Math.abs(targetSize - currentSize) > 0.15;
-
-    if (isMoving) {
-      revealFrame = window.requestAnimationFrame(render);
-    } else {
-      revealFrame = null;
-    }
-  };
-
-  const requestRender = () => {
-    if (!revealFrame) {
-      revealFrame = window.requestAnimationFrame(render);
-    }
-  };
-
-  const updatePointer = (event) => {
+  const resetCover = () => {
     const rect = quote.getBoundingClientRect();
-    targetX = event.clientX - rect.left;
-    targetY = event.clientY - rect.top;
-    targetSize = clamp(Math.min(window.innerWidth, window.innerHeight) * 0.2, 120, 210);
-    requestRender();
+    if (!rect.width || !rect.height) {
+      return;
+    }
+
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    cover.width = Math.round(rect.width * pixelRatio);
+    cover.height = Math.round(rect.height * pixelRatio);
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    context.globalCompositeOperation = "source-over";
+    context.fillStyle = window.getComputedStyle(hero).backgroundColor;
+    context.fillRect(0, 0, rect.width, rect.height);
+    quote.classList.add("is-brush-ready");
+    lastPoint = null;
   };
 
-  hero.addEventListener("pointerenter", updatePointer);
-  hero.addEventListener("pointermove", updatePointer, { passive: true });
+  const erasePoint = (x, y, radius) => {
+    const gradient = context.createRadialGradient(x, y, radius * 0.12, x, y, radius);
+    gradient.addColorStop(0, "rgba(0, 0, 0, 1)");
+    gradient.addColorStop(0.58, "rgba(0, 0, 0, 0.94)");
+    gradient.addColorStop(0.82, "rgba(0, 0, 0, 0.46)");
+    gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+    context.save();
+    context.globalCompositeOperation = "destination-out";
+    context.fillStyle = gradient;
+    context.beginPath();
+    context.arc(x, y, radius, 0, Math.PI * 2);
+    context.fill();
+    context.restore();
+  };
+
+  const paintReveal = (event) => {
+    const rect = quote.getBoundingClientRect();
+    const point = {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top
+    };
+
+    if (point.x < 0 || point.y < 0 || point.x > rect.width || point.y > rect.height) {
+      lastPoint = null;
+      return;
+    }
+
+    const radius = clamp(Math.min(window.innerWidth, window.innerHeight) * 0.105, 68, 118);
+    const from = lastPoint || point;
+    const distance = Math.hypot(point.x - from.x, point.y - from.y);
+    const steps = Math.max(1, Math.ceil(distance / Math.max(radius * 0.22, 12)));
+
+    for (let index = 0; index <= steps; index += 1) {
+      const progress = index / steps;
+      erasePoint(
+        from.x + (point.x - from.x) * progress,
+        from.y + (point.y - from.y) * progress,
+        radius
+      );
+    }
+
+    lastPoint = point;
+  };
+
+  const requestReset = () => {
+    if (resetFrame) {
+      window.cancelAnimationFrame(resetFrame);
+    }
+    resetFrame = window.requestAnimationFrame(() => {
+      resetFrame = null;
+      resetCover();
+    });
+  };
+
+  hero.addEventListener("pointermove", paintReveal, { passive: true });
   hero.addEventListener("pointerleave", () => {
-    targetSize = 0;
-    requestRender();
+    lastPoint = null;
   });
+  window.addEventListener("resize", requestReset, { passive: true });
+
+  const themeObserver = new MutationObserver(requestReset);
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"]
+  });
+
+  resetCover();
+  document.fonts?.ready.then(requestReset);
 }
 
 function setupAiGeneratedLabels() {
