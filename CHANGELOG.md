@@ -8,6 +8,19 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.24] - 2026-07-22
+
+### Added
+
+- Google Analytics 4 mit der Measurement-ID `G-H7564XZ7BB` ist auf allen Seiten consent-gesteuert eingebunden. Der Datenschutzdialog uebermittelt den Analytics-Status ueber Consent Mode v2; ohne Zustimmung werden keine Analytics-Skripte geladen.
+- Die Hochzeitsfotografie-Seite besitzt eine neue durchgaengige Scroll-Filmsequenz mit drei zeitlich abgestimmten Aussagen zwischen Kamerablick, Trauung und fertiger Erinnerung.
+
+### Changed
+
+- Der Startseiten-Hero verwendet einen zusammenhaengenden 17-Sekunden-Film. Die Textkapitel wurden passend zum Schnitt auf "Momente", "Story" und "Ich gestalte bewegte Marken" ausgerichtet.
+- Home- und Wedding-Hero trennen ihre scrollgesteuerten Texte von der allgemeinen Reveal-Maske. Zusaetzlicher Zeilenraum und responsive Schriftgroessen verhindern abgeschnittene Headlines.
+- Die beiden neuen Hero-Videos wurden fuer Web-Scrubbing auf 720p, H.264, stumme Wiedergabe, Faststart und dichte Keyframes optimiert. Die finale Datenmenge liegt bei rund 6 MB fuer Home und 8 MB fuer Wedding.
+
 ## [0.5.23] - 2026-07-17
 
 ### Changed

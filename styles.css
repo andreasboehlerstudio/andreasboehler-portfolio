@@ -1924,7 +1924,8 @@ html[data-theme="dark"] .cookie-consent-option input:checked + i::before {
 .hero-sticky.is-scroll-fixed,
 .home-client-sticky.is-scroll-fixed,
 .home-video-process-sticky.is-scroll-fixed,
-.about-hero-scrub-sticky.is-scroll-fixed {
+.about-hero-scrub-sticky.is-scroll-fixed,
+.wedding-hero-scrub-sticky.is-scroll-fixed {
   position: fixed;
   inset: 0 0 auto;
   z-index: 3;
@@ -1934,7 +1935,8 @@ html[data-theme="dark"] .cookie-consent-option input:checked + i::before {
 .hero-sticky.is-scroll-ended,
 .home-client-sticky.is-scroll-ended,
 .home-video-process-sticky.is-scroll-ended,
-.about-hero-scrub-sticky.is-scroll-ended {
+.about-hero-scrub-sticky.is-scroll-ended,
+.wedding-hero-scrub-sticky.is-scroll-ended {
   position: absolute;
   inset: auto 0 0;
   width: auto;
@@ -13207,15 +13209,16 @@ body[data-page="home"] .hero-scroll-sequence .hero-sticky {
 /* Keep the opening statement clear of the reveal mask and viewport edges. */
 body[data-page="home"] .hero-chapter-intro h1 {
   box-sizing: border-box;
-  padding: 0.1em 0.04em 0.14em;
-  line-height: 0.98;
+  padding: 0.16em 0.06em 0.22em;
+  line-height: 1.02;
+  overflow: visible;
 }
 
 @media (max-width: 700px) {
   body[data-page="home"] .hero-chapter-intro h1 {
     width: calc(100% - 48px);
     font-size: clamp(2.1rem, 9.7vw, 4.1rem);
-    line-height: 1;
+    line-height: 1.04;
   }
 }
 
@@ -13224,7 +13227,7 @@ body[data-page="home"] .hero-chapter-intro h1 {
     width: calc(100% - 88px);
     max-width: none;
     font-size: clamp(3.35rem, 6.1vw, 4.6rem);
-    line-height: 1;
+    line-height: 1.04;
   }
 }
 
@@ -13482,19 +13485,149 @@ body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
 }
 
 /* Wedding photography landing page */
-.wedding-page .wedding-hero .page-hero-image {
-  object-position: center 42%;
+.wedding-hero-scrub {
+  --wedding-hero-progress: 0;
+  position: relative;
+  min-height: 520svh;
+  overflow: visible;
+  color: #fff;
+  background: #080908;
 }
 
-.wedding-page .wedding-hero::after {
-  height: 54vh;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0));
+.wedding-hero-scrub::after {
+  display: none;
 }
 
-.wedding-page .wedding-hero .page-hero-shade {
+.wedding-hero-scrub-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  isolation: isolate;
+  transform: none;
+  background: #080908;
+}
+
+.wedding-hero-scrub-video,
+.wedding-hero-scrub-shade {
+  position: absolute;
+  inset: 0;
+}
+
+.wedding-hero-scrub-video {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  background: #080908;
+  filter: saturate(0.94) contrast(1.04) brightness(0.86);
+  opacity: 0;
+  pointer-events: none;
+  contain: paint;
+  will-change: opacity;
+}
+
+.wedding-hero-scrub-video--primary {
+  opacity: 1;
+}
+
+.wedding-hero-scrub-shade {
+  z-index: 1;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.34) 48%, rgba(0, 0, 0, 0.1)),
     linear-gradient(0deg, rgba(0, 0, 0, 0.66), rgba(0, 0, 0, 0.04) 70%);
+  pointer-events: none;
+}
+
+.wedding-hero-scrub .page-hero-copy {
+  z-index: 2;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: opacity, transform;
+}
+
+.wedding-hero-scrub .page-hero-copy h1,
+.wedding-hero-scrub .page-hero-copy p {
+  text-shadow: 0 12px 54px rgba(0, 0, 0, 0.42);
+}
+
+.wedding-hero-closing {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: clamp(96px, 12vh, 150px) var(--section-x-slim) clamp(72px, 9vh, 112px);
+  opacity: 0;
+  color: #fff;
+  text-align: center;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.wedding-hero-closing span {
+  margin-bottom: clamp(20px, 3vh, 36px);
+  color: rgba(255, 255, 255, 0.76);
+  font-family: var(--font-mono);
+  font-size: clamp(0.68rem, 0.74vw, 0.8rem);
+  text-transform: uppercase;
+}
+
+.wedding-hero-closing h2 {
+  max-width: 13ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(4.2rem, 9.4vw, 11.8rem);
+  font-weight: 400;
+  line-height: 0.86;
+  letter-spacing: 0;
+  text-shadow: 0 20px 80px rgba(0, 0, 0, 0.58);
+}
+
+.wedding-hero-closing--second h2 {
+  max-width: 13ch;
+}
+
+.wedding-hero-scrub-meter {
+  position: absolute;
+  right: clamp(24px, 4.5vw, 72px);
+  bottom: clamp(28px, 5vh, 72px);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.wedding-hero-scrub-meter i {
+  position: relative;
+  display: block;
+  width: clamp(92px, 11vw, 170px);
+  height: 1px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.wedding-hero-scrub-meter i::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: scaleX(var(--wedding-hero-progress));
+  transform-origin: left center;
+}
+
+.wedding-hero-ai-label {
+  inset: auto auto clamp(26px, 4vh, 48px) var(--section-x-slim);
+  z-index: 3;
 }
 
 .wedding-hero-actions {
@@ -14282,8 +14415,12 @@ body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
 }
 
 @media (max-width: 700px) {
-  .wedding-page .wedding-hero .page-hero-image {
-    object-position: 58% center;
+  .wedding-hero-scrub {
+    min-height: 420svh;
+  }
+
+  .wedding-hero-scrub-video {
+    object-position: center center;
   }
 
   .wedding-page .wedding-hero .page-hero-copy {
@@ -14312,6 +14449,35 @@ body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
     min-height: 44px;
     padding: 0 14px;
     font-size: 0.66rem;
+  }
+
+  .wedding-hero-scrub-meter {
+    right: 22px;
+    bottom: 24px;
+  }
+
+  .wedding-hero-scrub-meter span {
+    display: none;
+  }
+
+  .wedding-hero-ai-label {
+    inset: 82px auto auto 22px;
+  }
+
+  .wedding-hero-closing {
+    align-content: end;
+    padding: 108px 22px 16vh;
+  }
+
+  .wedding-hero-closing h2 {
+    max-width: 11ch;
+    font-size: clamp(3rem, 12.8vw, 4.8rem);
+    line-height: 0.92;
+  }
+
+  .wedding-hero-closing--second h2 {
+    max-width: 11ch;
+    font-size: clamp(2.9rem, 12.4vw, 4.7rem);
   }
 
   .wedding-jump-nav {
@@ -14543,6 +14709,23 @@ body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .wedding-hero-scrub {
+    min-height: 100svh;
+  }
+
+  .wedding-hero-scrub-sticky,
+  .wedding-hero-scrub-sticky.is-scroll-fixed,
+  .wedding-hero-scrub-sticky.is-scroll-ended {
+    position: relative;
+    inset: auto;
+  }
+
+  .wedding-hero-scrub-meter {
+    display: none;
+  }
+}
+
 /* Contact editorial hero */
 body[data-page="contact"] .contact-hero {
   min-height: 92svh;
@@ -14691,6 +14874,11 @@ body[data-page="home"] .hero-video--impact {
   filter: saturate(0.82) contrast(1.12) brightness(0.72);
 }
 
+body[data-page="home"] .hero-video--final {
+  object-position: center center;
+  filter: saturate(0.88) contrast(1.08) brightness(0.72);
+}
+
 .hero-chapter {
   position: absolute;
   inset: 0;
@@ -14777,7 +14965,7 @@ body[data-page="home"] .hero-video--impact {
   z-index: 6;
   align-content: center;
   justify-items: start;
-  background: #050505;
+  background: transparent;
 }
 
 .hero-chapter-final h2 {
@@ -14825,6 +15013,10 @@ body[data-page="home"] .hero-video--impact {
     object-position: 54% center;
   }
 
+  body[data-page="home"] .hero-video--final {
+    object-position: 47% center;
+  }
+
   .hero-chapter-statement,
   .hero-chapter-final {
     padding: 108px 22px 42px;
@@ -14840,8 +15032,8 @@ body[data-page="home"] .hero-video--impact {
   .hero-chapter-impact h2 {
     grid-column: 1;
     max-width: 100%;
-    font-size: clamp(4rem, 20.5vw, 7.4rem);
-    line-height: 0.84;
+    font-size: clamp(3.5rem, 18vw, 6.6rem);
+    line-height: 0.88;
     text-align: left;
   }
 

@@ -15,7 +15,10 @@ const pageShell = document.querySelector(".page-shell");
 const siteFooter = document.querySelector(".site-footer");
 const footerSpacer = document.querySelector(".footer-reveal-spacer");
 const themeStorageKey = "andreas-boehler-theme";
-const consentStorageKey = "andreas-boehler-consent-v1";
+const consentStorageKey = "andreas-boehler-consent-v2";
+const legacyConsentStorageKeys = ["andreas-boehler-consent-v1"];
+const googleAnalyticsMeasurementId = "G-H7564XZ7BB";
+const googleAnalyticsScriptId = "andreas-google-analytics";
 const loaderQuoteStorageKey = "andreas-boehler-loader-quote-seen-v4";
 const loaderSessionKey = "andreas-boehler-loader-seen-v4";
 const consentCategories = ["statistics", "marketing", "external"];
@@ -25,7 +28,7 @@ const defaultConsent = {
   marketing: false,
   external: false,
   decided: false,
-  version: 1
+  version: 2
 };
 const brandMarkPath = "M58.41,25.69l-14.2-2.75c.29-1.1.44-2.35.44-3.75,0-4.69-1.28-7.92-3.84-9.72-2.56-1.79-6.16-2.69-10.81-2.69h-12.17v11.04l-7.26-1.41v9.16l7.26,1.26v.02l10.83,1.61,17.53,2.6-.1.02.28.04-3.14.47s-.01-.01-.02-.02l-9.86,1.6s0,0,0,0l-5.83.95h0s-9.69,1.57-9.69,1.57h0s-7.26,1.18-7.26,1.18v8.85l7.26-1.4v10.32h14.29c9.29,0,13.94-4.69,13.94-14.06,0-.58-.02-1.14-.06-1.69l12.41-2.39v-10.81ZM27.52,13.46h1.83c2.32,0,4.04.46,5.14,1.39,1.1.93,1.65,2.45,1.65,4.58,0,.7-.04,1.34-.12,1.92l-8.51-1.65v-6.24ZM35.28,46c-.96,1.18-2.63,1.77-4.99,1.77h-2.78v-5.33l9.21-1.77c-.03,2.42-.52,4.2-1.44,5.33Z";
 let activeConsent = null;
@@ -243,6 +246,10 @@ function setupDynamicCopyright() {
 }
 
 function setupStudioCursor() {
+  if (document.body.dataset.page === "webdesign") {
+    return;
+  }
+
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -381,6 +388,13 @@ function setupStudioCursor() {
 }
 
 function setupPageLoader() {
+  if (document.body.dataset.page === "webdesign") {
+    document.documentElement.classList.add("is-brand-revealed");
+    document.documentElement.classList.remove("is-brand-pending");
+    unlockPageScroll();
+    return;
+  }
+
   if (document.querySelector(".site-loader")) {
     return;
   }
@@ -649,6 +663,7 @@ function storeConsent(consent) {
         updatedAt: new Date().toISOString()
       })
     );
+    legacyConsentStorageKeys.forEach((key) => localStorage.removeItem(key));
   } catch (error) {
     // Consent is still applied for the current session if storage is unavailable.
   }
@@ -728,6 +743,84 @@ function loadConsentControlledResources() {
   });
 }
 
+function getGoogleTag() {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function googleTag() {
+    window.dataLayer.push(arguments);
+  };
+
+  return window.gtag;
+}
+
+function disableGoogleAnalytics() {
+  window[`ga-disable-${googleAnalyticsMeasurementId}`] = true;
+  document.documentElement.dataset.analytics = "disabled";
+
+  if (typeof window.gtag === "function") {
+    window.gtag("consent", "update", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
+    });
+  }
+}
+
+function enableGoogleAnalytics() {
+  if (!isConsentCategoryAllowed("statistics")) {
+    disableGoogleAnalytics();
+    return;
+  }
+
+  window[`ga-disable-${googleAnalyticsMeasurementId}`] = false;
+  document.documentElement.dataset.analytics = "loading";
+  const gtag = getGoogleTag();
+
+  gtag("consent", "default", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied"
+  });
+
+  if (!document.getElementById(googleAnalyticsScriptId)) {
+    const script = document.createElement("script");
+
+    script.id = googleAnalyticsScriptId;
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(googleAnalyticsMeasurementId)}`;
+    script.addEventListener("load", () => {
+      document.documentElement.dataset.analytics = "loaded";
+    });
+    script.addEventListener("error", () => {
+      document.documentElement.dataset.analytics = "error";
+    });
+    document.head.append(script);
+
+    gtag("js", new Date());
+    gtag("config", googleAnalyticsMeasurementId, {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
+  } else {
+    document.documentElement.dataset.analytics = "loaded";
+    gtag("consent", "update", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
+    });
+  }
+}
+
+function syncGoogleAnalyticsConsent() {
+  if (isConsentCategoryAllowed("statistics")) {
+    enableGoogleAnalytics();
+  } else {
+    disableGoogleAnalytics();
+  }
+}
+
 function updateCookieBannerState() {
   const banner = document.querySelector(".cookie-consent");
 
@@ -756,6 +849,7 @@ function applyCookieConsent(consent, shouldStore = true) {
   }
 
   loadConsentControlledResources();
+  syncGoogleAnalyticsConsent();
   updateCookieBannerState();
 }
 
@@ -901,7 +995,7 @@ function setupCookieConsent(forceOpen = false) {
   settings.className = "cookie-consent-settings";
   settings.append(
     createConsentOption("necessary", "Notwendig", "Consent-Speicherung, Theme und technische Grundfunktionen.", true),
-    createConsentOption("statistics", "Statistik", "Reichweitenmessung und Performance-Auswertung, falls später eingebunden."),
+    createConsentOption("statistics", "Statistik", "Reichweiten- und Performance-Messung mit Google Analytics nach deiner Einwilligung."),
     createConsentOption("marketing", "Marketing", "Pixel, Remarketing und Kampagnenmessung."),
     createConsentOption("external", "Externe Medien", "YouTube, Vimeo, Maps, Instagram oder vergleichbare Einbettungen.")
   );
@@ -2971,6 +3065,9 @@ function setupScrollTextReveals() {
   const excludedAreas = [
     ".site-nav",
     ".site-footer",
+    ".hero-chapter",
+    ".wedding-hero-copy",
+    ".wedding-hero-closing",
     ".cookie-banner",
     ".briefing-form",
     ".consent-banner",
@@ -3404,6 +3501,10 @@ function updatePage() {
 }
 
 function closeMenu() {
+  if (!nav || !menuButton) {
+    return;
+  }
+
   nav.classList.remove("is-open");
   menuButton.setAttribute("aria-expanded", "false");
   menuButton.querySelector(".sr-only").textContent = "Menü öffnen";
@@ -3432,7 +3533,7 @@ function syncMenuTray(isOpen) {
 let menuTraySyncFrame = null;
 
 function scheduleMenuTraySync() {
-  if (!nav.classList.contains("is-open")) {
+  if (!nav?.classList.contains("is-open")) {
     return;
   }
 
@@ -4537,6 +4638,139 @@ function setupAboutHeroVideoScrub() {
   measure();
 }
 
+function setupWeddingHeroVideoScrub() {
+  const section = document.querySelector(".wedding-hero-scrub");
+  const sticky = document.querySelector(".wedding-hero-scrub-sticky");
+  const videos = [...document.querySelectorAll("[data-wedding-scroll-video]")];
+  const copy = section?.querySelector(".wedding-hero-copy");
+  const closings = [...(section?.querySelectorAll(".wedding-hero-closing") || [])];
+
+  if (!section || !sticky || !videos.length) {
+    return;
+  }
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const videoStates = videos.map((video) => ({
+    video,
+    start: Number.parseFloat(video.dataset.weddingStart || "0"),
+    end: Number.parseFloat(video.dataset.weddingEnd || "1"),
+    duration: 0
+  }));
+  const closingStates = closings.map((closing) => ({
+    closing,
+    start: Number.parseFloat(closing.dataset.weddingCopyStart || "0.7"),
+    end: Number.parseFloat(closing.dataset.weddingCopyEnd || "1"),
+    fade: Number.parseFloat(closing.dataset.weddingCopyFade || "0.075")
+  }));
+  let targetProgress = 0;
+  let renderedProgress = 0;
+  let ticking = false;
+  let scrubFrame = null;
+  let hasRenderedScrub = false;
+
+  const renderScrub = () => {
+    if (reduceMotion) {
+      renderedProgress = 0;
+    } else if (!hasRenderedScrub) {
+      renderedProgress = targetProgress;
+      hasRenderedScrub = true;
+    } else {
+      renderedProgress += (targetProgress - renderedProgress) * 0.052;
+    }
+
+    section.style.setProperty("--wedding-hero-progress", renderedProgress.toFixed(4));
+
+    if (copy) {
+      const copyOpacity = clamp(1 - (renderedProgress / 0.2), 0, 1);
+      copy.style.opacity = copyOpacity.toFixed(4);
+      copy.style.transform = `translate3d(0, ${(-Math.min(renderedProgress / 0.2, 1) * 34).toFixed(2)}px, 0)`;
+      copy.style.pointerEvents = renderedProgress < 0.18 ? "auto" : "none";
+    }
+
+    closingStates.forEach(({ closing, start, end, fade }) => {
+      const closingOpacity = getHeroPhaseOpacity(renderedProgress, start, end, fade);
+      closing.style.opacity = closingOpacity.toFixed(4);
+      closing.style.transform = `translate3d(0, ${((1 - closingOpacity) * 34).toFixed(2)}px, 0)`;
+      closing.setAttribute("aria-hidden", closingOpacity > 0.05 ? "false" : "true");
+    });
+
+    videoStates.forEach((state, index) => {
+      const { video, start, end, duration } = state;
+      const opacity = reduceMotion && index > 0
+        ? 0
+        : getHeroPhaseOpacity(renderedProgress, start, end, 0.04);
+      const localProgress = clamp((renderedProgress - start) / Math.max(end - start, 0.001), 0, 1);
+
+      video.style.opacity = opacity.toFixed(4);
+      video.pause();
+      if (duration) {
+        const targetTime = reduceMotion
+          ? 0.04
+          : clamp(localProgress * duration, 0.04, Math.max(duration - 0.04, 0.04));
+
+        if (Math.abs(video.currentTime - targetTime) > 0.016) {
+          try {
+            video.currentTime = targetTime;
+          } catch (error) {
+            // Metadata and seek ranges can arrive after the first scroll frame.
+          }
+        }
+      }
+    });
+
+    if (!reduceMotion && Math.abs(targetProgress - renderedProgress) > 0.0005) {
+      scrubFrame = window.requestAnimationFrame(renderScrub);
+    } else {
+      scrubFrame = null;
+    }
+  };
+
+  const requestScrubFrame = () => {
+    if (!scrubFrame) {
+      scrubFrame = window.requestAnimationFrame(renderScrub);
+    }
+  };
+
+  const update = () => {
+    ticking = false;
+    const rect = section.getBoundingClientRect();
+    const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
+    targetProgress = reduceMotion ? 0 : clamp(-rect.top / scrollable, 0, 1);
+
+    if (!reduceMotion) {
+      syncScrollPin(section, sticky, rect);
+    }
+
+    requestScrubFrame();
+  };
+
+  const requestUpdate = () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  };
+
+  const measure = () => {
+    videoStates.forEach((state) => {
+      if (Number.isFinite(state.video.duration) && state.video.duration > 0) {
+        state.duration = state.video.duration;
+      }
+    });
+    update();
+  };
+
+  videoStates.forEach(({ video }) => {
+    video.pause();
+    video.load();
+    video.addEventListener("loadedmetadata", measure, { once: true });
+    video.addEventListener("canplay", measure, { once: true });
+  });
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", measure, { passive: true });
+  measure();
+}
+
 function setupContactQuoteReveal() {
   const hero = document.querySelector('body[data-page="contact"] .contact-hero');
   const quote = hero?.querySelector(".contact-hero-quote");
@@ -4699,7 +4933,7 @@ function setupAiGeneratedLabels() {
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
-menuButton.addEventListener("click", () => {
+menuButton?.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
   menuButton.setAttribute("aria-expanded", String(isOpen));
   menuButton.querySelector(".sr-only").textContent = isOpen ? "Menü schließen" : "Menü öffnen";
@@ -4736,7 +4970,7 @@ window.addEventListener("pageshow", releaseStaleMenuScrollLock);
 window.addEventListener("resize", () => {
   requestPageUpdate();
 
-  if (nav.classList.contains("is-open")) {
+  if (nav?.classList.contains("is-open")) {
     scheduleMenuTraySync();
   }
 });
@@ -4752,6 +4986,7 @@ setupHomeClientScroll();
 setupHeroVideoScrub();
 setupHomeVideoProcess();
 setupAboutHeroVideoScrub();
+setupWeddingHeroVideoScrub();
 setupContactQuoteReveal();
 setupAiGeneratedLabels();
 setupBriefingForm();
