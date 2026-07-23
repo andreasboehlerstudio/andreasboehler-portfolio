@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.28] - 2026-07-23
+
+### Fixed
+
+- Die nicht mehr freigegebene direkte Phantom-Projekt-URL wird auch dann mit HTTP 404 blockiert, wenn auf dem Hosting noch eine alte physische HTML-Datei vorhanden ist.
+
 ## [0.5.27] - 2026-07-23
 
 ### Fixed

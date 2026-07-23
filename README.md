@@ -140,6 +140,12 @@ Beispiel:
 
 ## Changelog
 
+### [0.5.28] - 2026-07-23
+
+#### Fixed
+
+- Die alte direkte Phantom-Projekt-URL wird serverseitig konsequent mit HTTP 404 gesperrt und bleibt damit ausserhalb der freigegebenen Live-Auswahl.
+
 ### [0.5.27] - 2026-07-23
 
 #### Fixed
