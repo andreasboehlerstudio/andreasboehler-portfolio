@@ -8,6 +8,21 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.29] - 2026-07-23
+
+### Added
+
+- Projekt- und Hochzeitsanfragen werden ueber einen gemeinsamen serverseitigen PHP-Endpunkt an Andreas Boehler versendet.
+- Neue responsive Danke-Seite fuer erfolgreich uebermittelte Anfragen mit `noindex`-Anweisung.
+- Erfolgreiche Formularanfragen senden nach Statistik-Einwilligung das empfohlene GA4-Ereignis `generate_lead`.
+- Honeypot-, Zeit-, Herkunfts- und serverseitige Pflichtfeldpruefungen schuetzen beide Formulare vor automatisiertem Missbrauch.
+
+### Changed
+
+- Formularbuttons und Statusmeldungen zeigen den tatsaechlichen Versand-, Erfolgs- und Fehlerzustand statt nur eine vorbereitete `mailto:`-E-Mail.
+- Die Datenschutzerklaerung beschreibt den serverseitigen Formularversand, die Weiterleitung per E-Mail und die eingesetzten Spam-Pruefungen.
+- Seitentitel und Social-Metadaten der Kontaktseite positionieren Andreas konsistent als Videograf und Fotograf in Freiburg, Basel und Offenburg.
+
 ## [0.5.28] - 2026-07-23
 
 ### Fixed

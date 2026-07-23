@@ -140,6 +140,17 @@ Beispiel:
 
 ## Changelog
 
+### [0.5.29] - 2026-07-23
+
+#### Added
+
+- Projekt- und Hochzeitsformulare senden Anfragen ueber einen geschuetzten PHP-Endpunkt und fuehren nach Erfolg auf eine responsive `noindex`-Danke-Seite.
+- Erfolgreiche Anfragen werden nach Statistik-Einwilligung in GA4 als `generate_lead` gemessen.
+
+#### Changed
+
+- Datenschutz, Formularzustaende und Kontakt-Metadaten wurden an den echten serverseitigen Versand und Andreas' lokale Positionierung angepasst.
+
 ### [0.5.28] - 2026-07-23
 
 #### Fixed

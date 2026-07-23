@@ -4084,7 +4084,7 @@ function renderProjectPage() {
 }
 
 function getFormValues(form, name) {
-  return Array.from(form.querySelectorAll(`[name="${name}"]`))
+  return Array.from(form.querySelectorAll(`[name="${name}"], [name="${name}[]"]`))
     .filter((field) => {
       if (field.type === "checkbox" || field.type === "radio") {
         return field.checked;
@@ -4093,6 +4093,98 @@ function getFormValues(form, name) {
       return Boolean(field.value.trim());
     })
     .map((field) => field.value.trim());
+}
+
+function prepareContactForm(form) {
+  const startedAt = form.elements.namedItem("form_started_at");
+
+  if (startedAt) {
+    startedAt.value = String(Math.floor(Date.now() / 1000));
+  }
+}
+
+function setContactFormStatus(status, message, state = "") {
+  if (!status) {
+    return;
+  }
+
+  status.textContent = message;
+  status.dataset.state = state;
+}
+
+function redirectAfterLeadTracking(formType) {
+  const destination = `danke.html?anfrage=${encodeURIComponent(formType)}`;
+  let redirected = false;
+  const redirect = () => {
+    if (redirected) {
+      return;
+    }
+
+    redirected = true;
+    window.location.assign(destination);
+  };
+
+  if (!isConsentCategoryAllowed("statistics")) {
+    window.setTimeout(redirect, 500);
+    return;
+  }
+
+  const gtag = getGoogleTag();
+
+  gtag("event", "generate_lead", {
+    lead_type: formType,
+    transport_type: "beacon",
+    event_callback: redirect,
+    event_timeout: 900
+  });
+  window.setTimeout(redirect, 1000);
+}
+
+async function submitContactForm(form, status, formType) {
+  if (!form.reportValidity() || form.dataset.submitting === "true") {
+    return;
+  }
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalLabel = submitButton?.textContent || "";
+
+  form.dataset.submitting = "true";
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = "Wird gesendet ...";
+  }
+  setContactFormStatus(status, "Die Anfrage wird sicher übermittelt.", "pending");
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+      }
+    });
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok || result.ok !== true) {
+      throw new Error(result.message || "Die Anfrage konnte gerade nicht gesendet werden.");
+    }
+
+    setContactFormStatus(status, "Danke. Die Anfrage ist angekommen.", "success");
+    redirectAfterLeadTracking(formType);
+  } catch (error) {
+    setContactFormStatus(
+      status,
+      `${error.message || "Die Anfrage konnte gerade nicht gesendet werden."} Bitte versuche es erneut oder nutze den direkten E-Mail-Link.`,
+      "error"
+    );
+    form.dataset.submitting = "false";
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = originalLabel;
+    }
+  }
 }
 
 function updateBriefingSummary() {
@@ -4169,46 +4261,18 @@ function setupBriefingForm() {
   const params = new URLSearchParams(window.location.search);
   const project = params.get("project");
   const reference = form.querySelector("#projectReference");
+  const status = form.querySelector("#briefingFormStatus");
 
   if (project && reference) {
     reference.value = project;
   }
 
+  prepareContactForm(form);
   form.addEventListener("input", updateBriefingSummary);
   form.addEventListener("change", updateBriefingSummary);
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-
-    const data = new FormData(form);
-    const grouped = {};
-
-    data.forEach((value, key) => {
-      const text = String(value).trim();
-
-      if (!text) {
-        return;
-      }
-
-      if (!grouped[key]) {
-        grouped[key] = [];
-      }
-
-      grouped[key].push(text);
-    });
-
-    const lines = [
-      "Hallo Andreas,",
-      "",
-      "ich möchte ein Projekt anfragen und habe die Eckdaten vorbereitet:",
-      "",
-      ...Object.entries(grouped).map(([key, values]) => `${key}: ${values.join(", ")}`),
-      "",
-      "Viele Grüße"
-    ];
-    const subject = encodeURIComponent("Projektbriefing Andreas Boehler");
-    const body = encodeURIComponent(lines.join("\n"));
-
-    window.location.href = `mailto:andy@andreasboehler.com?subject=${subject}&body=${body}`;
+    submitContactForm(form, status, "project");
   });
 
   updateBriefingSummary();
@@ -4242,42 +4306,10 @@ function setupWeddingInquiryForm() {
     });
   });
 
+  prepareContactForm(form);
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-
-    if (!form.reportValidity()) {
-      return;
-    }
-
-    const data = new FormData(form);
-    const fields = [];
-
-    data.forEach((value, key) => {
-      const text = String(value).trim();
-
-      if (text) {
-        fields.push(`${key}: ${text}`);
-      }
-    });
-
-    const date = String(data.get("Hochzeitsdatum") || "").trim();
-    const location = String(data.get("Ort / Location") || "").trim();
-    const subjectParts = ["Hochzeitsanfrage", date, location].filter(Boolean);
-    const lines = [
-      "Hallo Andreas,",
-      "",
-      "wir möchten unsere Hochzeit fotografisch begleiten lassen und senden dir die ersten Eckdaten:",
-      "",
-      ...fields,
-      "",
-      "Viele Grüße"
-    ];
-
-    if (status) {
-      status.textContent = "Euer E-Mail-Programm wird mit der vorbereiteten Anfrage geöffnet.";
-    }
-
-    window.location.href = `mailto:andy@andreasboehler.com?subject=${encodeURIComponent(subjectParts.join(" · "))}&body=${encodeURIComponent(lines.join("\n"))}`;
+    submitContactForm(form, status, "wedding");
   });
 }
 

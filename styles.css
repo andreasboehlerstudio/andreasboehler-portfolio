@@ -14470,6 +14470,117 @@ body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
   font-size: 0.86rem;
 }
 
+.form-trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin: 18px 0 0;
+  color: rgba(17, 17, 17, 0.62);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.form-status[data-state="success"],
+.wedding-form-status[data-state="success"] {
+  color: #31714a;
+}
+
+.form-status[data-state="error"],
+.wedding-form-status[data-state="error"] {
+  color: #a83b2e;
+}
+
+.form-actions button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+  transform: none;
+}
+
+.thanks-page {
+  min-height: 100svh;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.thanks-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+  align-content: end;
+  gap: clamp(36px, 7vw, 120px);
+  min-height: 100svh;
+  padding: clamp(132px, 17vh, 220px) var(--section-x-slim) clamp(54px, 8vh, 100px);
+}
+
+.thanks-kicker {
+  position: absolute;
+  top: clamp(120px, 16vh, 190px);
+  left: var(--section-x-slim);
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.thanks-hero h1 {
+  max-width: 8ch;
+  margin: 0;
+  font-size: clamp(4.25rem, 10vw, 10rem);
+  font-weight: 400;
+  line-height: 0.88;
+}
+
+.thanks-copy {
+  align-self: end;
+  max-width: 42ch;
+  padding-bottom: 0.5em;
+}
+
+.thanks-copy p {
+  margin: 0 0 30px;
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.thanks-copy nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.thanks-copy a {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  padding: 0 18px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .thanks-hero {
+    grid-template-columns: 1fr;
+    align-content: center;
+    min-height: 100svh;
+    padding-top: 150px;
+  }
+
+  .thanks-kicker {
+    top: 116px;
+  }
+
+  .thanks-copy {
+    align-self: start;
+  }
+}
+
 @media (min-width: 701px) and (max-width: 1500px) {
   .wedding-process-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

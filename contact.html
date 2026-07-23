@@ -10,8 +10,8 @@
     <link rel="preload" href="assets/HelveticaNowText-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/MonaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/MonaSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
-    <title>Kontakt | Filmproduktion &amp; Fotografie anfragen</title>
-    <meta name="description" content="Kontakt zu Andreas Boehler: Projektanfragen für Werbefilm, Produktfilm, Markenfotografie, DoP, Art Direction und Kampagnen aus Freiburg/Basel.">
+    <title>Kontakt: Videograf &amp; Fotograf Freiburg | Andreas Boehler</title>
+    <meta name="description" content="Projekt bei Andreas Boehler anfragen: Videografie, Werbefilm, Markenfotografie, DoP und Art Direction für Freiburg, Basel und Offenburg.">
     <link rel="canonical" href="https://andreasboehler.com/contact.html">
     <!-- SEO enhanced meta start -->
     <meta name="author" content="Andreas Boehler">
@@ -20,16 +20,16 @@
     <meta property="og:locale" content="de_DE">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Andreas Boehler">
-    <meta property="og:title" content="Kontakt | Filmproduktion &amp; Fotografie anfragen">
-    <meta property="og:description" content="Kontakt zu Andreas Boehler: Projektanfragen für Werbefilm, Produktfilm, Markenfotografie, DoP, Art Direction und Kampagnen aus Freiburg/Basel.">
+    <meta property="og:title" content="Kontakt: Videograf &amp; Fotograf Freiburg | Andreas Boehler">
+    <meta property="og:description" content="Projekt bei Andreas Boehler anfragen: Videografie, Werbefilm, Markenfotografie, DoP und Art Direction für Freiburg, Basel und Offenburg.">
     <meta property="og:url" content="https://andreasboehler.com/contact.html">
     <meta property="og:image" content="https://andreasboehler.com/assets/andreas-hero-portrait-normal.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="675">
     <meta property="og:image:alt" content="Projektanfrage an Andreas Boehler">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Kontakt | Filmproduktion &amp; Fotografie anfragen">
-    <meta name="twitter:description" content="Kontakt zu Andreas Boehler: Projektanfragen für Werbefilm, Produktfilm, Markenfotografie, DoP, Art Direction und Kampagnen aus Freiburg/Basel.">
+    <meta name="twitter:title" content="Kontakt: Videograf &amp; Fotograf Freiburg | Andreas Boehler">
+    <meta name="twitter:description" content="Projekt bei Andreas Boehler anfragen: Videografie, Werbefilm, Markenfotografie, DoP und Art Direction für Freiburg, Basel und Offenburg.">
     <meta name="twitter:image" content="https://andreasboehler.com/assets/andreas-hero-portrait-normal.webp">
     <script type="application/ld+json">
       {
@@ -185,7 +185,7 @@
 }
     </script>
     <!-- SEO enhanced meta end -->
-    <link rel="stylesheet" href="styles.css?v=20260723-mobile-tnw2">
+    <link rel="stylesheet" href="styles.css?v=20260723-contact-endpoint1">
   </head>
   <body data-page="contact">
     <nav class="site-nav" aria-label="Hauptnavigation"><div class="nav-panel" id="navPanel"><a class="nav-item" data-nav="home" href="index.html"><span>Home</span><strong>Über Andreas</strong></a><a class="nav-item" data-nav="works" href="works.html"><span>Works</span><strong>Cases · Kampagnen · Design</strong></a><a class="nav-item" data-nav="services" href="services.html"><span>Services</span><strong>Film · Foto · KI · DoP</strong></a><a class="nav-item" data-nav="about" href="about.html"><span>About</span><strong>Vita · Awards · Skills</strong></a><a class="nav-item active" data-nav="contact" href="contact.html"><span>Contact</span><strong>Projekt starten</strong></a></div><button class="menu-button" type="button" aria-expanded="false" aria-controls="navPanel"><span class="menu-icon" aria-hidden="true"></span><span class="sr-only">Menü öffnen</span></button></nav>
@@ -215,7 +215,13 @@
       </section>
 
       <section class="project-briefing" id="briefing">
-        <form class="briefing-form" id="briefingForm">
+        <form class="briefing-form" id="briefingForm" action="send-contact.php" method="post">
+          <input type="hidden" name="form_type" value="project">
+          <input type="hidden" name="form_started_at" value="">
+          <label class="form-trap" aria-hidden="true">
+            <span>Website</span>
+            <input name="website" type="text" tabindex="-1" autocomplete="off">
+          </label>
           <div class="briefing-head">
             <span>Projektbriefing</span>
             <h2>Ein paar Eckdaten reichen für den ersten Schritt.</h2>
@@ -230,14 +236,14 @@
           <fieldset>
             <legend>Was brauchst du?</legend>
             <div class="choice-grid">
-              <label class="choice-card"><input type="checkbox" name="Projekttyp" value="Werbefilm"><span>Werbefilm</span></label>
-              <label class="choice-card"><input type="checkbox" name="Projekttyp" value="Produktfilm"><span>Produktfilm</span></label>
-              <label class="choice-card"><input type="checkbox" name="Projekttyp" value="Markenfotografie"><span>Markenfotografie</span></label>
-              <label class="choice-card"><input type="checkbox" name="Projekttyp" value="DoP / Kameramann"><span>DoP / Kameramann</span></label>
-              <label class="choice-card"><input type="checkbox" name="Projekttyp" value="Art Direction"><span>Art Direction</span></label>
-              <label class="choice-card"><input type="checkbox" name="Projekttyp" value="Recruitingfilm"><span>Recruitingfilm</span></label>
-              <label class="choice-card"><input type="checkbox" name="Projekttyp" value="Healthcare / Pharma"><span>Healthcare / Pharma</span></label>
-              <label class="choice-card"><input type="checkbox" name="Projekttyp" value="Entertainment / Event"><span>Entertainment / Event</span></label>
+              <label class="choice-card"><input type="checkbox" name="Projekttyp[]" value="Werbefilm"><span>Werbefilm</span></label>
+              <label class="choice-card"><input type="checkbox" name="Projekttyp[]" value="Produktfilm"><span>Produktfilm</span></label>
+              <label class="choice-card"><input type="checkbox" name="Projekttyp[]" value="Markenfotografie"><span>Markenfotografie</span></label>
+              <label class="choice-card"><input type="checkbox" name="Projekttyp[]" value="DoP / Kameramann"><span>DoP / Kameramann</span></label>
+              <label class="choice-card"><input type="checkbox" name="Projekttyp[]" value="Art Direction"><span>Art Direction</span></label>
+              <label class="choice-card"><input type="checkbox" name="Projekttyp[]" value="Recruitingfilm"><span>Recruitingfilm</span></label>
+              <label class="choice-card"><input type="checkbox" name="Projekttyp[]" value="Healthcare / Pharma"><span>Healthcare / Pharma</span></label>
+              <label class="choice-card"><input type="checkbox" name="Projekttyp[]" value="Entertainment / Event"><span>Entertainment / Event</span></label>
             </div>
           </fieldset>
 
@@ -258,12 +264,12 @@
           <fieldset>
             <legend>Wo soll es ausgespielt werden?</legend>
             <div class="choice-grid compact-choice">
-              <label class="choice-card"><input type="checkbox" name="Kanäle" value="Website"><span>Website</span></label>
-              <label class="choice-card"><input type="checkbox" name="Kanäle" value="Social Media"><span>Social</span></label>
-              <label class="choice-card"><input type="checkbox" name="Kanäle" value="Paid Ads"><span>Paid Ads</span></label>
-              <label class="choice-card"><input type="checkbox" name="Kanäle" value="Messe / Event"><span>Messe</span></label>
-              <label class="choice-card"><input type="checkbox" name="Kanäle" value="Recruiting / Karriere"><span>Karriere</span></label>
-              <label class="choice-card"><input type="checkbox" name="Kanäle" value="TV / Kino / DOOH"><span>TV / DOOH</span></label>
+              <label class="choice-card"><input type="checkbox" name="Kanäle[]" value="Website"><span>Website</span></label>
+              <label class="choice-card"><input type="checkbox" name="Kanäle[]" value="Social Media"><span>Social</span></label>
+              <label class="choice-card"><input type="checkbox" name="Kanäle[]" value="Paid Ads"><span>Paid Ads</span></label>
+              <label class="choice-card"><input type="checkbox" name="Kanäle[]" value="Messe / Event"><span>Messe</span></label>
+              <label class="choice-card"><input type="checkbox" name="Kanäle[]" value="Recruiting / Karriere"><span>Karriere</span></label>
+              <label class="choice-card"><input type="checkbox" name="Kanäle[]" value="TV / Kino / DOOH"><span>TV / DOOH</span></label>
             </div>
           </fieldset>
 
@@ -304,12 +310,12 @@
           <fieldset>
             <legend>Gewünschter Look</legend>
             <div class="choice-grid compact-choice">
-              <label class="choice-card"><input type="checkbox" name="Look" value="Cinematisch"><span>Cinematisch</span></label>
-              <label class="choice-card"><input type="checkbox" name="Look" value="Dokumentarisch"><span>Dokumentarisch</span></label>
-              <label class="choice-card"><input type="checkbox" name="Look" value="Premium / Commercial"><span>Premium</span></label>
-              <label class="choice-card"><input type="checkbox" name="Look" value="Emotional"><span>Emotional</span></label>
-              <label class="choice-card"><input type="checkbox" name="Look" value="Technisch / Clean"><span>Clean</span></label>
-              <label class="choice-card"><input type="checkbox" name="Look" value="Mutig / experimentell"><span>Experimentell</span></label>
+              <label class="choice-card"><input type="checkbox" name="Look[]" value="Cinematisch"><span>Cinematisch</span></label>
+              <label class="choice-card"><input type="checkbox" name="Look[]" value="Dokumentarisch"><span>Dokumentarisch</span></label>
+              <label class="choice-card"><input type="checkbox" name="Look[]" value="Premium / Commercial"><span>Premium</span></label>
+              <label class="choice-card"><input type="checkbox" name="Look[]" value="Emotional"><span>Emotional</span></label>
+              <label class="choice-card"><input type="checkbox" name="Look[]" value="Technisch / Clean"><span>Clean</span></label>
+              <label class="choice-card"><input type="checkbox" name="Look[]" value="Mutig / experimentell"><span>Experimentell</span></label>
             </div>
           </fieldset>
           </details>
@@ -320,10 +326,16 @@
           </div>
           <label class="field-line"><span>Was sollte ich unbedingt wissen?</span><textarea name="Notizen" rows="5" placeholder="Zielgruppe, Referenzen, Pflichtformate, No-Gos, Drehort, vorhandenes Material ..."></textarea></label>
 
+          <label class="wedding-consent">
+            <input name="Datenschutz" type="checkbox" value="Akzeptiert" required>
+            <span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu.</span>
+          </label>
+
           <div class="form-actions">
-            <button type="submit">Briefing als E-Mail vorbereiten</button>
+            <button type="submit">Projektanfrage senden</button>
             <a href="mailto:andy@andreasboehler.com">Oder direkt schreiben</a>
           </div>
+          <p class="form-status" id="briefingFormStatus" aria-live="polite"></p>
         </form>
 
         <aside class="briefing-summary" aria-live="polite">
@@ -338,5 +350,5 @@
         </aside>
       </section>
       <section class="seo-link-band"><a href="werbefilm-produktfilm.html">Werbefilm anfragen</a><a href="markenfotografie.html">Shooting planen</a><a href="dop-kameramann.html">DoP buchen</a><a href="art-direction.html">Art Direction starten</a></section>
-    </div><div class="footer-reveal-spacer" aria-hidden="true"></div><footer class="site-footer"><div class="footer-top"><a class="footer-mark" href="index.html"><span>Andreas</span><strong>Boehler</strong></a><a class="footer-top-link" href="#top" aria-label="Zurück nach oben"><span class="sr-only">Zurück nach oben</span></a></div><div class="footer-locations"><article><span>Kontakt</span><h2>Projekt anfragen</h2><p>Schreib eine kurze Mail oder ruf an. Der erste Schritt darf unkompliziert sein.</p><a href="mailto:andy@andreasboehler.com">E-Mail schreiben</a></article><article><span>Region</span><h2>Freiburg / Basel</h2><p>Deutschland, Schweiz und internationale Produktionen.</p><a href="about.html">Profil</a></article><article><span>Start</span><h2>Passende Seite finden</h2><p>Noch unsicher? Die Services-Seite sortiert die Leistungen nach Bedarf.</p><a href="services.html">Services</a></article></div><div class="footer-links"><nav><h3>Sitemap</h3><a href="index.html">Homepage</a><a href="works.html">Works</a><a href="photography.html">Photography</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></nav><nav><h3>Leistungen</h3><a href="werbefilm-produktfilm.html">Werbefilm & Produktfilm</a><a href="markenfotografie.html">Markenfotografie</a><a href="hochzeitsfotograf-freiburg.html">Hochzeitsfotografie</a><a href="dop-kameramann.html">Kameramann / DoP buchen</a><a href="art-direction.html">Art Direction & Branding</a><a href="services.html">Alle Services</a></nav><nav><h3>Works</h3><a href="works.html#film">Selektierte Arbeiten</a><a href="photography.html">Still Photography</a><a href="works.html#clients">Marken & Branchen</a><a href="about.html#awards">Awards</a></nav><nav><h3>Profil</h3><a href="about.html">Regisseur aus Deutschland</a><a href="markenfotografie.html">Fotograf Freiburg / Basel</a><a href="werbefilm-produktfilm.html">Filmproduktion für Marken</a><a href="dop-kameramann.html">DoP und Kameramann buchen</a></nav><nav><h3>Follow</h3><a href="https://www.instagram.com/andy.cinematic/">Instagram</a><a href="https://www.linkedin.com/in/andreas-boehler/">LinkedIn</a><a href="https://twitter.com/andyboeh">Twitter / X</a><a href="https://www.behance.net/andyboehler">Behance</a></nav></div><div class="footer-bottom"><span>© 2026 Andreas Boehler.</span><nav><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></nav><span>Creating moments not images</span></div></footer></main><script src="script.js?v=20260721-ga4-consent1"></script></body>
+</div><div class="footer-reveal-spacer" aria-hidden="true"></div><footer class="site-footer"><div class="footer-top"><a class="footer-mark" href="index.html"><span>Andreas</span><strong>Boehler</strong></a><a class="footer-top-link" href="#top" aria-label="Zurück nach oben"><span class="sr-only">Zurück nach oben</span></a></div><div class="footer-locations"><article><span>Kontakt</span><h2>Projekt anfragen</h2><p>Schreib eine kurze Mail oder ruf an. Der erste Schritt darf unkompliziert sein.</p><a href="mailto:andy@andreasboehler.com">E-Mail schreiben</a></article><article><span>Region</span><h2>Freiburg / Basel</h2><p>Deutschland, Schweiz und internationale Produktionen.</p><a href="about.html">Profil</a></article><article><span>Start</span><h2>Passende Seite finden</h2><p>Noch unsicher? Die Services-Seite sortiert die Leistungen nach Bedarf.</p><a href="services.html">Services</a></article></div><div class="footer-links"><nav><h3>Sitemap</h3><a href="index.html">Homepage</a><a href="works.html">Works</a><a href="photography.html">Photography</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></nav><nav><h3>Leistungen</h3><a href="werbefilm-produktfilm.html">Werbefilm & Produktfilm</a><a href="markenfotografie.html">Markenfotografie</a><a href="hochzeitsfotograf-freiburg.html">Hochzeitsfotografie</a><a href="dop-kameramann.html">Kameramann / DoP buchen</a><a href="art-direction.html">Art Direction & Branding</a><a href="services.html">Alle Services</a></nav><nav><h3>Works</h3><a href="works.html#film">Selektierte Arbeiten</a><a href="photography.html">Still Photography</a><a href="works.html#clients">Marken & Branchen</a><a href="about.html#awards">Awards</a></nav><nav><h3>Profil</h3><a href="about.html">Regisseur aus Deutschland</a><a href="markenfotografie.html">Fotograf Freiburg / Basel</a><a href="werbefilm-produktfilm.html">Filmproduktion für Marken</a><a href="dop-kameramann.html">DoP und Kameramann buchen</a></nav><nav><h3>Follow</h3><a href="https://www.instagram.com/andy.cinematic/">Instagram</a><a href="https://www.linkedin.com/in/andreas-boehler/">LinkedIn</a><a href="https://twitter.com/andyboeh">Twitter / X</a><a href="https://www.behance.net/andyboehler">Behance</a></nav></div><div class="footer-bottom"><span>© 2026 Andreas Boehler.</span><nav><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></nav><span>Creating moments not images</span></div></footer></main><script src="script.js?v=20260723-contact-endpoint1"></script></body>
 </html>
