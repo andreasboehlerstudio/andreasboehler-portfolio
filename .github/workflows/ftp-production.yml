@@ -76,7 +76,35 @@ jobs:
           rm -f _production-site/README.md _production-site/CHANGELOG.md _production-site/VERSION
 
       - name: Sync website to production folder
+        id: ftp-sync
         if: steps.ftp-config.outputs.protocol != 'sftp'
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ steps.ftp-config.outputs.server }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          protocol: ${{ steps.ftp-config.outputs.protocol }}
+          local-dir: ./_production-site/
+          server-dir: ${{ format('{0}{1}', secrets.FTP_SERVER_DIR, vars.FTP_TARGET_DIR) }}
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+          dangerous-clean-slate: false
+          security: strict
+          timeout: 120000
+          log-level: standard
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            README.md
+            CHANGELOG.md
+            VERSION
+
+      - name: Retry website sync after transient FTP failure
+        id: ftp-sync-retry
+        if: steps.ftp-config.outputs.protocol != 'sftp' && steps.ftp-sync.outcome == 'failure'
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ steps.ftp-config.outputs.server }}
@@ -101,7 +129,7 @@ jobs:
             VERSION
 
       - name: Point live domain to production folder
-        if: steps.ftp-config.outputs.protocol != 'sftp'
+        if: steps.ftp-config.outputs.protocol != 'sftp' && (steps.ftp-sync.outcome == 'success' || steps.ftp-sync-retry.outcome == 'success')
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ steps.ftp-config.outputs.server }}

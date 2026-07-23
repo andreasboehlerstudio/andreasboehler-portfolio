@@ -8,6 +8,13 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.27] - 2026-07-23
+
+### Fixed
+
+- Der Production-Workflow wiederholt den Website-Sync automatisch, wenn der FTP-Server einen temporaeren Upload beim abschliessenden Rename mit Fehler 550 abbricht.
+- Die Live-Umschaltung erfolgt erst, wenn entweder der erste Upload oder der automatische Wiederholungsversuch erfolgreich abgeschlossen wurde.
+
 ## [0.5.26] - 2026-07-23
 
 ### Added

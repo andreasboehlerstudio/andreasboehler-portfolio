@@ -140,6 +140,12 @@ Beispiel:
 
 ## Changelog
 
+### [0.5.27] - 2026-07-23
+
+#### Fixed
+
+- Der Production-Workflow wiederholt den FTP-Sync bei temporaeren Rename-Fehlern automatisch und schaltet die Live-Domain erst nach einem erfolgreichen Upload um.
+
 ### [0.5.26] - 2026-07-23
 
 #### Added
