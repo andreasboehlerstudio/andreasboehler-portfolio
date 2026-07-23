@@ -13209,8 +13209,11 @@ body[data-page="home"] .hero-scroll-sequence .hero-sticky {
 /* Keep the opening statement clear of the reveal mask and viewport edges. */
 body[data-page="home"] .hero-chapter-intro h1 {
   box-sizing: border-box;
+  margin-inline: auto;
   padding: 0.16em 0.06em 0.22em;
   line-height: 1.02;
+  text-align: center;
+  transform: none;
   overflow: visible;
 }
 
@@ -13462,20 +13465,20 @@ body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
 .ai-generated-label {
   position: absolute;
   z-index: 8;
-  bottom: 12px;
-  left: 12px;
+  bottom: 7px;
+  left: 7px;
   display: inline-flex;
   align-items: center;
-  min-height: 22px;
-  padding: 0 8px;
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(10, 10, 10, 0.62);
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  min-height: 16px;
+  padding: 0 5px;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(10, 10, 10, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 7px;
   line-height: 1;
   text-transform: uppercase;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
   pointer-events: none;
 }
 
@@ -13583,7 +13586,7 @@ body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
   font-family: var(--font-display);
   font-size: clamp(4.2rem, 9.4vw, 11.8rem);
   font-weight: 400;
-  line-height: 0.86;
+  line-height: 0.96;
   letter-spacing: 0;
   text-shadow: 0 20px 80px rgba(0, 0, 0, 0.58);
 }
@@ -14472,12 +14475,19 @@ body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
   .wedding-hero-closing h2 {
     max-width: 11ch;
     font-size: clamp(3rem, 12.8vw, 4.8rem);
-    line-height: 0.92;
+    line-height: 1;
   }
 
   .wedding-hero-closing--second h2 {
     max-width: 11ch;
     font-size: clamp(2.9rem, 12.4vw, 4.7rem);
+  }
+
+  .wedding-hero-closing--final h2 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(2.05rem, 9.2vw, 3.6rem);
+    line-height: 1.04;
   }
 
   .wedding-jump-nav {
@@ -14841,7 +14851,7 @@ html[data-theme="dark"] body[data-page="contact"] .contact-hero {
 
 /* Home cinematic chapter hero */
 body[data-page="home"] .hero-scroll-sequence {
-  min-height: 520svh;
+  min-height: 560svh;
   background: #050505;
 }
 
@@ -14862,6 +14872,10 @@ body[data-page="home"] .hero-scroll-video {
 
 body[data-page="home"] .hero-video--intro {
   opacity: 1;
+}
+
+body[data-page="home"] .hero-video--main {
+  object-position: center center;
 }
 
 body[data-page="home"] .hero-video--design {
@@ -14902,9 +14916,10 @@ body[data-page="home"] .hero-video--final {
 }
 
 .hero-chapter-statement {
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto auto;
-  column-gap: clamp(28px, 5vw, 90px);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
+  justify-items: center;
+  text-align: center;
 }
 
 .hero-chapter-statement > span,
@@ -14916,7 +14931,7 @@ body[data-page="home"] .hero-video--final {
 }
 
 .hero-chapter-statement > span {
-  grid-column: 1 / -1;
+  grid-column: 1;
   margin-bottom: clamp(20px, 3vh, 38px);
 }
 
@@ -14932,33 +14947,36 @@ body[data-page="home"] .hero-video--final {
 }
 
 .hero-chapter-statement h2 {
-  align-self: end;
+  grid-column: 1;
+  align-self: center;
   font-size: clamp(7rem, 15.8vw, 20rem);
-  line-height: 0.82;
+  line-height: 0.88;
 }
 
 .hero-chapter-statement p {
-  align-self: end;
-  width: min(27vw, 390px);
-  margin: 0 0 0.28em;
+  grid-column: 1;
+  align-self: center;
+  width: min(34ch, 68vw);
+  margin: clamp(20px, 3vh, 34px) 0 0;
   color: rgba(247, 244, 238, 0.76);
   font-size: clamp(1rem, 1.35vw, 1.36rem);
   line-height: 1.4;
+  text-align: center;
 }
 
 .hero-chapter-impact {
-  text-align: right;
+  text-align: center;
 }
 
 .hero-chapter-impact h2 {
-  grid-column: 1 / -1;
+  grid-column: 1;
+  font-size: clamp(5rem, 10.8vw, 13.2rem);
+  line-height: 0.9;
 }
 
 .hero-chapter-impact p {
-  position: absolute;
-  right: var(--section-x-slim);
-  bottom: clamp(52px, 7vh, 88px);
-  text-align: left;
+  position: static;
+  text-align: center;
 }
 
 .hero-chapter-final {
@@ -15002,7 +15020,7 @@ body[data-page="home"] .hero-video--final {
 
 @media (max-width: 700px) {
   body[data-page="home"] .hero-scroll-sequence {
-    min-height: 450svh;
+    min-height: 500svh;
   }
 
   body[data-page="home"] .hero-video--design {
@@ -15025,7 +15043,8 @@ body[data-page="home"] .hero-video--final {
   .hero-chapter-statement {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
-    align-content: end;
+    align-content: center;
+    justify-items: center;
   }
 
   .hero-chapter-statement h2,
@@ -15033,8 +15052,15 @@ body[data-page="home"] .hero-video--final {
     grid-column: 1;
     max-width: 100%;
     font-size: clamp(3.5rem, 18vw, 6.6rem);
-    line-height: 0.88;
-    text-align: left;
+    line-height: 0.94;
+    text-align: center;
+  }
+
+  .hero-chapter-impact h2 {
+    width: 100%;
+    min-width: 0;
+    font-size: clamp(2.1rem, 11vw, 4.8rem);
+    line-height: 1;
   }
 
   .hero-chapter-statement p,
@@ -15042,7 +15068,7 @@ body[data-page="home"] .hero-video--final {
     position: static;
     width: min(82vw, 320px);
     margin-top: 24px;
-    text-align: left;
+    text-align: center;
   }
 
   .hero-chapter-final {

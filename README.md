@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.24`
+Aktuelle dokumentierte Version: `0.5.25`
 
 ## Inhalt
 
@@ -139,6 +139,22 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.25] - 2026-07-23
+
+#### Added
+
+- Die Startseite zeigt mit "Still Photography" nun eine fuenfte ausgewaehlte Arbeit und erweitert die filmischen Cases um Andreas' fotografische Handschrift.
+
+#### Changed
+
+- Der Startseiten-Hero beginnt wieder mit der frueheren Kameraszene inklusive Filmset im Kameradisplay und blendet innerhalb desselben scrollgesteuerten Hero-Headers weich in den aktuellen Markenfilm ueber.
+- Der Home-Hero richtet "Filmische Markenwelten", "Momente" und "Storytelling" auf einem konsistenten zentrierten Raster aus. "Story" wurde zu "Storytelling" erweitert und fuer kleine Displays separat skaliert.
+- KI-Kennzeichnungen werden global als sehr kleine, dezente Hinweise dargestellt, bleiben aber weiterhin direkt am jeweiligen Medium sichtbar.
+
+#### Fixed
+
+- Die Hochzeits-Herozeile "Euer Tag vergeht. Das Gefuehl bleibt." besitzt mehr Zeilenraum und bleibt auf kleinen Displays in den vorgesehenen zwei Zeilen, ohne kollidierende Unterlaengen.
 
 ### [0.5.24] - 2026-07-22
 
