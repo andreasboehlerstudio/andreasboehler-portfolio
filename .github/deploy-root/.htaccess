@@ -33,7 +33,15 @@ RewriteRule ^helpie_faq_page/?$ /faq.html [R=301,L,NC,QSD]
 RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
 RewriteRule ^(agb|datenschutz|impressum)/?$ /$1.html [R=301,L,NC,QSD]
 
-# Keep the four released portfolio cases on their closest canonical detail pages.
+# Migrate the former agency-style regional URLs to Andreas' personal positioning.
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:andreasboehlerportfolio/)?filmproduktion-freiburg(?:\.html)?/?$ /videograf-freiburg.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:andreasboehlerportfolio/)?filmproduktion-offenburg(?:\.html)?/?$ /videograf-offenburg.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^(?:andreasboehlerportfolio/)?filmproduktion-basel(?:\.html)?/?$ /videograf-basel.html [R=301,L,NC,QSD]
+
+# Keep released portfolio cases on their closest canonical detail pages.
 RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
 RewriteRule ^portfolio-item/50-jahre-europa-park/?$ /50-jahre-europa-park.html [R=301,L,NC,QSD]
 RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
@@ -41,7 +49,9 @@ RewriteRule ^portfolio-item/dj-bobo-evolut30n(?:-tour)?/?$ /dj-bobo-evolut30n-to
 RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
 RewriteRule ^portfolio-item/voltron-nevera(?:-tv-werbespot)?/?$ /voltron-nevera-tv-werbespot.html [R=301,L,NC,QSD]
 RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
-RewriteRule ^portfolio-item/phantom-der-oper(?:-vr-coastiality)?/?$ /phantom-der-oper-vr-coastiality.html [R=301,L,NC,QSD]
+RewriteRule ^portfolio-item/novartis-medportal/?$ /novartis-medportal.html [R=301,L,NC,QSD]
+RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
+RewriteRule ^portfolio-item/phantom-der-oper(?:-vr-coastiality)?/?$ /works.html [R=301,L,NC,QSD]
 RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
 RewriteRule ^portfolio-item/(?:.+)/?$ /works.html [R=301,L,NC,QSD]
 
@@ -74,7 +84,7 @@ RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
 RewriteRule ^(?:wp-login\.php|xmlrpc\.php)$ - [R=410,L,NC]
 
 # Keep the physical production folder reachable on the live hostname.
-RewriteRule ^(?:andreasboehlerportfolio/)?(?:abbvie-oncology|acino-pain-management|acino-swiss-lab-production-tour|adesso-life-sciences-imagemovie|arcondis-brand-identity|austellung-around-the-world|austellung-movin|bongrain-savencia|businessportrait-kurt|chris-blair-engagement-video|christoph-goettel-artist-portrait|desert-mustang|destiny|dogportrait-ilvy-co|dr-martin-klein|duolingo-spec-ad|energize-your-communications-commercial|europa-park-dinnershow-2022|europa-park-neuheiten-2023|evoke-emotions-commercial|familienportrait-foro|hamburg|hochzeit-albana-max|hochzeit-lucas-valerie|jeep-wrangler-on-hawaii|kaeppeli-recruitngfilm|larissa-autumn-spirit|larissa-spring-feels|mareike-daniel-wedding|mercedes-gt-in-der-salzwuste|messe-basel-imagemovie|movicol-mode-of-action|movin-recruitingfilm|novartis-medportal|ocean-coast|one-stop-in-venedig|paris|praxis-seesemann-commercial-fotografie|projekt|rockstar-musicvideo|smt-imagefilm-qualitaet|songwon-corporate-movie|sportsportrait-irene|syngenta-campaign|ttp-group-imagefilm|uniimmo-portraits|valentin-business-portrait|vietnam|virtual-production-case-study|x-ray-website|zum-park-recruitngfilm)\.html$ - [R=404,L,NC]
+RewriteRule ^(?:andreasboehlerportfolio/)?(?:abbvie-oncology|acino-pain-management|acino-swiss-lab-production-tour|adesso-life-sciences-imagemovie|arcondis-brand-identity|austellung-around-the-world|austellung-movin|bongrain-savencia|businessportrait-kurt|chris-blair-engagement-video|christoph-goettel-artist-portrait|desert-mustang|destiny|dogportrait-ilvy-co|dr-martin-klein|duolingo-spec-ad|energize-your-communications-commercial|europa-park-dinnershow-2022|europa-park-neuheiten-2023|evoke-emotions-commercial|familienportrait-foro|hamburg|hochzeit-albana-max|hochzeit-lucas-valerie|jeep-wrangler-on-hawaii|kaeppeli-recruitngfilm|larissa-autumn-spirit|larissa-spring-feels|mareike-daniel-wedding|mercedes-gt-in-der-salzwuste|messe-basel-imagemovie|movicol-mode-of-action|movin-recruitingfilm|ocean-coast|one-stop-in-venedig|paris|praxis-seesemann-commercial-fotografie|projekt|rockstar-musicvideo|smt-imagefilm-qualitaet|songwon-corporate-movie|sportsportrait-irene|syngenta-campaign|ttp-group-imagefilm|uniimmo-portraits|valentin-business-portrait|vietnam|virtual-production-case-study|x-ray-website|zum-park-recruitngfilm)\.html$ - [R=404,L,NC]
 RewriteRule ^andreasboehlerportfolio(?:/|$) - [L]
 
 # Serve the homepage from the production build.

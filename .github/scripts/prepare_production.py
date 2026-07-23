@@ -8,7 +8,9 @@ from pathlib import Path
 ALLOWED_PROJECTS = {
     "50-jahre-europa-park.html",
     "dj-bobo-evolut30n-tour.html",
-    "phantom-der-oper-vr-coastiality.html",
+    "novartis-medportal.html",
+    "photography.html",
+    "tnw-website.html",
     "voltron-nevera-tv-werbespot.html",
 }
 

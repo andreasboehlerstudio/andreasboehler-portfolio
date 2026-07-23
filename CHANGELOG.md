@@ -8,6 +8,26 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.26] - 2026-07-23
+
+### Added
+
+- Neue TNW-Website-Case-Study mit Webdesign-Beitrag, lokal optimiertem Filmcontent, Fotostrecke, Making-of-Auswahl und dem offiziellen Drohnenfilm mit Bahn in Basel.
+- Regionale Landingpages positionieren Andreas als Videograf und Filmemacher in Freiburg, Offenburg und Basel.
+- MedPortal ist wieder fuer den kuratierten Live-Build freigegeben.
+
+### Changed
+
+- Der sichtbare Startseiten-Hero verwendet wieder die Markenbotschaft "Filmische Markenwelten". Der technische Seitentitel beginnt SEO-fokussiert mit "Videograf Freiburg", waehrend die konkrete Expertise im Hero und in den strukturierten Daten erhalten bleibt.
+- Die Live-Auswahl umfasst sechs freigegebene Arbeiten: DJ BoBo, 50 Jahre Europa-Park, TNW Website, Novartis MedPortal, Voltron Nevera und Still Photography. Die Startseite bleibt mit fuenf Arbeiten bewusst kompakt.
+- Das 50-Jahre-Europa-Park-Projekt verwendet ein klareres Jubilaeums-Keyvisual mit goldenem 50-Jahre-Logo, Feuerwerk und Nachtkulisse.
+- Die Positionierung wurde von einer allgemeinen Filmproduktion auf Andreas als Videograf, Filmemacher, DoP, Fotograf und Creative Producer geschaerft.
+
+### Fixed
+
+- Hero-Header, grosse Typografie, regionale SEO-Bereiche, Projektseiten und Navigation wurden auf Mobile und Tablet gegen Clipping und horizontales Ueberlaufen abgesichert.
+- Alte Filmproduktions-URLs werden auf die entsprechenden neuen Videograf-Landingpages weitergeleitet.
+
 ## [0.5.25] - 2026-07-23
 
 ### Added

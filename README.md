@@ -140,6 +140,25 @@ Beispiel:
 
 ## Changelog
 
+### [0.5.26] - 2026-07-23
+
+#### Added
+
+- Neue TNW-Website-Case-Study mit Webdesign-Beitrag, Filmcontent, Fotostrecke, Making-of-Material und Drohnenfilm.
+- Regionale Videograf-Landingpages fuer Freiburg, Offenburg und Basel.
+- Novartis MedPortal ist wieder fuer die Live-Auswahl freigegeben.
+
+#### Changed
+
+- "Filmische Markenwelten" ist wieder die sichtbare Hero-Aussage; der technische Seitentitel beginnt gezielt mit "Videograf Freiburg".
+- Die Live-Works umfassen sechs freigegebene Cases, waehrend die Startseite weiterhin fuenf kuratierte Arbeiten zeigt.
+- Das Europa-Park-Jubilaeumsprojekt verwendet ein staerkeres 50-Jahre-Keyvisual mit Logo und Nachtkulisse.
+- Mobile und Tablet wurden seitenuebergreifend fuer Hero-Typografie, Navigation und lokale SEO-Bereiche optimiert.
+
+#### Fixed
+
+- Responsive Clipping, horizontales Ueberlaufen und alte Filmproduktions-Weiterleitungen wurden korrigiert.
+
 ### [0.5.25] - 2026-07-23
 
 #### Added

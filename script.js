@@ -175,9 +175,11 @@ function setupWorksCuration() {
   const signatureOrder = [
     "dj-bobo-evolut30n-tour.html",
     "50-jahre-europa-park.html",
+    "tnw-website.html",
     "voltron-nevera-tv-werbespot.html",
-    "phantom-der-oper-vr-coastiality.html",
     "novartis-medportal.html",
+    "photography.html",
+    "phantom-der-oper-vr-coastiality.html",
     "acino-swiss-lab-production-tour.html",
     "duolingo-spec-ad.html",
     "virtual-production-case-study.html"
@@ -1061,7 +1063,7 @@ const projectData = {
   "50-jahre-europa-park": {
     title: "50 Jahre Europa-Park",
     eyebrow: "Entertainment · Jubiläum",
-    image: "assets/andreas-europapark.jpg",
+    image: "assets/europa-park-50-jahre-teaser.jpg",
     intro: "Ein Jubiläumsprojekt für eine der stärksten Entertainment-Marken Europas: emotional, schnell verständlich und nah am Erlebnis.",
     role: "Konzept, Produktion, Kameraarbeit, Schnittdramaturgie und markennahe Bildsprache.",
     description: "Der kommunikative Kern: aus vielen Attraktionen, Menschen und Erinnerungen ein Gefühl von Geschichte, Bewegung und Zukunft formen.",
@@ -1072,6 +1074,22 @@ const projectData = {
       ["Stärke", "Viele Erlebniswelten werden zu einer klaren emotionalen Linie verdichtet."],
       ["Einsatz", "Website, Social Media, interne Kommunikation und Event-Kontext."],
       ["Look", "Energetisch, farbig, menschlich und mit hohem Wiedererkennungswert."]
+    ]
+  },
+  "tnw-website": {
+    title: "TNW Website",
+    eyebrow: "Digital Experience · Filmcontent · Basel",
+    image: "assets/projects/tnw/tnw-web-header.jpg",
+    intro: "Eine digitale Mobilitätsplattform, in der klare Nutzerführung, frische Bildwelten und bewegter Content als ein System zusammenspielen.",
+    role: "Mitwirkung am Webdesign und an der visuellen Ausarbeitung der Website sowie Konzeption und Produktion von Filmcontent.",
+    description: "Für den Tarifverbund Nordwestschweiz entstand im Team von The Bloc Switzerland ein zugänglicher, interaktiver Auftritt mit neuer Navigation, Fotografie, Drohnenbildern und einer filmischen Landingpage-Sequenz.",
+    service: "Webdesign & visuelle Kommunikation",
+    serviceLink: "webdesign-freiburg.html",
+    facts: [
+      ["Beitrag", "Webdesign, visuelle Ausarbeitung und Filmcontent für die digitale Markenpräsenz."],
+      ["Kontext", "Tarifverbund Nordwestschweiz, Mobilität, Servicekommunikation und Region Basel."],
+      ["Ergebnis", "Eine klarere Navigation und eine menschliche Bildwelt verbinden Information mit Bewegung."],
+      ["Team", "Realisierung im Team von The Bloc Switzerland für TNW."]
     ]
   },
   "duolingo-spec-ad": {

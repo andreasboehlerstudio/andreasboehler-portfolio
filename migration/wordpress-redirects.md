@@ -16,6 +16,9 @@ Die fruehere WordPress-Installation wurde anhand von Suchmaschinen-Treffern und 
 | `/photography/`, Fotografiearchive | `/photography.html` |
 | `/helpie_faq_page/` | `/faq.html` |
 | `/agb/`, `/datenschutz/`, `/impressum/` | entsprechende `.html`-Seite |
+| `/filmproduktion-freiburg.html` | `/videograf-freiburg.html` |
+| `/filmproduktion-offenburg.html` | `/videograf-offenburg.html` |
+| `/filmproduktion-basel.html` | `/videograf-basel.html` |
 | vier freigegebene `/portfolio-item/.../`-Slugs | entsprechende Live-Projektseite |
 | sonstige `/portfolio-item/.../`-Slugs | `/works.html` |
 | Filmproduktions- und Imagefilm-Artikel | `/werbefilm-produktfilm.html` |
