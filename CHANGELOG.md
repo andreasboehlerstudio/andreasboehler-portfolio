@@ -8,6 +8,14 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.31] - 2026-07-24
+
+### Fixed
+
+- Der Voltron-Nevera-Case zeigt nur noch den verifizierten offiziellen Europa-Park-TV-Spot.
+- Ein falsch zugeordnetes Vimeo-Video aus dem MSD-Lung-Cancer-Projekt wurde aus dem Voltron-Case entfernt.
+- Hero-, Projektdaten und strukturiertes Hauptbild verwenden konsistent das Voltron-Nevera-Motiv.
+
 ## [0.5.30] - 2026-07-24
 
 ### Changed

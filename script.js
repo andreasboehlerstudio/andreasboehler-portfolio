@@ -2534,7 +2534,7 @@ const bookletProjectEnhancements = {
   "voltron-nevera-tv-werbespot": {
     "title": "Voltron Nevera TV Werbespot",
     "eyebrow": "Europa-Park / TV-Spot / Entertainment",
-    "image": "assets/andreas-europapark.jpg",
+    "image": "assets/booklet-voltron-nevera-tv-werbespot.jpg?v=single-frame",
     "intro": "Ein 60-sekündiger TV-Werbespot für Voltron Nevera powered by Rimac, die neue Achterbahn im Europa-Park mit großem Storytelling rund um Nikola Tesla.",
     "role": "Drehplanung, Produktionsplanung, Logo-VFX, Producer und Post-Production Supervision.",
     "description": "Der Case verbindet internationale Drehorte, Motion-Control-Aufnahmen, 3D-Backplates und Entertainment-Marketing zu einer großen Coaster-Ankündigung.",
@@ -2564,16 +2564,8 @@ const bookletProjectEnhancements = {
         "player": "https://www.youtube.com/embed/xUfla2hxdUA",
         "thumbnail": "",
         "duration": "",
-        "date": "2023-01-01",
+        "date": "2024-04-26",
         "description": "TV-Spot für Voltron Nevera powered by Rimac im Europa-Park."
-      },
-      {
-        "title": "Voltron Nevera Case Video",
-        "player": "https://player.vimeo.com/video/661156717?h=ee61de9489",
-        "thumbnail": "",
-        "duration": "",
-        "date": "2023-01-01",
-        "description": "Vimeo-Video aus dem Portfolio-Booklet zur Voltron Nevera Produktion."
       }
     ]
   },
