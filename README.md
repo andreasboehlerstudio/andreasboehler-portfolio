@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.25`
+Aktuelle dokumentierte Version: `0.5.30`
 
 ## Inhalt
 
@@ -139,6 +139,14 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.30] - 2026-07-24
+
+#### Changed
+
+- Der DJ-BoBo-Case zeigt jetzt den `The Great Adventure Tourtrailer` mit korrektem Titelmotiv, Video, Projekttext und strukturierten Daten.
+- Der zusaetzliche Erklaersatz ueber den ausgewaehlten Arbeiten wurde von der Startseite entfernt.
+- Der Projekttitel bleibt im mobilen Hero vollstaendig lesbar.
 
 ### [0.5.29] - 2026-07-23
 

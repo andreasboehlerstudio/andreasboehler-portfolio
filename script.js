@@ -1141,10 +1141,10 @@ const projectData = {
     ]
   },
   "dj-bobo-evolut30n-tour": {
-    title: "DJ Bobo EVOLUT30N Tour",
-    eyebrow: "Producer · VFX · KI Postproduktion · 2024",
-    image: "assets/andreas-djbobo.jpg",
-    intro: "Ein futuristischer Tourtrailer zwischen Show, Abenteuerkino und digitaler Postproduktion.",
+    title: "DJ BoBo – The Great Adventure",
+    eyebrow: "Tourtrailer · Producer · VFX · KI Postproduktion · 2024",
+    image: "assets/dj-bobo-the-great-adventure-tourtrailer.jpg",
+    intro: "Ein filmischer Tourtrailer zwischen Abenteuerkino, Special VFX und digitaler Postproduktion.",
     role: "Producer, Drehplanung, Special VFX, 3D/Motion Graphics, Postproduction und KI-gestützte Bildarbeit.",
     description: "Für den Tourtrailer wurden Planung, visuelle Effekte und Motion Design zu einem kompakten Show-Auftakt verbunden. Der Case zeigt, wie Entertainment-Kommunikation groß wirken kann, ohne den Produktionskern aus den Augen zu verlieren.",
     service: "Werbefilm & Produktfilm",
@@ -1424,12 +1424,12 @@ const liveProjectEnhancements = {
   "dj-bobo-evolut30n-tour": {
     "videos": [
       {
-        "title": "DJ BoBo - EVOLUT30N (Official Live Clip)",
-        "player": "https://www.youtube.com/embed/7GMVjTnYOtM",
-        "thumbnail": "https://andreasboehler.com/wp-content/uploads/2023/03/maxresdefault-1.jpg",
-        "duration": "216",
-        "date": "2023-02-05",
-        "description": "EVOLUT30N – DJ BoBo-Tour 2023 Tickets/Infos: https://www.djbobo.ch/ev0lut30n/Tour dates:05.05.2023 Stuttgart Porsche-Arena - additional show!06.05.2023 Stutt..."
+        "title": "DJ BoBo The Great Adventure Tourtrailer",
+        "player": "https://www.youtube.com/embed/VcAIj00Vxqc",
+        "thumbnail": "assets/dj-bobo-the-great-adventure-tourtrailer.jpg",
+        "duration": "",
+        "date": "2024-01-01",
+        "description": "Tourtrailer zu The Great Adventure mit Special VFX, 3D, Motion Graphics und KI-gestützter Postproduktion."
       }
     ]
   },
@@ -2618,15 +2618,15 @@ const bookletProjectEnhancements = {
   "dj-bobo-evolut30n-tour": {
     "videos": [
       {
-        "title": "DJ Bobo The Great Adventure Tourtrailer",
+        "title": "DJ BoBo The Great Adventure Tourtrailer",
         "player": "https://www.youtube.com/embed/VcAIj00Vxqc",
-        "thumbnail": "",
+        "thumbnail": "assets/dj-bobo-the-great-adventure-tourtrailer.jpg",
         "duration": "",
         "date": "2024-01-01",
         "description": "Tourtrailer zu The Great Adventure, mit Special VFX, 3D, Motion Graphics und KI-gestützter Postproduktion."
       },
       {
-        "title": "DJ Bobo The Great Adventure BTS",
+        "title": "DJ BoBo The Great Adventure BTS",
         "player": "https://www.youtube.com/embed/6tjD9pYtZkA",
         "thumbnail": "",
         "duration": "",
@@ -2693,7 +2693,7 @@ const projectImageFixes = {
     "image": "assets/live-rockstar-musicvideo.jpg"
   },
   "dj-bobo-evolut30n-tour": {
-    "image": "assets/live-dj-bobo-evolut30n-tour.jpg"
+    "image": "assets/dj-bobo-the-great-adventure-tourtrailer.jpg"
   },
   "europa-park-neuheiten-2023": {
     "image": "assets/live-europa-park-neuheiten-2023.jpg"

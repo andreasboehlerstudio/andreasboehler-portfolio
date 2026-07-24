@@ -15589,6 +15589,10 @@ html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote {
 
 /* Mobile hero guardrails shared by regional, service and project pages. */
 @media (max-width: 700px) {
+  body[data-project-slug="dj-bobo-evolut30n-tour"] .project-hero::after {
+    height: 24svh;
+  }
+
   .page-hero-copy,
   body[data-project-slug] .project-hero .page-hero-copy {
     width: 100%;

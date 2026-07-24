@@ -8,6 +8,15 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.30] - 2026-07-24
+
+### Changed
+
+- Der DJ-BoBo-Case ist in Titel, Teaser, Projekttext, Videoverknuepfung und strukturierten Daten eindeutig als `The Great Adventure Tourtrailer` eingeordnet.
+- Startseite und Works verwenden das offizielle Titelmotiv des Tourtrailers statt des bisherigen EVOLUT30N-Livebilds.
+- Der erklaerende Satz `Arbeiten, die Haltung und Handwerk verbinden.` wurde aus dem Featured-Work-Bereich entfernt.
+- Der mobile Verlauf des DJ-BoBo-Heros beginnt tiefer, damit der mehrzeilige Projekttitel lesbar vor dem Motiv bleibt.
+
 ## [0.5.29] - 2026-07-23
 
 ### Added
