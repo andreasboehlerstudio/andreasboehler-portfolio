@@ -3,3 +3,5 @@
 preview-*.png
 footer-*.png
 pdf-preview/
+private-data/*.sqlite
+private-data/*.sqlite-*

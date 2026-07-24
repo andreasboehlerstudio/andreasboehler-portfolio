@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.31`
+Aktuelle dokumentierte Version: `0.5.32`
 
 ## Inhalt
 
@@ -46,9 +46,13 @@ py -m http.server 4173 --bind 127.0.0.1
 |-- services.html              # Service-Uebersicht
 |-- about.html                 # Profil / Vita
 |-- contact.html               # Kontakt
+|-- send-contact.php           # Formularversand und Lead-Erfassung
 |-- script.js                  # Interaktionen, Projektdaten, Animationen
 |-- styles.css                 # Layout, Typografie, responsive Design
 |-- assets/                    # Bilder, Video-Stills, PDF- und Projektassets
+|-- includes/                  # Serverseitige Lead-Datenbanklogik
+|-- intern/                    # Geschuetzte interne Anfragenverwaltung
+|-- private-data/              # Gesperrter DB-Fallback ohne versionierte Daten
 |-- CHANGELOG.md               # Versionierte Aenderungshistorie
 |-- VERSION                    # Aktuelle Release-Version
 |-- sitemap.xml                # Suchmaschinen-Sitemap
@@ -139,6 +143,20 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [0.5.32] - 2026-07-24
+
+#### Added
+
+- Formularanfragen werden in einer geschuetzten SQLite-Lead-Datenbank gesammelt und bleiben auch bei einem temporaeren Mailfehler erhalten.
+- Der interne Bereich `/intern/anfragen.php` ermoeglicht Suche, Statuspflege, Notizen und CSV-Export; Rate-Limiting und automatische Loeschfristen reduzieren Missbrauch und Datenbestand.
+- Das Produktions-Deployment validiert PHP-Dateien vor dem Upload.
+
+#### Changed
+
+- Direkte E-Mail-Links und Formulare verwenden durchgehend `info@andreasboehler.com`.
+- Datenschutz und AGB wurden um Datenbankverarbeitung, KI-Workflows, Vertragsart, Ausfallkosten, 50/50-Abschlaege, Zahlungsverzug, Buyouts und Lizenzfolgen erweitert.
+- Der DJ-BoBo-Tourtrailer besitzt ein neues hochwertiges Teasermotiv; der sichtbare Erklaertext zu externen Playern wurde entfernt.
 
 ### [0.5.31] - 2026-07-24
 

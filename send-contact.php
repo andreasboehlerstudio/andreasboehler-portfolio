@@ -1,8 +1,10 @@
 <?php
 declare(strict_types=1);
 
-const CONTACT_RECIPIENT = 'andy@andreasboehler.com';
-const CONTACT_SENDER = 'andy@andreasboehler.com';
+require_once __DIR__ . '/includes/lead-store.php';
+
+const CONTACT_RECIPIENT = 'info@andreasboehler.com';
+const CONTACT_SENDER = 'info@andreasboehler.com';
 const MAX_REQUEST_BYTES = 100000;
 
 function wants_json(): bool
@@ -207,11 +209,13 @@ $bodyLines = [
     $isWedding ? 'Neue Hochzeitsanfrage über andreasboehler.com' : 'Neue Projektanfrage über andreasboehler.com',
     '',
 ];
+$payload = [];
 
 foreach ($fields as $label => $maxLength) {
     $values = field_values($label, $maxLength);
 
     if ($values !== []) {
+        $payload[$label] = count($values) === 1 ? $values[0] : $values;
         $bodyLines[] = $label . ': ' . implode(', ', $values);
     }
 }
@@ -225,6 +229,40 @@ $date = first_value('Hochzeitsdatum', 40);
 $subject = $isWedding
     ? trim('Hochzeitsanfrage' . ($date !== '' ? ' · ' . $date : '') . ($location !== '' ? ' · ' . $location : ''))
     : 'Projektanfrage von ' . $name;
+$database = null;
+$leadId = 0;
+$databaseStored = false;
+$ipHash = lead_client_ip_hash();
+
+try {
+    $database = lead_database();
+
+    if (lead_rate_limit_reached($database, $ipHash)) {
+        respond(429, [
+            'ok' => false,
+            'message' => 'Zu viele Anfragen in kurzer Zeit. Bitte versuche es später erneut oder schreibe direkt per E-Mail.',
+        ]);
+    }
+
+    $leadId = lead_insert($database, [
+        'form_type' => $formType,
+        'name' => $name,
+        'email' => $email,
+        'phone' => first_value('Telefon', 80),
+        'event_date' => $date,
+        'location' => $location,
+        'package_name' => first_value('Paket', 160),
+        'subject' => $isWedding ? 'Hochzeitsanfrage' : first_value('Projekttyp', 160),
+        'message' => $isWedding ? first_value('Nachricht', 5000) : first_value('Notizen', 5000),
+        'payload' => $payload,
+        'source_url' => clean_text($_SERVER['HTTP_REFERER'] ?? '', 500),
+        'ip_hash' => $ipHash,
+    ]);
+    $databaseStored = $leadId > 0;
+} catch (Throwable $error) {
+    error_log('Lead database unavailable: ' . $error->getMessage());
+}
+
 $headers = [
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
@@ -240,7 +278,15 @@ $sent = $testMode || @mail(
     implode("\r\n", $headers)
 );
 
-if (!$sent) {
+if ($sent && $database instanceof PDO && $leadId > 0) {
+    try {
+        lead_mark_email_sent($database, $leadId);
+    } catch (Throwable $error) {
+        error_log('Lead email status could not be updated: ' . $error->getMessage());
+    }
+}
+
+if (!$sent && !$databaseStored) {
     respond(503, [
         'ok' => false,
         'message' => 'Der E-Mail-Versand ist vorübergehend nicht erreichbar.',
@@ -250,4 +296,6 @@ if (!$sent) {
 respond(200, [
     'ok' => true,
     'form_type' => $formType,
+    'stored' => $databaseStored,
+    'emailed' => $sent,
 ]);

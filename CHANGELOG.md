@@ -8,6 +8,24 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.32] - 2026-07-24
+
+### Added
+
+- Formularanfragen werden zusaetzlich zum E-Mail-Versand in einer geschuetzten SQLite-Lead-Datenbank gespeichert.
+- Der interne, nicht indexierbare Bereich `/intern/anfragen.php` bietet Suche, Filter, Status, interne Notizen und CSV-Export.
+- Serverseitiges Rate-Limiting, gehashte IP-Merkmale und eine automatische Loeschung nicht beauftragter Anfragen nach spaetestens zwoelf Monaten begrenzen Missbrauch und Datenspeicherung.
+- Der Produktions-Workflow prueft alle PHP-Dateien vor dem FTP-Upload auf Syntaxfehler.
+
+### Changed
+
+- Alle direkten Kontaktlinks und Formularziele verwenden einheitlich `info@andreasboehler.com`.
+- Die Datenschutzerklaerung dokumentiert Formularversand, lokale Lead-Datenbank, Zugriffsschutz, Speicherdauer und Betroffenenrechte genauer.
+- Die AGB regeln Dienst- und Werkleistungen, Abschlagszahlungen, Ausfallkosten, Zahlungsverzug, Nutzungsrechte, Buyouts sowie KI-gestuetzte Retusche und Generierung ausfuehrlicher.
+- Groessere Produktionen werden standardmaessig mit 50 Prozent bei Beauftragung und 50 Prozent bei Fertigstellung beziehungsweise Abnahme abgerechnet, sofern das Angebot nichts anderes vorsieht.
+- Der DJ-BoBo-Tourtrailer verwendet ein hochwertiges Filmstill als Teasermotiv.
+- Der sichtbare Hinweis zum Laden externer Player wurde entfernt; die technische Einwilligungslogik bleibt bestehen.
+
 ## [0.5.31] - 2026-07-24
 
 ### Fixed

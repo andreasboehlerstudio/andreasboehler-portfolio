@@ -1143,7 +1143,7 @@ const projectData = {
   "dj-bobo-evolut30n-tour": {
     title: "DJ BoBo – The Great Adventure",
     eyebrow: "Tourtrailer · Producer · VFX · KI Postproduktion · 2024",
-    image: "assets/dj-bobo-the-great-adventure-tourtrailer.jpg",
+    image: "assets/dj-bobo-great-adventure-filmstill.jpg",
     intro: "Ein filmischer Tourtrailer zwischen Abenteuerkino, Special VFX und digitaler Postproduktion.",
     role: "Producer, Drehplanung, Special VFX, 3D/Motion Graphics, Postproduction und KI-gestützte Bildarbeit.",
     description: "Für den Tourtrailer wurden Planung, visuelle Effekte und Motion Design zu einem kompakten Show-Auftakt verbunden. Der Case zeigt, wie Entertainment-Kommunikation groß wirken kann, ohne den Produktionskern aus den Augen zu verlieren.",
@@ -1426,7 +1426,7 @@ const liveProjectEnhancements = {
       {
         "title": "DJ BoBo The Great Adventure Tourtrailer",
         "player": "https://www.youtube.com/embed/VcAIj00Vxqc",
-        "thumbnail": "assets/dj-bobo-the-great-adventure-tourtrailer.jpg",
+        "thumbnail": "assets/dj-bobo-great-adventure-filmstill.jpg",
         "duration": "",
         "date": "2024-01-01",
         "description": "Tourtrailer zu The Great Adventure mit Special VFX, 3D, Motion Graphics und KI-gestützter Postproduktion."
@@ -2612,7 +2612,7 @@ const bookletProjectEnhancements = {
       {
         "title": "DJ BoBo The Great Adventure Tourtrailer",
         "player": "https://www.youtube.com/embed/VcAIj00Vxqc",
-        "thumbnail": "assets/dj-bobo-the-great-adventure-tourtrailer.jpg",
+        "thumbnail": "assets/dj-bobo-great-adventure-filmstill.jpg",
         "duration": "",
         "date": "2024-01-01",
         "description": "Tourtrailer zu The Great Adventure, mit Special VFX, 3D, Motion Graphics und KI-gestützter Postproduktion."
@@ -2685,7 +2685,7 @@ const projectImageFixes = {
     "image": "assets/live-rockstar-musicvideo.jpg"
   },
   "dj-bobo-evolut30n-tour": {
-    "image": "assets/dj-bobo-the-great-adventure-tourtrailer.jpg"
+    "image": "assets/dj-bobo-great-adventure-filmstill.jpg"
   },
   "europa-park-neuheiten-2023": {
     "image": "assets/live-europa-park-neuheiten-2023.jpg"
@@ -3690,7 +3690,7 @@ function setupCinematicPageCta() {
     : document.body.dataset.page || "home";
   const projectTitle = document.querySelector("#projectTitle")?.textContent?.trim();
   const projectBriefingHref = document.querySelector("#projectBriefingLink")?.getAttribute("href") || "contact.html#briefing";
-  const studioEmail = "andy@andreasboehler.com";
+  const studioEmail = "info@andreasboehler.com";
   const mailtoHref = `mailto:${studioEmail}`;
   const base = {
     eyebrow: "Next scene",
@@ -3944,7 +3944,6 @@ function renderProjectVideos(project) {
   const header = document.createElement("header");
   const label = document.createElement("span");
   const heading = document.createElement("h2");
-  const intro = document.createElement("p");
   const grid = document.createElement("div");
 
   section.className = "project-video-showcase";
@@ -3953,7 +3952,6 @@ function renderProjectVideos(project) {
   label.textContent = "Video";
   heading.id = "projectVideoTitle";
   heading.textContent = project.videos.length > 1 ? "Filme zum Projekt" : "Film zum Projekt";
-  intro.textContent = "Externe Player werden erst nach Zustimmung zu externen Medien geladen.";
   grid.className = "project-video-grid";
 
   project.videos.forEach((video) => {
@@ -3988,7 +3986,7 @@ function renderProjectVideos(project) {
     grid.append(card);
   });
 
-  header.append(label, heading, intro);
+  header.append(label, heading);
   section.append(header, grid);
 
   const projectHero = document.querySelector("#projectHero");

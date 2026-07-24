@@ -75,6 +75,12 @@ jobs:
           rm -rf _production-site/.github
           rm -f _production-site/README.md _production-site/CHANGELOG.md _production-site/VERSION
 
+      - name: Validate PHP syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          find _production-site -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+
       - name: Sync website to production folder
         id: ftp-sync
         if: steps.ftp-config.outputs.protocol != 'sftp'
