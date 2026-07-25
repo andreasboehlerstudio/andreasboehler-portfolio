@@ -4,14 +4,14 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.33`
+Aktuelle dokumentierte Version: `0.5.34`
 
 ## Inhalt
 
 - Startseite mit persoenlicher Positionierung, Hero-Sequenz und ausgewaehlten Arbeiten
 - Works-Uebersicht mit Projektseiten, Bildmaterial und Video-Einbindungen
 - Still-Photography-Seite mit kuratierter Fotoauswahl
-- Service-Seiten fuer Filmproduktion, Markenfotografie, DoP, Art Direction und Creative Technology
+- Leistungsseiten fuer Filmproduktion, Markenfotografie, DoP, Art Direction und Creative Technology
 - Lokale SEO-Landingpages fuer Filmproduktion und Hochzeitsfotografie in Freiburg, Offenburg und Basel
 - About-, Contact-, FAQ-, Impressum-, Datenschutz- und AGB-Seiten
 - SEO-Grundlagen mit `robots.txt`, `sitemap.xml` und `llms.txt`
@@ -143,6 +143,19 @@ Beispiel:
 ```
 
 ## Changelog
+
+### [Unreleased]
+
+Noch keine nicht versionierten Aenderungen.
+
+### [0.5.34] - 2026-07-25
+
+#### Changed
+
+- Navigation, Footer und zentrale Seitentexte sprechen einheitlich von `Leistungen` und positionieren Andreas Boehler als persoenliche Kreativmarke.
+- Kollektive Studio-Formulierungen wurden durch eine persoenliche Ich-Perspektive ersetzt; allgemeine Personenbezeichnungen sind moeglichst neutral formuliert.
+- Leistungsnamen sind auf Desktop, mittleren Viewports und Mobile ruhiger skaliert; der laengere Menuepunkt `Leistungen` bleibt auch bei mittleren Breiten vollstaendig sichtbar.
+- Abgebrochene oder unpassende Projektbeschreibungen wurden redaktionell korrigiert, darunter die zuvor falsch zugeordnete Beschreibung des Jeep-Cases.
 
 ### [0.5.33] - 2026-07-25
 

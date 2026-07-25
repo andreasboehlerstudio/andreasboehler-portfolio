@@ -3384,9 +3384,9 @@ html[data-theme="dark"] .cookie-consent-option input:checked + i::before {
 .home-service-row h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5.8vw, 7rem);
+  font-size: 4.5rem;
   font-weight: 400;
-  line-height: 0.86;
+  line-height: 0.94;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -3531,6 +3531,10 @@ html[data-theme="dark"] .home-service-row:focus-visible p {
   .home-service-row {
     grid-template-columns: 46px minmax(0, 1fr) 46px;
   }
+
+  .home-service-row h3 {
+    font-size: 3.5rem;
+  }
 }
 
 @media (max-width: 620px) {
@@ -3554,7 +3558,8 @@ html[data-theme="dark"] .home-service-row:focus-visible p {
   }
 
   .home-service-row h3 {
-    font-size: clamp(2.4rem, 12vw, 4.2rem);
+    font-size: 2.6rem;
+    line-height: 0.98;
   }
 
   .home-service-row p {
@@ -8177,8 +8182,8 @@ html[data-theme="dark"] .about-social-links em {
 .service-discipline-main h2 {
   max-width: 850px;
   margin: 0;
-  font-size: clamp(2.35rem, 4vw, 5.4rem);
-  line-height: 0.94;
+  font-size: 4.25rem;
+  line-height: 0.98;
 }
 
 .service-discipline-main p {
@@ -11757,7 +11762,7 @@ html[data-theme="dark"] .site-nav.is-open .site-mark-link {
   }
 
   .nav-item span {
-    font-size: clamp(1.32rem, 2.5vw, 2.05rem);
+    font-size: 1.25rem;
   }
 
   .nav-item strong {
@@ -12540,7 +12545,7 @@ body[data-page="services"] .service-awards-teaser {
 
 .service-discipline-list--lite .service-discipline-main h2 {
   max-width: 780px;
-  font-size: clamp(2.25rem, 4.2vw, 6.4rem);
+  font-size: 4.25rem;
 }
 
 .service-discipline-list--lite .service-discipline-main p {
@@ -16260,4 +16265,41 @@ html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote {
 .protected-email-link:hover,
 .protected-email-link:focus-visible {
   color: var(--ember);
+}
+
+/* Keep service names editorial in scale instead of competing with hero headlines. */
+@media (max-width: 1280px) {
+  .home-service-row h3 {
+    font-size: 4rem;
+  }
+
+  .service-discipline-list--lite .service-discipline-main h2 {
+    font-size: 3.75rem;
+  }
+}
+
+@media (max-width: 980px) {
+  .home-service-row h3 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .service-discipline-list--lite .service-discipline-main h2 {
+    font-size: 3.25rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .home-service-row h3 {
+    font-size: 2.6rem;
+    line-height: 0.98;
+  }
+}
+
+@media (max-width: 560px) {
+  .service-discipline-list--lite .service-discipline-main h2 {
+    font-size: 2.4rem;
+    line-height: 1;
+  }
 }

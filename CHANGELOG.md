@@ -8,6 +8,16 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.34] - 2026-07-25
+
+### Changed
+
+- Die sichtbare Sprache wurde auf Andreas Boehler als persoenliche Kreativmarke ausgerichtet: `Our services` und weitere UI-Begriffe heissen nun einheitlich `Leistungen`.
+- Texte mit kollektiver Studio-Stimme wurden auf eine persoenliche Ich-Perspektive umgestellt; Personenbezeichnungen sind, wo sinnvoll, neutral formuliert.
+- Die einzelnen Leistungsnamen auf Start- und Leistungsseite sind ruhiger skaliert und auf mittleren sowie mobilen Viewports klar abgestuft.
+- Der Menuepunkt `Leistungen` bleibt auch auf mittleren Viewports vollstaendig lesbar.
+- Mehrere abgebrochene oder unpassende importierte Projektbeschreibungen wurden redaktionell bereinigt; der Jeep-Case beschreibt nun wieder die richtige Fotostrecke.
+
 ## [0.5.33] - 2026-07-25
 
 ### Added

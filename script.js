@@ -423,7 +423,7 @@ function setupPageLoader() {
     const pageLabels = {
       home: "Home",
       works: "Works",
-      services: "Services",
+      services: "Leistungen",
       about: "About",
       contact: "Contact",
       faq: "FAQ",
@@ -1329,7 +1329,7 @@ const projectData = {
       ["Ziel", "Life-Science-IT sichtbar, differenzierbar und vertrauenswürdig positionieren."],
       ["Leistung", "Branding, Website, Designsystem und Kommunikationslogik."],
       ["Look", "Klar, technisch, reduziert und professionell."],
-      ["Nutzen", "Komplexe Services werden über visuelle Struktur leichter erfassbar."]
+      ["Nutzen", "Komplexe Angebote werden über visuelle Struktur leichter erfassbar."]
     ]
   },
   "syngenta-campaign": {
@@ -1503,7 +1503,7 @@ const liveProjectEnhancements = {
         "thumbnail": "https://andreasboehler.com/wp-content/uploads/2022/09/14_Movin_Recrutingfilm_4K_Final_H264_11-1.jpg",
         "duration": "104",
         "date": "2022-09-18",
-        "description": "Wir suchen Dich und Deine Vielfalt. Genau diese bieten wir Dir in einem jungen Team in zwei Praxen in Freiburg. Bewerbe Dich und entdecke deine Möglichkeiten..."
+        "description": "Der Recruitingfilm für MOVIN zeigt die Vielfalt des Teams, den Arbeitsalltag in zwei Freiburger Praxen und persönliche Entwicklungsmöglichkeiten."
       }
     ]
   },
@@ -1552,9 +1552,9 @@ const liveProjectEnhancements = {
     "title": "UniImmo Portraits",
     "eyebrow": "Fotografie / Portfolio",
     "image": "assets/live-uniimmo-portraits.jpg",
-    "intro": "Die Firma UniImmo brauchte für ihre neue Webseite professionelle Portraitaufnahmen die hell und modern sind. Diese Aufnahmen sollten die Mitarbeiter professionell und freundlich darstellen. Kunde Auftrag als Angestellter bei.",
+    "intro": "Für die neue Website von UniImmo entstand eine helle, moderne Portraitserie. Sie zeigt das Team professionell, freundlich und mit einer konsistenten visuellen Sprache.",
     "role": "Fotografie, Bildauswahl, Lookentwicklung und visuelle Serie.",
-    "description": "Die Firma UniImmo brauchte für ihre neue Webseite professionelle Portraitaufnahmen die hell und modern sind. Diese Aufnahmen sollten die Mitarbeiter professionell und freundlich darstellen. Kunde Auftrag als Angestellter bei.",
+    "description": "Für die neue Website von UniImmo entstand eine helle, moderne Portraitserie. Sie zeigt das Team professionell, freundlich und mit einer konsistenten visuellen Sprache.",
     "service": "Markenfotografie",
     "serviceLink": "markenfotografie.html",
     "facts": [
@@ -1610,9 +1610,9 @@ const liveProjectEnhancements = {
     "title": "Käppeli Recruitingfilm",
     "eyebrow": "Film / Commercial",
     "image": "assets/live-kaeppeli-recruitngfilm.png",
-    "intro": "Das Käppeli bietet 67 Einzelzimmer mit Balkon und eigener Nasszelle an. Unser Heim liegt etwa 30 Gehminuten vom Muttenzer Dorfzentrum entfernt und ist mit dem Tram der Linie 14, welche sich unmittelbar vor dem Haus befindet, gut.",
+    "intro": "Der Recruitingfilm für das Alters- und Pflegeheim Käppeli in Muttenz zeigt Arbeitsalltag, Teamkultur und die Nähe zu den Menschen, die dort leben.",
     "role": "Konzept, Produktion, Kameraarbeit, Schnitt und Postproduktion.",
-    "description": "Das Käppeli bietet 67 Einzelzimmer mit Balkon und eigener Nasszelle an. Unser Heim liegt etwa 30 Gehminuten vom Muttenzer Dorfzentrum entfernt und ist mit dem Tram der Linie 14, welche sich unmittelbar vor dem Haus befindet, gut.",
+    "description": "Der Recruitingfilm für das Alters- und Pflegeheim Käppeli in Muttenz zeigt Arbeitsalltag, Teamkultur und die Nähe zu den Menschen, die dort leben.",
     "service": "Werbefilm & Produktfilm",
     "serviceLink": "werbefilm-produktfilm.html",
     "facts": [
@@ -1706,9 +1706,9 @@ const liveProjectEnhancements = {
     "title": "Zum Park Recruitingfilm",
     "eyebrow": "Film / Commercial",
     "image": "assets/live-zum-park-recruitngfilm.png",
-    "intro": "Das Alters- und Pflegeheim zum Park in Muttenz bietet 138 Bewohner*innen ein Zuhause. Um neue Mitarbeiter zu erlangen und dem eigenen Betrieb zu mehr Ressourcen zu verhelfen, wurde dieser Recruitingfilm entwickelt, der die.",
+    "intro": "Das Alters- und Pflegeheim Zum Park in Muttenz bietet 138 Menschen ein Zuhause. Der Recruitingfilm macht Arbeitsalltag, Haltung und Teamkultur sichtbar und spricht neue Fachkräfte persönlich an.",
     "role": "Konzept, Produktion, Kameraarbeit, Schnitt und Postproduktion.",
-    "description": "Das Alters- und Pflegeheim zum Park in Muttenz bietet 138 Bewohner*innen ein Zuhause. Um neue Mitarbeiter zu erlangen und dem eigenen Betrieb zu mehr Ressourcen zu verhelfen, wurde dieser Recruitingfilm entwickelt, der die.",
+    "description": "Das Alters- und Pflegeheim Zum Park in Muttenz bietet 138 Menschen ein Zuhause. Der Recruitingfilm macht Arbeitsalltag, Haltung und Teamkultur sichtbar und spricht neue Fachkräfte persönlich an.",
     "service": "Werbefilm & Produktfilm",
     "serviceLink": "werbefilm-produktfilm.html",
     "facts": [
@@ -1927,9 +1927,9 @@ const liveProjectEnhancements = {
     "title": "Jeep Wrangler on Hawaii",
     "eyebrow": "Fotografie / Portfolio",
     "image": "assets/live-jeep-wrangler-on-hawaii.jpg",
-    "intro": "Die Praxis Dr. Seesemann und Dr. Mike brauchten für ein Rebrand neue Imagefotografie für ihre Webseite. Hier wurde insgesamt alle Mitarbeiter der Praxis vor einem Studiosetup fotografiert. Der Mood der Fotografie sollte dabei.",
+    "intro": "Eine automobile Fotostrecke mit dem Jeep Wrangler vor der vulkanischen Landschaft Hawaiis. Die Serie verbindet Abenteuer, Weite und markante Fahrzeugdetails mit einem filmischen Reise-Look.",
     "role": "Fotografie, Bildauswahl, Lookentwicklung und visuelle Serie.",
-    "description": "Die Praxis Dr. Seesemann und Dr. Mike brauchten für ein Rebrand neue Imagefotografie für ihre Webseite. Hier wurde insgesamt alle Mitarbeiter der Praxis vor einem Studiosetup fotografiert. Der Mood der Fotografie sollte dabei.",
+    "description": "Eine automobile Fotostrecke mit dem Jeep Wrangler vor der vulkanischen Landschaft Hawaiis. Die Serie verbindet Abenteuer, Weite und markante Fahrzeugdetails mit einem filmischen Reise-Look.",
     "service": "Markenfotografie",
     "serviceLink": "markenfotografie.html",
     "facts": [
@@ -1956,9 +1956,9 @@ const liveProjectEnhancements = {
     "title": "Praxis Seesemann Commercial Fotografie",
     "eyebrow": "Fotografie / Portfolio",
     "image": "assets/live-praxis-seesemann-commercial-fotografie.jpg",
-    "intro": "Die Praxis Dr. Seesemann und Dr. Mike brauchten für ein Rebrand neue Imagefotografie für ihre Webseite. Hier wurde insgesamt alle Mitarbeiter der Praxis vor einem Studiosetup fotografiert. Der Mood der Fotografie sollte dabei.",
+    "intro": "Für das Rebranding der Praxis Dr. Seesemann und Dr. Mike entstand eine neue Image- und Portraitserie. Das gesamte Praxisteam wurde in einem einheitlichen Studiosetup fotografiert.",
     "role": "Fotografie, Bildauswahl, Lookentwicklung und visuelle Serie.",
-    "description": "Die Praxis Dr. Seesemann und Dr. Mike brauchten für ein Rebrand neue Imagefotografie für ihre Webseite. Hier wurde insgesamt alle Mitarbeiter der Praxis vor einem Studiosetup fotografiert. Der Mood der Fotografie sollte dabei.",
+    "description": "Für das Rebranding der Praxis Dr. Seesemann und Dr. Mike entstand eine neue Image- und Portraitserie. Das gesamte Praxisteam wurde in einem einheitlichen Studiosetup fotografiert.",
     "service": "Markenfotografie",
     "serviceLink": "markenfotografie.html",
     "facts": [
@@ -2043,9 +2043,9 @@ const liveProjectEnhancements = {
     "title": "adesso Life Sciences Imagemovie",
     "eyebrow": "Film / Commercial",
     "image": "assets/live-adesso-life-sciences-imagemovie.jpg",
-    "intro": "Die Herausforderung beim Dreh des Imagemovies war es die 3 Säulen von adesso gleichermaßen zu repräsentieren. adesso ist eine Firma die IT-Lösungen für die Life Sciences Branche entwickelt. Zu deren Kunden gehören die großen.",
+    "intro": "Der Imagefilm übersetzt die drei Kompetenzbereiche von adesso Life Sciences in eine klare filmische Erzählung über digitale Lösungen für die Branche.",
     "role": "Konzept, Produktion, Kameraarbeit, Schnitt und Postproduktion.",
-    "description": "Die Herausforderung beim Dreh des Imagemovies war es die 3 Säulen von adesso gleichermaßen zu repräsentieren. adesso ist eine Firma die IT-Lösungen für die Life Sciences Branche entwickelt. Zu deren Kunden gehören die großen.",
+    "description": "Der Imagefilm übersetzt die drei Kompetenzbereiche von adesso Life Sciences in eine klare filmische Erzählung über digitale Lösungen für die Branche.",
     "service": "Werbefilm & Produktfilm",
     "serviceLink": "werbefilm-produktfilm.html",
     "facts": [
@@ -2073,7 +2073,7 @@ const liveProjectEnhancements = {
         "thumbnail": "https://andreasboehler.com/wp-content/uploads/2021/12/maxresdefault-2.jpg",
         "duration": "140",
         "date": "2021-12-15",
-        "description": "adesso - we optimise your digital scienceLearn here more about our services and our way of doing business in the life sciences sector. Business success is th..."
+        "description": "Ein Imagefilm über die digitalen Life-Sciences-Lösungen von adesso und die Verbindung von Technologie, Wissenschaft und Zusammenarbeit."
       }
     ]
   },
@@ -2139,9 +2139,9 @@ const liveProjectEnhancements = {
     "title": "Familienportrait Foro",
     "eyebrow": "Fotografie / Portfolio",
     "image": "assets/live-familienportrait-foro.jpg",
-    "intro": "Eine Fotoserie mit Emotion. Larissa brauchte neue Bilder für sich. Also haben wir das schöne Wetter genutzt und Portraits in einer wunderbar verspielten Umgebung gemacht. Passend zu den Herbstfarben ist ein buntes aber edel.",
+    "intro": "Eine emotionale Fotoserie mit Larissa in einer verspielten Umgebung. Herbstfarben, natürliches Licht und ein bewusst gesetzter Look verbinden Leichtigkeit mit einer edlen Bildwirkung.",
     "role": "Fotografie, Bildauswahl, Lookentwicklung und visuelle Serie.",
-    "description": "Eine Fotoserie mit Emotion. Larissa brauchte neue Bilder für sich. Also haben wir das schöne Wetter genutzt und Portraits in einer wunderbar verspielten Umgebung gemacht. Passend zu den Herbstfarben ist ein buntes aber edel.",
+    "description": "Eine emotionale Fotoserie mit Larissa in einer verspielten Umgebung. Herbstfarben, natürliches Licht und ein bewusst gesetzter Look verbinden Leichtigkeit mit einer edlen Bildwirkung.",
     "service": "Markenfotografie",
     "serviceLink": "markenfotografie.html",
     "facts": [
@@ -2168,9 +2168,9 @@ const liveProjectEnhancements = {
     "title": "Sportsportrait Irene",
     "eyebrow": "Fotografie / Portfolio",
     "image": "assets/live-sportsportrait-irene.jpg",
-    "intro": "Für eine zukünftige Sportkampagne seitens der Agentur X-Ray wollte die Agentur eine Spec Ad erstellen bei der wir ein Sportsportrait von der Personal Trainerin Irene Wilk-Zürcher erstellt haben. Die Sportlerin aus der Schweiz.",
+    "intro": "Für eine Spec Ad der Agentur X-Ray entstand ein dynamisches Sportsportrait der Schweizer Personal Trainerin Irene Wilk-Zürcher. Licht, Bewegung und Haltung übersetzen ihre Energie in eine prägnante Kampagnenästhetik.",
     "role": "Fotografie, Bildauswahl, Lookentwicklung und visuelle Serie.",
-    "description": "Für eine zukünftige Sportkampagne seitens der Agentur X-Ray wollte die Agentur eine Spec Ad erstellen bei der wir ein Sportsportrait von der Personal Trainerin Irene Wilk-Zürcher erstellt haben. Die Sportlerin aus der Schweiz.",
+    "description": "Für eine Spec Ad der Agentur X-Ray entstand ein dynamisches Sportsportrait der Schweizer Personal Trainerin Irene Wilk-Zürcher. Licht, Bewegung und Haltung übersetzen ihre Energie in eine prägnante Kampagnenästhetik.",
     "service": "Markenfotografie",
     "serviceLink": "markenfotografie.html",
     "facts": [
@@ -2197,9 +2197,9 @@ const liveProjectEnhancements = {
     "title": "Larissa Autumn Spirit",
     "eyebrow": "Fotografie / Portfolio",
     "image": "assets/live-larissa-autumn-spirit.jpg",
-    "intro": "Eine Fotoserie mit Emotion. Larissa brauchte neue Bilder für sich. Also haben wir das schöne Wetter genutzt und Portraits in einer wunderbar verspielten Umgebung gemacht. Passend zu den Herbstfarben ist ein buntes aber edel.",
+    "intro": "Eine emotionale Fotoserie mit Larissa in einer verspielten Umgebung. Herbstfarben, natürliches Licht und ein bewusst gesetzter Look verbinden Leichtigkeit mit einer edlen Bildwirkung.",
     "role": "Fotografie, Bildauswahl, Lookentwicklung und visuelle Serie.",
-    "description": "Eine Fotoserie mit Emotion. Larissa brauchte neue Bilder für sich. Also haben wir das schöne Wetter genutzt und Portraits in einer wunderbar verspielten Umgebung gemacht. Passend zu den Herbstfarben ist ein buntes aber edel.",
+    "description": "Eine emotionale Fotoserie mit Larissa in einer verspielten Umgebung. Herbstfarben, natürliches Licht und ein bewusst gesetzter Look verbinden Leichtigkeit mit einer edlen Bildwirkung.",
     "service": "Markenfotografie",
     "serviceLink": "markenfotografie.html",
     "facts": [
@@ -2477,7 +2477,7 @@ const liveProjectEnhancements = {
         "thumbnail": "https://andreasboehler.com/wp-content/uploads/2022/01/1093351593-77ae261130621dd9d44ca23c764a5e572d3b46b215a445020e03820ba373b57c-d_640.jpg",
         "duration": "180",
         "date": "2021-03-24",
-        "description": "Energize your Comummunications Gib Deiner Botschaft einen starken Auftritt. Mit unserer Story «Energize Communications» haben wir uns die Aufgabe gestellt, Ihnen den Vorteil einer starken und professionellen Film-/Videoproduktion zu."
+        "description": "Energize Communications ist eine visuelle Filmidee über die Wirkung klarer Botschaften und professionell inszenierter Bewegtbildkommunikation."
       }
     ]
   }
@@ -3694,14 +3694,14 @@ function setupCinematicPageCta() {
   const base = {
     eyebrow: "Next scene",
     headline: "Bilder, die wie Szenen wirken. Stories, die hängen bleiben.",
-    text: "Wenn aus einer Idee ein Film, eine Kampagne oder eine markante Bildwelt werden soll, starten wir mit Ziel, Gefühl und Wirkung.",
+    text: "Wenn aus einer Idee ein Film, eine Kampagne oder eine markante Bildwelt werden soll, starte ich mit Ziel, Gefühl und Wirkung.",
     marquee: "Creating moments · Cinematic stories · Not just images ·",
     primaryHref: inquiryHref,
     primaryText: "Projekt starten",
     links: [
       ["Briefing starten", "contact.html#briefing"],
       ["Works ansehen", "works.html"],
-      ["Services", "services.html"]
+      ["Leistungen", "services.html"]
     ]
   };
   const copy = {
@@ -3709,7 +3709,7 @@ function setupCinematicPageCta() {
       ? {
           eyebrow: "Next frame",
           headline: "Wenn dein nächstes Projekt Haltung, Rhythmus und einen klaren Look braucht.",
-          text: `${projectTitle} zeigt eine Richtung. Im Briefing klären wir, welche Geschichte, welches Format und welche Bildsprache für dein Projekt die stärkste Wirkung erzeugen.`,
+          text: `${projectTitle} zeigt eine Richtung. Im Briefing kläre ich mit dir, welche Geschichte, welches Format und welche Bildsprache für dein Projekt die stärkste Wirkung erzeugen.`,
           marquee: "Next frame · Strong story · Cinematic work ·",
           primaryHref: `contact.html?project=${encodeURIComponent(projectTitle)}#briefing`,
           primaryText: "Projekt starten",
@@ -3727,7 +3727,7 @@ function setupCinematicPageCta() {
           primaryText: "Projekt starten",
           links: [
             ["Briefing", "contact.html#briefing"],
-            ["Services", "services.html"],
+            ["Leistungen", "services.html"],
             ["About", "about.html"]
           ]
         },
@@ -3747,7 +3747,7 @@ function setupCinematicPageCta() {
     wedding: {
       eyebrow: "Euer Datum",
       headline: "Erzählt mir, wann und wo ihr heiratet.",
-      text: "Datum, Ort und gewünschte Begleitdauer reichen für den ersten Verfügbarkeitscheck. Danach klären wir persönlich, welches Paket und welche Bildsprache zu euch passen.",
+      text: "Datum, Ort und gewünschte Begleitdauer reichen für den ersten Verfügbarkeitscheck. Danach kläre ich persönlich mit euch, welches Paket und welche Bildsprache passen.",
       marquee: "Freiburg · Basel · Offenburg · Eure Geschichte ·",
       primaryHref: "contact.html?service=Hochzeitsfotografie#briefing",
       primaryText: "Datum anfragen",
@@ -3767,7 +3767,7 @@ function setupCinematicPageCta() {
       links: [
         ["Briefing", "contact.html#briefing"],
         ["Works", "works.html"],
-        ["Services", "services.html"]
+        ["Leistungen", "services.html"]
       ]
     },
     faq: {
@@ -3780,7 +3780,7 @@ function setupCinematicPageCta() {
       links: [
         ["Briefing", "contact.html#briefing"],
         ["Works", "works.html"],
-        ["Services", "services.html"]
+        ["Leistungen", "services.html"]
       ]
     }
   };

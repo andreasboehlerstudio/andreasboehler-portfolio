@@ -12,12 +12,12 @@ Ausgewaehlte Marken und Organisationen aus Projektarbeit, Agenturkontext, Inhous
 
 - [Homepage](https://andreasboehler.com/): Persoenliches Profil, Leistungsbereiche, ausgewaehlte Projekte und Positionierung von Andreas Boehler.
 - [Works](https://andreasboehler.com/works.html): Portfolio mit Filmproduktion, Fotografie, Healthcare, Branding, UI Design, Motion und Awards.
-- [Services](https://andreasboehler.com/services.html): Uebersicht ueber Werbefilm, Produktfilm, Markenfotografie, DoP/Kameramann und Art Direction.
+- [Leistungen](https://andreasboehler.com/services.html): Uebersicht ueber Werbefilm, Produktfilm, Markenfotografie, DoP/Kameramann und Art Direction.
 - [About](https://andreasboehler.com/about.html): Vita, Ausbildung, berufliche Stationen, Skills und Awards.
 - [Contact](https://andreasboehler.com/contact.html): Projektanfrage, E-Mail, Telefon und strukturiertes Briefing-Formular.
 - [FAQ](https://andreasboehler.com/faq.html): Kurze Antworten zu Leistungen, Region, Projektablauf, Suchbegriffen und Anfragen.
 
-## Service pages
+## Leistungsseiten
 
 - [Werbefilm & Produktfilm](https://andreasboehler.com/werbefilm-produktfilm.html): Konzept, Regie, Produktion, Schnitt, VFX, Motion Graphics und Postproduktion.
 - [Markenfotografie](https://andreasboehler.com/markenfotografie.html): Portrait, Lifestyle, Kampagnenbilder, Dokumentation und fotografische Serien.
