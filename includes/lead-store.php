@@ -5,6 +5,9 @@ const LEAD_ADMIN_ACCESS_HASH = '6965822bd23d00d6fb8dd5c07e785f743700421315e99429
 const LEAD_IP_HASH_SALT = '0a7ee198b5d6033508dd58ebfb1d0b35c6afd326347825a9dab271616c192b40';
 const LEAD_RATE_LIMIT_MAX = 5;
 const LEAD_RATE_LIMIT_WINDOW = 3600;
+const LEAD_ATTEMPT_LIMIT_MAX = 15;
+const LEAD_ATTEMPT_LIMIT_WINDOW = 3600;
+const LEAD_DUPLICATE_WINDOW = 900;
 
 function lead_database_path(): string
 {
@@ -88,6 +91,19 @@ function lead_database(): PDO
     $database->exec('CREATE INDEX IF NOT EXISTS leads_created_at_idx ON leads (created_at DESC)');
     $database->exec('CREATE INDEX IF NOT EXISTS leads_status_idx ON leads (status, created_at DESC)');
     $database->exec('CREATE INDEX IF NOT EXISTS leads_ip_hash_idx ON leads (ip_hash, created_at DESC)');
+    $database->exec(
+        'CREATE TABLE IF NOT EXISTS lead_attempts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            created_at TEXT NOT NULL,
+            ip_hash TEXT NOT NULL
+        )'
+    );
+    $database->exec('CREATE INDEX IF NOT EXISTS lead_attempts_ip_idx ON lead_attempts (ip_hash, created_at DESC)');
+    $database->exec(
+        'DELETE FROM lead_attempts WHERE created_at < "'
+        . gmdate('c', time() - LEAD_ATTEMPT_LIMIT_WINDOW)
+        . '"'
+    );
     $cleanup = $database->prepare(
         'DELETE FROM leads
         WHERE status NOT IN ("booked", "completed")
@@ -122,6 +138,54 @@ function lead_rate_limit_reached(PDO $database, string $ipHash): bool
     ]);
 
     return (int) $statement->fetchColumn() >= LEAD_RATE_LIMIT_MAX;
+}
+
+function lead_attempt_limit_reached(PDO $database, string $ipHash): bool
+{
+    if ($ipHash === '') {
+        return false;
+    }
+
+    $insert = $database->prepare(
+        'INSERT INTO lead_attempts (created_at, ip_hash) VALUES (:created_at, :ip_hash)'
+    );
+    $insert->execute([
+        ':created_at' => gmdate('c'),
+        ':ip_hash' => $ipHash,
+    ]);
+
+    $statement = $database->prepare(
+        'SELECT COUNT(*) FROM lead_attempts WHERE ip_hash = :ip_hash AND created_at >= :threshold'
+    );
+    $statement->execute([
+        ':ip_hash' => $ipHash,
+        ':threshold' => gmdate('c', time() - LEAD_ATTEMPT_LIMIT_WINDOW),
+    ]);
+
+    return (int) $statement->fetchColumn() > LEAD_ATTEMPT_LIMIT_MAX;
+}
+
+function lead_duplicate_exists(
+    PDO $database,
+    string $formType,
+    string $email,
+    string $message
+): bool {
+    $statement = $database->prepare(
+        'SELECT COUNT(*) FROM leads
+        WHERE form_type = :form_type
+        AND lower(email) = lower(:email)
+        AND message = :message
+        AND created_at >= :threshold'
+    );
+    $statement->execute([
+        ':form_type' => $formType,
+        ':email' => $email,
+        ':message' => $message,
+        ':threshold' => gmdate('c', time() - LEAD_DUPLICATE_WINDOW),
+    ]);
+
+    return (int) $statement->fetchColumn() > 0;
 }
 
 function lead_insert(PDO $database, array $lead): int

@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.32`
+Aktuelle dokumentierte Version: `0.5.33`
 
 ## Inhalt
 
@@ -144,6 +144,22 @@ Beispiel:
 
 ## Changelog
 
+### [0.5.33] - 2026-07-25
+
+#### Added
+
+- Drei neue SEO-Ratgeber behandeln Film- und Fotolocations in Freiburg, Hochzeitslocations in Freiburg, Basel und Offenburg sowie typische Kosten eines Markenfilms.
+- Sitemap und relevante Leistungsseiten verlinken die neuen Inhalte.
+
+#### Changed
+
+- Projekt- und Hochzeitsanfragen laufen ueber geschuetzte Formulare an die neue serverseitige Kontaktadresse; die vollstaendige Adresse wird nicht im oeffentlichen HTML ausgegeben.
+- Rechtliche Seiten, FAQ und Kontakt-CTAs wurden an den neuen Kontaktweg angepasst.
+
+#### Security
+
+- Zusaetzliche Bot-Felder, Ausfuellzeit-, Herkunfts-, Link-, Duplikat- und Versuchspruefungen reduzieren automatisierten Formularspam.
+
 ### [0.5.32] - 2026-07-24
 
 #### Added
@@ -154,7 +170,7 @@ Beispiel:
 
 #### Changed
 
-- Direkte E-Mail-Links und Formulare verwenden durchgehend `info@andreasboehler.com`.
+- Projektanfragen laufen über geschützte Formulare; die Empfängeradresse wird nicht im öffentlichen HTML ausgegeben.
 - Datenschutz und AGB wurden um Datenbankverarbeitung, KI-Workflows, Vertragsart, Ausfallkosten, 50/50-Abschlaege, Zahlungsverzug, Buyouts und Lizenzfolgen erweitert.
 - Der DJ-BoBo-Tourtrailer besitzt ein neues hochwertiges Teasermotiv; der sichtbare Erklaertext zu externen Playern wurde entfernt.
 

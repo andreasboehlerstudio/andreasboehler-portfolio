@@ -3,9 +3,15 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/lead-store.php';
 
-const CONTACT_RECIPIENT = 'info@andreasboehler.com';
-const CONTACT_SENDER = 'info@andreasboehler.com';
+const CONTACT_LOCAL_PART = 'hello';
+const CONTACT_DOMAIN = 'andreasboehler.com';
 const MAX_REQUEST_BYTES = 100000;
+const MAX_MESSAGE_LINKS = 4;
+
+function contact_address(): string
+{
+    return CONTACT_LOCAL_PART . '@' . CONTACT_DOMAIN;
+}
 
 function wants_json(): bool
 {
@@ -122,13 +128,14 @@ if ($fetchSite === 'cross-site') {
 }
 
 $origin = (string) ($_SERVER['HTTP_ORIGIN'] ?? '');
+$allowedHosts = [
+    'andreasboehler.com',
+    'www.andreasboehler.com',
+    'staging.andreasboehler.com',
+];
+
 if ($origin !== '') {
     $originHost = strtolower((string) parse_url($origin, PHP_URL_HOST));
-    $allowedHosts = [
-        'andreasboehler.com',
-        'www.andreasboehler.com',
-        'staging.andreasboehler.com',
-    ];
 
     if (!in_array($originHost, $allowedHosts, true)) {
         respond(403, [
@@ -138,7 +145,16 @@ if ($origin !== '') {
     }
 }
 
-if (first_value('website', 200) !== '') {
+$referer = (string) ($_SERVER['HTTP_REFERER'] ?? '');
+$refererHost = strtolower((string) parse_url($referer, PHP_URL_HOST));
+if ($origin === '' && !in_array($refererHost, $allowedHosts, true)) {
+    respond(403, [
+        'ok' => false,
+        'message' => 'Die Anfrage konnte aus Sicherheitsgründen nicht angenommen werden.',
+    ]);
+}
+
+if (first_value('website', 200) !== '' || first_value('company_url', 200) !== '') {
     respond(200, [
         'ok' => true,
         'form_type' => 'project',
@@ -146,15 +162,13 @@ if (first_value('website', 200) !== '') {
 }
 
 $startedAt = (int) first_value('form_started_at', 20);
-if ($startedAt > 0) {
-    $elapsed = time() - $startedAt;
+$elapsed = time() - $startedAt;
 
-    if ($elapsed < 2 || $elapsed > 43200) {
-        respond(429, [
-            'ok' => false,
-            'message' => 'Bitte lade das Formular neu und versuche es noch einmal.',
-        ]);
-    }
+if ($startedAt <= 0 || $elapsed < 4 || $elapsed > 43200) {
+    respond(429, [
+        'ok' => false,
+        'message' => 'Bitte lade das Formular neu und versuche es noch einmal.',
+    ]);
 }
 
 $formType = first_value('form_type', 30);
@@ -205,6 +219,21 @@ $weddingFields = [
     'Nachricht' => 5000,
 ];
 $fields = $isWedding ? $weddingFields : $projectFields;
+$message = $isWedding ? first_value('Nachricht', 5000) : first_value('Notizen', 5000);
+$linkMatches = [];
+$linkCount = preg_match_all(
+    '~(?:https?://|www\.)[^\s<]+~iu',
+    $message,
+    $linkMatches
+);
+
+if (is_int($linkCount) && $linkCount > MAX_MESSAGE_LINKS) {
+    respond(200, [
+        'ok' => true,
+        'form_type' => $formType,
+    ]);
+}
+
 $bodyLines = [
     $isWedding ? 'Neue Hochzeitsanfrage über andreasboehler.com' : 'Neue Projektanfrage über andreasboehler.com',
     '',
@@ -237,10 +266,26 @@ $ipHash = lead_client_ip_hash();
 try {
     $database = lead_database();
 
+    if (lead_attempt_limit_reached($database, $ipHash)) {
+        respond(429, [
+            'ok' => false,
+            'message' => 'Zu viele Anfragen in kurzer Zeit. Bitte versuche es später erneut.',
+        ]);
+    }
+
     if (lead_rate_limit_reached($database, $ipHash)) {
         respond(429, [
             'ok' => false,
-            'message' => 'Zu viele Anfragen in kurzer Zeit. Bitte versuche es später erneut oder schreibe direkt per E-Mail.',
+            'message' => 'Zu viele Anfragen in kurzer Zeit. Bitte versuche es später erneut.',
+        ]);
+    }
+
+    if (lead_duplicate_exists($database, $formType, $email, $message)) {
+        respond(200, [
+            'ok' => true,
+            'form_type' => $formType,
+            'stored' => true,
+            'emailed' => true,
         ]);
     }
 
@@ -253,7 +298,7 @@ try {
         'location' => $location,
         'package_name' => first_value('Paket', 160),
         'subject' => $isWedding ? 'Hochzeitsanfrage' : first_value('Projekttyp', 160),
-        'message' => $isWedding ? first_value('Nachricht', 5000) : first_value('Notizen', 5000),
+        'message' => $message,
         'payload' => $payload,
         'source_url' => clean_text($_SERVER['HTTP_REFERER'] ?? '', 500),
         'ip_hash' => $ipHash,
@@ -266,13 +311,13 @@ try {
 $headers = [
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
-    'From: Andreas Boehler Website <' . CONTACT_SENDER . '>',
+    'From: Andreas Boehler Website <' . contact_address() . '>',
     'Reply-To: ' . $email,
     'X-Mailer: PHP/' . PHP_VERSION,
 ];
 $testMode = getenv('FORM_TEST_MODE') === '1';
 $sent = $testMode || @mail(
-    CONTACT_RECIPIENT,
+    contact_address(),
     encoded_subject($subject),
     implode("\r\n", $bodyLines),
     implode("\r\n", $headers)

@@ -3690,14 +3690,13 @@ function setupCinematicPageCta() {
     : document.body.dataset.page || "home";
   const projectTitle = document.querySelector("#projectTitle")?.textContent?.trim();
   const projectBriefingHref = document.querySelector("#projectBriefingLink")?.getAttribute("href") || "contact.html#briefing";
-  const studioEmail = "info@andreasboehler.com";
-  const mailtoHref = `mailto:${studioEmail}`;
+  const inquiryHref = "contact.html#briefing";
   const base = {
     eyebrow: "Next scene",
     headline: "Bilder, die wie Szenen wirken. Stories, die hängen bleiben.",
     text: "Wenn aus einer Idee ein Film, eine Kampagne oder eine markante Bildwelt werden soll, starten wir mit Ziel, Gefühl und Wirkung.",
     marquee: "Creating moments · Cinematic stories · Not just images ·",
-    primaryHref: mailtoHref,
+    primaryHref: inquiryHref,
     primaryText: "Projekt starten",
     links: [
       ["Briefing starten", "contact.html#briefing"],
@@ -3712,7 +3711,7 @@ function setupCinematicPageCta() {
           headline: "Wenn dein nächstes Projekt Haltung, Rhythmus und einen klaren Look braucht.",
           text: `${projectTitle} zeigt eine Richtung. Im Briefing klären wir, welche Geschichte, welches Format und welche Bildsprache für dein Projekt die stärkste Wirkung erzeugen.`,
           marquee: "Next frame · Strong story · Cinematic work ·",
-          primaryHref: `${mailtoHref}?subject=${encodeURIComponent(`Projektanfrage zu ${projectTitle}`)}`,
+          primaryHref: `contact.html?project=${encodeURIComponent(projectTitle)}#briefing`,
           primaryText: "Projekt starten",
           links: [
             ["Briefing", projectBriefingHref],
@@ -3724,7 +3723,7 @@ function setupCinematicPageCta() {
           headline: "Aus Referenzen wird Richtung. Aus Richtung wird der erste starke Frame.",
           text: "Wenn eine Arbeit hier etwas auslöst, lässt sich daraus schnell ein präziser Ansatz für dein Projekt, deine Marke oder deine Kampagne entwickeln.",
           marquee: "Selected works · Strong story · Cinematic craft ·",
-          primaryHref: mailtoHref,
+          primaryHref: inquiryHref,
           primaryText: "Projekt starten",
           links: [
             ["Briefing", "contact.html#briefing"],
@@ -3737,7 +3736,7 @@ function setupCinematicPageCta() {
       headline: "Aus Strategie wird Szene. Aus Szene wird Wirkung.",
       text: "Film, Fotografie, DoP, Art Direction und KI-Workflows werden so kombiniert, dass aus einem Briefing ein visueller Auftritt mit Haltung entsteht.",
       marquee: "Story first · Look matters · Make it cinematic ·",
-      primaryHref: mailtoHref,
+      primaryHref: inquiryHref,
       primaryText: "Projekt starten",
       links: [
         ["Briefing", "contact.html#briefing"],
@@ -3763,7 +3762,7 @@ function setupCinematicPageCta() {
       headline: "Erfahrung ist die Basis. Neugier ist der Motor.",
       text: "Mehr als zehn Jahre zwischen Agentur, Entertainment, Healthcare, Film, Foto, Design und neuen Tools. Der nächste Schritt beginnt mit einer klaren Idee.",
       marquee: "Experience · Curiosity · Cinematic precision ·",
-      primaryHref: mailtoHref,
+      primaryHref: inquiryHref,
       primaryText: "Projekt starten",
       links: [
         ["Briefing", "contact.html#briefing"],
@@ -3776,7 +3775,7 @@ function setupCinematicPageCta() {
       headline: "Noch offen? Dann lass uns dein Projekt sauber einordnen.",
       text: "Ein paar Eckdaten reichen: Ziel, Timing, Budgetrahmen, Referenzen und gewünschte Medien. Daraus entsteht schnell ein realistischer Produktionsweg.",
       marquee: "Ask better · Plan sharper · Create stronger ·",
-      primaryHref: mailtoHref,
+      primaryHref: inquiryHref,
       primaryText: "Projekt starten",
       links: [
         ["Briefing", "contact.html#briefing"],
@@ -4085,6 +4084,25 @@ function getFormValues(form, name) {
     .map((field) => field.value.trim());
 }
 
+function setupProtectedEmailReveal() {
+  const addressCodes = [
+    104, 101, 108, 108, 111, 64, 97, 110, 100, 114, 101, 97, 115,
+    98, 111, 101, 104, 108, 101, 114, 46, 99, 111, 109
+  ];
+
+  document.querySelectorAll("[data-email-reveal]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const address = String.fromCharCode(...addressCodes);
+      const link = document.createElement("a");
+      link.className = "protected-email-link";
+      link.href = `mailto:${address}`;
+      link.textContent = address;
+      link.setAttribute("aria-label", `E-Mail an ${address} schreiben`);
+      button.replaceWith(link);
+    }, { once: true });
+  });
+}
+
 function prepareContactForm(form) {
   const startedAt = form.elements.namedItem("form_started_at");
 
@@ -4166,7 +4184,7 @@ async function submitContactForm(form, status, formType) {
   } catch (error) {
     setContactFormStatus(
       status,
-      `${error.message || "Die Anfrage konnte gerade nicht gesendet werden."} Bitte versuche es erneut oder nutze den direkten E-Mail-Link.`,
+      `${error.message || "Die Anfrage konnte gerade nicht gesendet werden."} Bitte versuche es erneut oder ruf kurz an.`,
       "error"
     );
     form.dataset.submitting = "false";
@@ -5029,6 +5047,7 @@ setupAboutHeroVideoScrub();
 setupWeddingHeroVideoScrub();
 setupContactQuoteReveal();
 setupAiGeneratedLabels();
+setupProtectedEmailReveal();
 setupBriefingForm();
 setupWeddingInquiryForm();
 setupTalkButton();

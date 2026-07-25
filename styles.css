@@ -15710,3 +15710,554 @@ html[data-theme="dark"] body[data-page="contact"] .contact-hero-quote {
     aspect-ratio: 4 / 5;
   }
 }
+
+/* Editorial SEO guides */
+.editorial-guide {
+  --guide-max: 1540px;
+}
+
+.editorial-guide .guide-hero {
+  min-height: min(92svh, 980px);
+}
+
+.editorial-guide .guide-hero .page-hero-image {
+  object-position: center 46%;
+}
+
+.editorial-guide .guide-hero::after {
+  height: 26vh;
+}
+
+.guide-content {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.guide-intro,
+.guide-checklist {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.28fr) minmax(0, 1fr);
+  gap: clamp(36px, 7vw, 130px);
+  width: min(var(--guide-max), calc(100% - (var(--section-x-slim) * 2)));
+  margin: 0 auto;
+  padding: clamp(100px, 13vw, 190px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.guide-intro h2,
+.guide-checklist h2,
+.venue-region > header h2,
+.cost-drivers > header h2,
+.guide-cta h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.9rem, 5.6vw, 7.2rem);
+  font-weight: 400;
+  line-height: 0.96;
+}
+
+.guide-intro p {
+  max-width: 760px;
+  margin: clamp(28px, 4vw, 54px) 0 0;
+  color: color-mix(in srgb, var(--ink) 67%, transparent);
+  font-size: clamp(1.08rem, 1.45vw, 1.42rem);
+  line-height: 1.58;
+}
+
+.guide-index {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  width: min(var(--guide-max), calc(100% - (var(--section-x-slim) * 2)));
+  margin: 0 auto clamp(110px, 15vw, 210px);
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.guide-index article {
+  min-height: 220px;
+  padding: clamp(24px, 3vw, 44px);
+  background: var(--paper);
+}
+
+.guide-index span,
+.guide-entries article > div:first-child > span,
+.venue-region > header > span,
+.venue-list article > div > span,
+.budget-models article > span,
+.cost-drivers > header > span,
+.guide-source-note > span,
+.guide-cta > span {
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.guide-index h3 {
+  margin: 60px 0 8px;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.7vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.guide-index p {
+  margin: 0;
+  color: color-mix(in srgb, var(--ink) 58%, transparent);
+}
+
+.guide-entries {
+  width: min(var(--guide-max), calc(100% - (var(--section-x-slim) * 2)));
+  margin: 0 auto;
+}
+
+.guide-entries article {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1fr);
+  gap: clamp(44px, 8vw, 150px);
+  padding: clamp(68px, 8vw, 112px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.guide-entries h2 {
+  max-width: 620px;
+  margin: 18px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 5.2rem);
+  font-weight: 400;
+  line-height: 0.98;
+}
+
+.guide-entries article > div:last-child > p {
+  max-width: 680px;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.25vw, 1.3rem);
+  line-height: 1.65;
+}
+
+.guide-entries dl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 14px 22px;
+  max-width: 680px;
+  margin: 42px 0 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.guide-entries dt {
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.guide-entries dd {
+  margin: 0;
+  color: color-mix(in srgb, var(--ink) 64%, transparent);
+  line-height: 1.45;
+}
+
+.guide-wide-image {
+  width: 100%;
+  margin: clamp(60px, 9vw, 140px) 0 0;
+  background: #111;
+}
+
+.guide-wide-image img {
+  display: block;
+  width: 100%;
+  height: min(78svh, 880px);
+  object-fit: cover;
+}
+
+.guide-wide-image figcaption {
+  max-width: 760px;
+  margin: 0;
+  padding: 24px var(--section-x-slim) 34px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.guide-checklist ol {
+  margin: clamp(42px, 5vw, 70px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guide-checklist li {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.guide-checklist li span {
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.guide-checklist li p {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(1rem, 1.25vw, 1.26rem);
+  line-height: 1.5;
+}
+
+.guide-source-note {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.28fr) minmax(0, 1fr);
+  gap: clamp(36px, 7vw, 130px);
+  width: min(var(--guide-max), calc(100% - (var(--section-x-slim) * 2)));
+  margin: 0 auto;
+  padding: clamp(34px, 5vw, 64px) 0 clamp(90px, 12vw, 160px);
+  border-top: 1px solid var(--line);
+}
+
+.guide-source-note p {
+  max-width: 850px;
+  margin: 0;
+  color: color-mix(in srgb, var(--ink) 68%, transparent);
+  line-height: 1.65;
+}
+
+.guide-source-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.guide-cta {
+  padding: clamp(90px, 13vw, 190px) var(--section-x-slim);
+  background: #101010;
+  color: #f6f2ea;
+}
+
+.guide-cta h2 {
+  max-width: 1100px;
+  margin-top: 24px;
+}
+
+.guide-cta p {
+  max-width: 690px;
+  margin: 38px 0 0;
+  color: rgba(246, 242, 234, 0.68);
+  font-size: clamp(1.04rem, 1.3vw, 1.28rem);
+  line-height: 1.6;
+}
+
+.guide-cta > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 42px;
+}
+
+.guide-cta a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.guide-cta a:first-child {
+  border-color: var(--ember);
+  background: var(--ember);
+  color: #111;
+}
+
+.wedding-guide-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  width: 100%;
+  margin-bottom: clamp(110px, 15vw, 210px);
+  background: #111;
+}
+
+.wedding-guide-gallery figure {
+  aspect-ratio: 3 / 4;
+  margin: 0;
+  overflow: hidden;
+}
+
+.wedding-guide-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wedding-guide-gallery figure:nth-child(1) img {
+  object-position: 58% center;
+}
+
+.wedding-guide-gallery figure:nth-child(2) img {
+  object-position: center;
+}
+
+.wedding-guide-gallery figure:nth-child(3) img {
+  object-position: center 28%;
+}
+
+.venue-region,
+.cost-drivers {
+  width: min(var(--guide-max), calc(100% - (var(--section-x-slim) * 2)));
+  margin: 0 auto clamp(110px, 14vw, 200px);
+}
+
+.venue-region > header,
+.cost-drivers > header {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.28fr) minmax(0, 1fr);
+  gap: clamp(36px, 7vw, 130px);
+  padding-top: clamp(38px, 5vw, 68px);
+  border-top: 1px solid var(--line);
+}
+
+.venue-list {
+  margin-top: clamp(70px, 9vw, 130px);
+}
+
+.venue-list article {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.55fr) minmax(0, 1fr) auto;
+  gap: clamp(28px, 5vw, 90px);
+  align-items: start;
+  padding: 34px 0;
+  border-top: 1px solid var(--line);
+}
+
+.venue-list h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.4vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.venue-list p {
+  max-width: 700px;
+  margin: 0;
+  color: color-mix(in srgb, var(--ink) 66%, transparent);
+  line-height: 1.6;
+}
+
+.venue-list article > a {
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+
+.budget-models {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  width: min(var(--guide-max), calc(100% - (var(--section-x-slim) * 2)));
+  margin: 0 auto clamp(120px, 16vw, 220px);
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.budget-models article {
+  min-height: 560px;
+  padding: clamp(28px, 4vw, 60px);
+  background: var(--paper);
+}
+
+.budget-models h2 {
+  margin: 90px 0 28px;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 5rem);
+  font-weight: 400;
+  line-height: 0.98;
+}
+
+.budget-models p {
+  color: color-mix(in srgb, var(--ink) 66%, transparent);
+  line-height: 1.6;
+}
+
+.budget-models ul {
+  margin: 42px 0 0;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.budget-models li {
+  padding: 8px 0;
+  font-size: 0.94rem;
+}
+
+.cost-drivers > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(70px, 9vw, 130px);
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.cost-drivers article {
+  min-height: 240px;
+  padding: clamp(26px, 3vw, 46px);
+  background: var(--paper);
+}
+
+.cost-drivers article > span {
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.cost-drivers h3 {
+  margin: 44px 0 14px;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.6vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.cost-drivers p {
+  max-width: 520px;
+  margin: 0;
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
+  line-height: 1.55;
+}
+
+.cost-guide .local-seo-faq {
+  width: min(var(--guide-max), calc(100% - (var(--section-x-slim) * 2)));
+  margin: 0 auto clamp(90px, 12vw, 160px);
+}
+
+@media (max-width: 900px) {
+  .guide-index,
+  .budget-models {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-index article {
+    min-height: 160px;
+  }
+
+  .budget-models article {
+    min-height: auto;
+  }
+
+  .guide-entries article,
+  .venue-region > header,
+  .cost-drivers > header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .venue-region > header > *,
+  .cost-drivers > header > * {
+    min-width: 0;
+  }
+
+  .venue-region > header h2 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .venue-list article {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .wedding-guide-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .wedding-guide-gallery figure {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 700px) {
+  .editorial-guide .guide-hero {
+    min-height: 82svh;
+  }
+
+  .editorial-guide .guide-hero .page-hero-copy h1 {
+    font-size: clamp(2.7rem, 13vw, 4.6rem);
+  }
+
+  .wedding-location-guide .guide-hero .page-hero-copy h1 {
+    font-size: clamp(2rem, 9.4vw, 3.3rem);
+    overflow-wrap: normal;
+    hyphens: none;
+  }
+
+  .guide-intro,
+  .guide-checklist,
+  .guide-source-note {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .guide-intro h2,
+  .guide-checklist h2,
+  .venue-region > header h2,
+  .cost-drivers > header h2,
+  .guide-cta h2 {
+    font-size: clamp(2.5rem, 12vw, 4.2rem);
+    line-height: 0.98;
+  }
+
+  .guide-entries article {
+    gap: 34px;
+  }
+
+  .guide-entries h2 {
+    font-size: clamp(2.35rem, 11vw, 3.8rem);
+  }
+
+  .guide-wide-image img {
+    height: 62svh;
+  }
+
+  .guide-checklist li {
+    grid-template-columns: 36px 1fr;
+    gap: 16px;
+  }
+
+  .cost-drivers > div {
+    grid-template-columns: 1fr;
+  }
+}
+.protected-email-button {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  letter-spacing: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.protected-email-button:hover,
+.protected-email-button:focus-visible,
+.protected-email-link:hover,
+.protected-email-link:focus-visible {
+  color: var(--ember);
+}

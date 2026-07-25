@@ -8,6 +8,24 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.33] - 2026-07-25
+
+### Added
+
+- Drei redaktionelle SEO-Ratgeber zu Film- und Fotolocations in Freiburg, Hochzeitslocations in Freiburg, Basel und Offenburg sowie den Kosten eines Markenfilms.
+- Neue interne Verlinkungen und Sitemap-Eintraege erschliessen die Ratgeber fuer Besucher und Suchmaschinen.
+
+### Changed
+
+- Projekt- und Hochzeitsformulare senden ausschliesslich an die neue serverseitige Kontaktadresse; direkte E-Mail-Links wurden durch geschuetzte Formulare, Telefon-CTAs oder eine erst nach Interaktion erzeugte Anzeige ersetzt.
+- Die Kontaktadresse wird serverseitig aus getrennten Bestandteilen aufgebaut und steht weder im oeffentlichen HTML noch als vollstaendige Zeichenfolge im Repository.
+- Datenschutz, Impressum, FAQ und maschinenlesbare Kontaktangaben wurden an die geschuetzten Kontaktwege angepasst.
+
+### Security
+
+- Ein zweites Honeypot-Feld, Mindest-Ausfuellzeit, Herkunftspruefung, Linklimits, Duplikaterkennung und ein separates Versuchslimit erschweren automatisierten Formularspam.
+- Zeitlich begrenzte, gehashte Anfragemerkmale schuetzen die Formulare, ohne Klartext-IP-Adressen in der Lead-Datenbank zu speichern.
+
 ## [0.5.32] - 2026-07-24
 
 ### Added
@@ -19,7 +37,7 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 ### Changed
 
-- Alle direkten Kontaktlinks und Formularziele verwenden einheitlich `info@andreasboehler.com`.
+- Alle direkten Kontaktlinks und Formularziele verwenden eine einheitliche serverseitige Empfängeradresse.
 - Die Datenschutzerklaerung dokumentiert Formularversand, lokale Lead-Datenbank, Zugriffsschutz, Speicherdauer und Betroffenenrechte genauer.
 - Die AGB regeln Dienst- und Werkleistungen, Abschlagszahlungen, Ausfallkosten, Zahlungsverzug, Nutzungsrechte, Buyouts sowie KI-gestuetzte Retusche und Generierung ausfuehrlicher.
 - Groessere Produktionen werden standardmaessig mit 50 Prozent bei Beauftragung und 50 Prozent bei Fertigstellung beziehungsweise Abnahme abgerechnet, sofern das Angebot nichts anderes vorsieht.
