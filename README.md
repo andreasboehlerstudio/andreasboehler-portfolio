@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.34`
+Aktuelle dokumentierte Version: `0.5.35`
 
 ## Inhalt
 
@@ -147,6 +147,12 @@ Beispiel:
 ### [Unreleased]
 
 Noch keine nicht versionierten Aenderungen.
+
+### [0.5.35] - 2026-08-06
+
+#### Added
+
+- Die Startseite enthaelt die dauerhafte Google-Search-Console-Verifizierung fuer die Hauptdomain.
 
 ### [0.5.34] - 2026-07-25
 

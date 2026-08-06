@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.35] - 2026-08-06
+
+### Added
+
+- Die Startseite enthaelt die dauerhafte Google-Search-Console-Verifizierung fuer die Hauptdomain.
+
 ## [0.5.34] - 2026-07-25
 
 ### Changed
