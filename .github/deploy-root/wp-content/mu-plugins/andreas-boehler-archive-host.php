@@ -37,6 +37,16 @@ add_filter( 'the_content', 'andreas_boehler_archive_replace_url', 99 );
 add_filter( 'the_excerpt', 'andreas_boehler_archive_replace_url', 99 );
 add_filter( 'wp_redirect', 'andreas_boehler_archive_replace_url', 99 );
 
+function andreas_boehler_archive_rewrite_output( $output ) {
+	return andreas_boehler_archive_replace_url( $output );
+}
+
+function andreas_boehler_archive_start_output_buffer() {
+	ob_start( 'andreas_boehler_archive_rewrite_output' );
+}
+
+add_action( 'template_redirect', 'andreas_boehler_archive_start_output_buffer', -9999 );
+
 function andreas_boehler_archive_robots( $robots ) {
 	$robots['noindex'] = true;
 	$robots['nofollow'] = true;
@@ -46,6 +56,17 @@ function andreas_boehler_archive_robots( $robots ) {
 }
 
 add_filter( 'wp_robots', 'andreas_boehler_archive_robots', 99 );
+
+function andreas_boehler_archive_rank_math_robots( $robots ) {
+	unset( $robots['index'], $robots['follow'] );
+	$robots['noindex'] = 'noindex';
+	$robots['nofollow'] = 'nofollow';
+	$robots['noarchive'] = 'noarchive';
+
+	return $robots;
+}
+
+add_filter( 'rank_math/frontend/robots', 'andreas_boehler_archive_rank_math_robots', 999 );
 
 function andreas_boehler_archive_headers() {
 	header( 'X-Robots-Tag: noindex, nofollow, noarchive', true );

@@ -8,6 +8,13 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.37] - 2026-08-07
+
+### Fixed
+
+- Fest gespeicherte WordPress-Links und Medien-URLs werden im gerenderten Archiv konsequent auf `archiv.andreasboehler.com` umgeschrieben.
+- Das historische SEO-Plugin erhaelt fuer das Archiv explizite `noindex`, `nofollow` und `noarchive`-Direktiven, damit Meta-Tag und HTTP-Header uebereinstimmen.
+
 ## [0.5.36] - 2026-08-07
 
 ### Added
