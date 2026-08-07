@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.35`
+Aktuelle dokumentierte Version: `0.5.36`
 
 ## Inhalt
 
@@ -99,6 +99,9 @@ Der manuelle Workflow `.github/workflows/ftp-production.yml` verwendet das GitHu
 - `FTP_SERVER_DIR` bezeichnet den Webroot. Beim aktuellen Hostinger-FTP-Zugang ist das bereits der Login-Root, daher lautet der Wert `./`.
 - Live liegt darunter in `andreasboehlerportfolio/`.
 - Staging liegt daneben in `andreasboehlerportfolio-staging/`.
+- Die fruehere WordPress-Installation bleibt hostbasiert unter `https://archiv.andreasboehler.com/` erreichbar und wird nicht in einen dritten Website-Ordner kopiert.
+- Das WordPress-Archiv wird ueber `X-Robots-Tag: noindex, nofollow, noarchive` vollstaendig aus dem Suchindex gehalten.
+- Das MU-Plugin in `.github/deploy-root/wp-content/mu-plugins/` ueberschreibt WordPress-URLs ausschliesslich fuer den Archiv-Host; die Hauptdomain bleibt unveraendert.
 - Der Workflow akzeptiert `ftp`, `ftps`, `ftps-legacy` und `sftp`.
 - Vor einem echten Upload wird der Workflow mit `dry_run=true` getestet.
 - Nach dem Website-Upload wird die Root-`.htaccess` aktualisiert. Sie liefert die Live-Version intern aus `andreasboehlerportfolio/` aus, waehrend die oeffentlichen URLs unter der Hauptdomain bleiben.
@@ -147,6 +150,18 @@ Beispiel:
 ### [Unreleased]
 
 Noch keine nicht versionierten Aenderungen.
+
+### [0.5.36] - 2026-08-07
+
+#### Added
+
+- Die fruehere WordPress-Installation bleibt voruebergehend unter `archiv.andreasboehler.com` erreichbar.
+- Das Archiv erhaelt serverseitig `X-Robots-Tag: noindex, nofollow, noarchive`, damit es nicht mit der neuen Website konkurriert.
+- Ein hostabhaengiges WordPress-MU-Plugin haelt generierte Links, Weiterleitungen und Medien-URLs innerhalb der Archiv-Subdomain.
+
+#### Changed
+
+- Die Root-Weiterleitung unterscheidet nun klar zwischen Hauptdomain, Staging und dem hostbasierten WordPress-Archiv.
 
 ### [0.5.35] - 2026-08-06
 

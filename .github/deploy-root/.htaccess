@@ -3,6 +3,21 @@ RewriteEngine On
 # Keep certificate validation reachable on every hostname.
 RewriteRule ^\.well-known(?:/|$) - [L]
 
+# Keep the former WordPress installation available only as a private-reference archive.
+# Search engines must not index or follow this historical copy.
+<IfModule mod_setenvif.c>
+SetEnvIfNoCase Host "^archiv\.andreasboehler\.com$" wordpress_archive
+</IfModule>
+<IfModule mod_headers.c>
+Header always set X-Robots-Tag "noindex, nofollow, noarchive" env=wordpress_archive
+</IfModule>
+RewriteCond %{HTTP_HOST} ^archiv\.andreasboehler\.com$ [NC]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [END]
+RewriteCond %{HTTP_HOST} ^archiv\.andreasboehler\.com$ [NC]
+RewriteRule ^ index.php [END]
+
 # Serve the isolated noindex build on the staging hostname.
 RewriteCond %{HTTP_HOST} ^staging\.andreasboehler\.com$ [NC]
 RewriteRule ^andreasboehlerportfolio-staging(?:/|$) - [L]

@@ -8,6 +8,18 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.36] - 2026-08-07
+
+### Added
+
+- Die fruehere WordPress-Installation bleibt voruebergehend unter `archiv.andreasboehler.com` erreichbar.
+- Das Archiv erhaelt serverseitig `X-Robots-Tag: noindex, nofollow, noarchive`, damit es nicht mit der neuen Website konkurriert.
+- Ein hostabhaengiges WordPress-MU-Plugin haelt generierte Links, Weiterleitungen und Medien-URLs innerhalb der Archiv-Subdomain.
+
+### Changed
+
+- Die Root-Weiterleitung unterscheidet nun klar zwischen Hauptdomain, Staging und dem hostbasierten WordPress-Archiv.
+
 ## [0.5.35] - 2026-08-06
 
 ### Added
