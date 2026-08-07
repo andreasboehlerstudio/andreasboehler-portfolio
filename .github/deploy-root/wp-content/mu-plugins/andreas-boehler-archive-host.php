@@ -45,7 +45,7 @@ function andreas_boehler_archive_start_output_buffer() {
 	ob_start( 'andreas_boehler_archive_rewrite_output' );
 }
 
-add_action( 'template_redirect', 'andreas_boehler_archive_start_output_buffer', -9999 );
+andreas_boehler_archive_start_output_buffer();
 
 function andreas_boehler_archive_robots( $robots ) {
 	$robots['noindex'] = true;

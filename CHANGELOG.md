@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.38] - 2026-08-07
+
+### Fixed
+
+- Die Archiv-URL-Umschreibung laeuft nun nach der historischen LiteSpeed-Ausgabeoptimierung, damit auch optimierte CSS-, Script- und Medien-URLs auf der Archiv-Subdomain bleiben.
+
 ## [0.5.37] - 2026-08-07
 
 ### Fixed
