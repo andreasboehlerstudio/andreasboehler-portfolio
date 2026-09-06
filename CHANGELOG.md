@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.39-staging.3] - 2026-09-06
+
+### Documentation
+
+- Erfolgreiche Staging-Deploys und gepruefte GitHub-Pages-Vorschau dokumentiert. Die eigene Staging-Subdomain hat ein TLS-/403-Problem beim Hoster; PHP-Formulare sind auf Pages nicht ausfuehrbar. Live bleibt unveraendert.
+
 ## [0.5.39-staging.2] - 2026-09-06
 
 ### Fixed

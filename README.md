@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle Staging-Version: `0.5.39-staging.2`. Produktionsbasis: `0.5.38`.
+Aktuelle Staging-Version: `0.5.39-staging.3`. Produktionsbasis: `0.5.38`.
 
 ## Inhalt
 
@@ -73,12 +73,13 @@ py -m http.server 4173 --bind 127.0.0.1
 
 ## Staging
 
-Der Teststand liegt unter:
+Die gepruefte Layout-Vorschau liegt unter:
 
 ```text
-https://staging.andreasboehler.com/
 https://andreasboehlerstudio.github.io/andreasboehler-portfolio/staging/
 ```
+
+Hostingstatus am 06.09.2026: Der FTP-Staging-Upload war erfolgreich, aber `https://staging.andreasboehler.com/` scheitert bereits beim TLS-Verbindungsaufbau; HTTP antwortet mit 403. Die Subdomain muss in Hostinger einschliesslich Website-Zuordnung und SSL geprueft werden. Die Hauptdomain wurde nicht umkonfiguriert. GitHub Pages dient als Layout-Vorschau und fuehrt die PHP-Formulare bzw. Anfragenverwaltung nicht aus.
 
 - `main` wird als Produktionsseite im Root-Verzeichnis ausgeliefert.
 - `staging` wird automatisch unter `/staging/` aktualisiert.
@@ -168,6 +169,12 @@ Beispiel:
 ### [Unreleased]
 
 Noch keine nicht versionierten Aenderungen.
+
+### [0.5.39-staging.3] - 2026-09-06
+
+#### Documentation
+
+- Verifizierte GitHub-Pages-Vorschau, bestehendes TLS-/403-Problem der Hosting-Subdomain und Einschraenkung des PHP-Formularversands auf Pages dokumentiert. Keine Aenderung am Live-Hosting.
 
 ### [0.5.39-staging.2] - 2026-09-06
 
