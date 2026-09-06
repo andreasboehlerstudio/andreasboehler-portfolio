@@ -8,6 +8,31 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.39-staging.1] - 2026-09-06
+
+### Changed
+
+- Nur Staging: reduzierte Typografie und mehr Weissraum auf allen Seitentypen, kuerzere Hero-Scrollstrecken sowie kompaktere Einstiege und Footer.
+- Projektseiten mit grossem Ergebnis, drei Faktenbereichen und den vorhandenen Orts-/Jahresangaben aus dem Portfolio-Abgleich; persoenliche Beitraege von Zusammenarbeit getrennt. MOVIN Powerbreak als Projekt uebernommen.
+- Passende Original-/Portfolio-Assets fuer neun Projekte exportiert, falsche Motive ersetzt und responsive WebP-Varianten ohne Hochskalierung angelegt.
+- Redundante Case-Notes und Import-Bezeichnungen entfernt; HTML-Texte und strukturierte Bildangaben synchronisiert.
+- Acino Swiss Lab und das vollstaendige Portfolio-PDF aus dem Staging-Stand entfernt.
+
+### Added
+
+- Optionaler lokal gehosteter Three.js-Portraet-Reveal auf About, mit begrenzter Renderaufloesung, Rendering bei Interaktion und statischem Fallback.
+- Gleichmaessiges Fotografie-Raster mit tastaturbedienbarer Vollbild-Lightbox.
+
+### Fixed
+
+- Responsive Ueberschriftenbreiten, mobile About-Bildbreite, Projekt-Headerkontraste und Farbschema-Beschriftungen.
+- Geschlossenes Menue aus der Fokusreihenfolge genommen; Fokus wird beim Schliessen zurueckgegeben.
+
+### Verification
+
+- 79 HTML-Seiten statisch sowie im Browser bei 390 und 1440 Pixeln geprueft; zentrale Seiten auch bei 320 und 1024 Pixeln.
+- Lightbox, Hell/Dunkel, Menue und WebGL-Reveal getestet. Keine neuen Formularnachrichten versendet; echte mobile Performance-Messung und Medienfreigaben bleiben vor Live erforderlich.
+
 ## [0.5.38] - 2026-08-07
 
 ### Fixed

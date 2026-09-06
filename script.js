@@ -180,7 +180,6 @@ function setupWorksCuration() {
     "novartis-medportal.html",
     "photography.html",
     "phantom-der-oper-vr-coastiality.html",
-    "acino-swiss-lab-production-tour.html",
     "duolingo-spec-ad.html",
     "virtual-production-case-study.html"
   ];
@@ -329,6 +328,11 @@ function setupStudioCursor() {
       return;
     }
 
+    if (target.closest('.site-nav, .photo-lightbox, .cookie-banner')) {
+      setMode('');
+      return;
+    }
+
     if (target.closest(selectors.text)) {
       setMode("text");
       return;
@@ -352,7 +356,9 @@ function setupStudioCursor() {
     setMode("");
   };
 
+  let cursorFrame = null;
   const animate = () => {
+    cursorFrame = null;
     state.ringX += (state.x - state.ringX) * 0.18;
     state.ringY += (state.y - state.ringY) * 0.18;
     state.dotX += (state.x - state.dotX) * 0.55;
@@ -360,7 +366,8 @@ function setupStudioCursor() {
 
     ring.style.transform = `translate3d(${state.ringX}px, ${state.ringY}px, 0) translate3d(-50%, -50%, 0) scale(var(--cursor-scale, 1))`;
     dot.style.transform = `translate3d(${state.dotX}px, ${state.dotY}px, 0) translate3d(-50%, -50%, 0)`;
-    window.requestAnimationFrame(animate);
+    const unsettled = Math.abs(state.x - state.ringX) + Math.abs(state.y - state.ringY) > 0.1;
+    if (unsettled && !document.hidden && finePointer.matches && !reducedMotion.matches) cursorFrame = window.requestAnimationFrame(animate);
   };
 
   document.addEventListener("pointermove", (event) => {
@@ -370,6 +377,7 @@ function setupStudioCursor() {
 
     state.x = event.clientX;
     state.y = event.clientY;
+    if (!cursorFrame) cursorFrame = window.requestAnimationFrame(animate);
     cursor.classList.add("is-visible");
     updateModeFromPoint(event);
   }, { passive: true });
@@ -1065,8 +1073,8 @@ const projectData = {
     eyebrow: "Entertainment · Jubiläum",
     image: "assets/europa-park-50-jahre-teaser.jpg",
     intro: "Ein Jubiläumsprojekt für eine der stärksten Entertainment-Marken Europas: emotional, schnell verständlich und nah am Erlebnis.",
-    role: "Konzept, Produktion, Kameraarbeit, Schnittdramaturgie und markennahe Bildsprache.",
-    description: "Der kommunikative Kern: aus vielen Attraktionen, Menschen und Erinnerungen ein Gefühl von Geschichte, Bewegung und Zukunft formen.",
+    role: "Konzeption und vollständiges Rendering der finalen Logoanimation, Kamera sowie Editing bis zum Release.",
+    description: "Der Spot verdichtet Attraktionen, Menschen und Erinnerungen zu einer filmischen Jubiläumserzählung. Den Abschluss bildet die von mir konzipierte und vollständig gerenderte Logoanimation.",
     service: "Werbefilm & Produktfilm",
     serviceLink: "werbefilm-produktfilm.html",
     facts: [
@@ -1204,6 +1212,36 @@ const projectData = {
       ["Nutzen", "Bewerber verstehen schneller, ob Aufgabe und Umfeld zu ihnen passen."]
     ]
   },
+  "movin-powerbreak": {
+    title: "MOVIN Powerbreak",
+    eyebrow: "Imagefilm · Sport · Physiotherapie",
+    image: "assets/projects/movin-powerbreak/movin-powerbreak-hero.jpg",
+    intro: "Ein 20-sekündiger Imagefilm über Zweifel, therapeutische Begleitung und den Moment, in dem Bewegung wieder möglich wird.",
+    role: "Konzeption, Schnitt, Postproduktion, Motion Design, KI-Visuals und Audiokonzept.",
+    description: "Cineastische Sportbilder, authentische MOVIN-Aufnahmen, präzise Typografie und eine markante Logoanimation verdichten eine persönliche Entwicklung zu einer klaren Markenbotschaft.",
+    service: "Werbefilm & Produktfilm",
+    serviceLink: "werbefilm-produktfilm.html",
+    format: "Imagefilm · 00:20 min",
+    collaboration: "Direkte Zusammenarbeit mit MOVIN am Lorettoberg.",
+    place: "Freiburg",
+    year: "2026",
+    videos: [
+      {
+        title: "MOVIN Powerbreak",
+        player: "https://www.youtube-nocookie.com/embed/lyvVpJFlL6A",
+        thumbnail: "assets/projects/movin-powerbreak/movin-powerbreak-hero.jpg",
+        duration: "20",
+        date: "2026-01-01",
+        description: "20-sekündiger Imagefilm für MOVIN über therapeutische Begleitung und sportliche Leistungsfähigkeit."
+      }
+    ],
+    facts: [
+      ["Format", "Imagefilm · 00:20 min"],
+      ["Leistung", "Konzeption, Schnitt, Postproduktion, Motion Design, KI-Visuals und Audiokonzept."],
+      ["Zusammenarbeit", "MOVIN am Lorettoberg."],
+      ["Ort & Jahr", "Freiburg · 2026"]
+    ]
+  },
   "virtual-production-case-study": {
     title: "Virtual Production Case Study",
     eyebrow: "Lab · Virtual Production",
@@ -1234,22 +1272,6 @@ const projectData = {
       ["Leistung", "Konzept, 3D, Motion, Typografie und Postproduktion."],
       ["Look", "Klar, reduziert, technisch und vertrauenswürdig."],
       ["SEO-Relevanz", "Healthcare Film, Pharma Kommunikation, Motion Design und 3D Visualisierung."]
-    ]
-  },
-  "acino-swiss-lab-production-tour": {
-    title: "Acino Swiss Lab & Production Tour",
-    eyebrow: "Healthcare · 360° Film",
-    image: "assets/andreas-hero-film.png",
-    intro: "Ein immersiver Einblick in Labor, Produktion und Qualitätsprozesse für Investoren- und Standortkommunikation.",
-    role: "Planung, visuelles Konzept, Kamera, 360°-Denke und Produktionskommunikation.",
-    description: "Der Film zeigt Produktionsrealität dort, wo Vertrauen entsteht: in Prozessen, Räumen und kontrollierten Abläufen.",
-    service: "Werbefilm & Produktfilm",
-    serviceLink: "werbefilm-produktfilm.html",
-    facts: [
-      ["Format", "360° Tour, Produktionsfilm und Investorenkommunikation."],
-      ["Ziel", "Transparenz, Qualität und technische Kompetenz sichtbar machen."],
-      ["Look", "Sauber, kontrolliert, hochwertig und informativ."],
-      ["Stärke", "Komplexe Räume werden klar erlebbar."]
     ]
   },
   "movicol-mode-of-action": {
@@ -2673,6 +2695,144 @@ Object.entries(bookletProjectEnhancements).forEach(([slug, enhancement]) => {
 });
 // Booklet reference sync end
 
+// Portfolio PDF alignment start
+const portfolioPdfProjectData = {
+  "bongrain-savencia": {
+    intro: "Webkonzept und digitale Verkaufsmittel für die Käsemarken von Savencia beziehungsweise Bongrain.",
+    description: "Die Website verband Rezepte und Verwendungshinweise mit einer iPad-Anwendung als Verkaufstool für den Außendienst.",
+    format: "Website, Rich-Media-Seiten und responsive Websites",
+    role: "Brainstorming, Konzeption des Webdesigns und Kampagnenerstellung.",
+    collaboration: "Auftrag der Agentur X-Ray für Savencia beziehungsweise Bongrain.",
+    place: "Basel",
+    year: "2013-2016"
+  },
+  "dj-bobo-evolut30n-tour": {
+    intro: "Tourtrailer für DJ BoBos Welttournee The Great Adventure, inspiriert von digitalem Abenteuerkino.",
+    description: "Der in Friesenheim gedrehte Trailer verbindet Straßensperren, Technocrane-Aufnahmen, VFX und Motion Graphics zu einem dynamischen Auftakt für die Show.",
+    format: "Werbespot für die Welttournee",
+    role: "Producer, Drehplanung, Special VFX, Postproduktion, 3D und Motion Graphics sowie KI-gestützte Postproduktion.",
+    collaboration: "Tourtrailer für DJ BoBo, umgesetzt im beteiligten Produktions- und Postproduktionsteam.",
+    place: "Rust",
+    year: "2024"
+  },
+  "x-ray-website": {
+    intro: "Konzeption und Entwicklung einer neuen responsiven Website für die Schweizer Healthcare-Agentur X-Ray.",
+    description: "Der Relaunch strukturierte die Leistungen der Agentur neu und verband den Markenauftritt mit einem interaktiven Kontaktformular.",
+    format: "Responsive Website",
+    role: "Konzeption, Screen- und UI-Design, UX-Testing, Aufbau eines Web-Core-Teams, Projektmanagement und finale Übergabe.",
+    collaboration: "Projekt für die Healthcare-Agentur X-Ray.",
+    place: "Basel",
+    year: "2021"
+  },
+  "phantom-der-oper-vr-coastiality": {
+    intro: "Zweiminütiger Werbespot für die Andrew-Lloyd-Webber-Attraktion im Europa-Park.",
+    description: "Unter anspruchsvollen Bedingungen in der Eurosat-Kugel und im französischen Themenbereich entstand ein Storytrailer mit Film-Noir-Anmutung.",
+    format: "Werbespot für die Achterbahn",
+    role: "Drehplanung, Produktionsleitung, Teamleitung, Producer, Post-VFX, Kundenkommunikation und KI-gestützte Postproduktion.",
+    collaboration: "Zusammenarbeit mit Andrew Lloyd Webber und Europa-Park. Story: Mack Magic.",
+    place: "Rust",
+    year: "2023"
+  },
+  "arcondis-brand-identity": {
+    intro: "Brand Identity und Website für ein auf Life Sciences spezialisiertes IT-Beratungsunternehmen.",
+    description: "Eine präzise visuelle Identität und eine klare UX-Struktur übersetzen komplexe regulierte Dienstleistungen in einen vertrauenswürdigen Markenauftritt.",
+    format: "Logo, Brand Design und Website",
+    role: "Logoentwicklung, Identity-Entwicklung, UX-Design und Prototyping.",
+    collaboration: "Projekt für ARCONDIS.",
+    place: "Basel",
+    year: "2015"
+  },
+  "novartis-medportal": {
+    intro: "Einminütiger Werbefilm für das Novartis Medportal und seine digitalen Funktionen.",
+    description: "Der Commercial erklärt das Medportal als Schnittstelle zwischen Unternehmen und medizinischem Fachpersonal in einer klar geführten visuellen Sprache.",
+    format: "Commercial für Web und Intranet",
+    role: "Konzeption, Moodboard, Planung, 3D-Visualisierung, 3D-Rendering, Motion Graphics, Typoanimation und Finalisierung.",
+    collaboration: "Projekt für Novartis.",
+    place: "Basel",
+    year: "2021"
+  },
+  "voltron-nevera-tv-werbespot": {
+    intro: "60-sekündiger TV-Werbespot zur Ankündigung von Voltron Nevera powered by Rimac im Europa-Park.",
+    description: "Drehs in Sofia und Berlin, ein Motion-Control-Rig und animierte 3D-Backplates verbinden die Geschichte Nikola Teslas mit der neuen Achterbahn.",
+    format: "TV-Werbespot",
+    role: "Drehplanung, Produktionsplanung, Logo-VFX, Producer und Post-Production Supervision.",
+    collaboration: "Projekt für Europa-Park. Story: Mack Magic. Regie: Jan Reiff. 3D-Backplates: Mack Animation.",
+    place: "Rust",
+    year: "2023"
+  },
+  "energize-your-communications-commercial": {
+    intro: "Imagefilm zur Positionierung der Agentur X-Ray im Bereich Film- und Videoproduktion.",
+    description: "Die Geschichte Energize Communications übersetzt Strategie, Storytelling und Produktionsplanung in einen kraftvollen, mehrfach ausgezeichneten Film.",
+    format: "Imagefilm für das Internet",
+    role: "Motion Graphics, Schnitt, Director of Photography, Special VFX, Compositing und Color Grading.",
+    collaboration: "Projekt für X-Ray in Kooperation mit Parcours-Weltmeister Chris Harmat.",
+    place: "Basel",
+    year: "2020"
+  },
+  "songwon-corporate-movie": {
+    intro: "Corporate Movie über Geschichte, Stimmung und industrielle Relevanz von SONGWON.",
+    description: "Der Film war Teil eines internationalen Messeauftritts und machte die Rolle der Produkte im Alltag visuell erfahrbar.",
+    format: "Imagefilm für Internet, Messe und Presse",
+    role: "Konzept, Motion Graphics, Art Direction, Storyboarding, Moodboard und Kundenpräsentation.",
+    collaboration: "Projekt für SONGWON im beteiligten Corporate- und Produktionsteam.",
+    place: "Basel",
+    year: "2016"
+  },
+  "syngenta-campaign": {
+    intro: "Markenentwicklung und Kampagnenaufbau für die Syngenta-Produkte Pergado, Carial Flex und Revus.",
+    description: "Für drei Pflanzenschutzmarken entstand ein skalierbares System für internationale Produkt- und Kampagnenkommunikation.",
+    format: "PowerPoint- und Print-Templates, Kampagnen, Branding Guidelines und Broschüren",
+    role: "Konzept, Recherche, Design und Datentransfer.",
+    collaboration: "Projekt für Syngenta.",
+    place: "Basel",
+    year: "2014"
+  },
+  "abbvie-oncology": {
+    intro: "Imagewerbung für den Onkologie-Bereich von AbbVie.",
+    description: "Die Anzeigen verbinden wissenschaftliche Kommunikation mit einer klaren visuellen Leitidee für den Onkologie-Auftritt.",
+    format: "Printanzeigen",
+    role: "Konzept, Compositing und Layout.",
+    collaboration: "Projekt für AbbVie Oncology.",
+    place: "Basel",
+    year: "2017"
+  },
+  "dr-martin-klein": {
+    intro: "Corporate Design für das persönliche Facharztprofil von Dr. Martin Klein.",
+    description: "Logo und Gestaltungssystem übersetzen Empathie, Verständnis, Lehre und die zentrale Rolle des Menschen in einen persönlichen Auftritt.",
+    format: "Logo, Visitenkarte, Briefbogen, Markenauftritt und Branding Guidelines",
+    role: "Konzept, Recherche, Beratung, Produktionskommunikation, Produktion, Reinzeichnung, Projektleitung und Logodesign.",
+    collaboration: "Direktprojekt für das Facharztprofil von Martin Klein.",
+    place: "Freiburg",
+    year: "2017"
+  },
+  "movicol-mode-of-action": {
+    intro: "Mode-of-Action-Video für das medizinische Produkt Movicol.",
+    description: "Die 3D-Animation visualisiert vier Wirkmechanismen und macht die Funktionsweise des Produkts für die Anwendung verständlich.",
+    format: "3D Mode-of-Action-Video",
+    role: "Konzept, Storyboard, Design, 3D-Animation, 3D-Modelling, Postproduktion und Sound FX.",
+    collaboration: "Projekt für Acino und das Produkt Movicol.",
+    place: "Basel",
+    year: "2018"
+  },
+  "acino-pain-management": {
+    intro: "Mehrsprachiger Awarenessfilm über den korrekten Umgang mit körperlichen Schmerzen.",
+    description: "Der in einer französischen Arztpraxis gedrehte Film richtet sich an Patientinnen und Patienten sowie medizinisches Fachpersonal.",
+    format: "Imagefilm für Internet und Präsentationen in fünf Sprachen",
+    role: "Konzept, Motion Graphics, Art Direction, Storyboarding, Moodboard, Regie, Kamera, 3D-Rendering und Color Grading.",
+    collaboration: "Projekt für Acino mit Dreh in Frankreich.",
+    place: "Basel",
+    year: "2016"
+  }
+};
+
+Object.entries(portfolioPdfProjectData).forEach(([slug, alignment]) => {
+  projectData[slug] = {
+    ...(projectData[slug] || {}),
+    ...alignment
+  };
+});
+// Portfolio PDF alignment end
+
 // Project image fix sync start
 const projectImageFixes = {
   "duolingo-spec-ad": {
@@ -2796,7 +2956,7 @@ const projectImageFixes = {
     "image": "assets/booklet-energize-your-communications-commercial.jpg"
   },
   "phantom-der-oper-vr-coastiality": {
-    "image": "assets/booklet-phantom-der-oper-vr-coastiality.jpg?v=single-frame"
+    "image": "assets/phantom-coastiality-teaser-hd.jpg?v=hd-teaser1"
   },
   "voltron-nevera-tv-werbespot": {
     "image": "assets/booklet-voltron-nevera-tv-werbespot.jpg?v=single-frame"
@@ -2809,9 +2969,6 @@ const projectImageFixes = {
   },
   "movicol-mode-of-action": {
     "image": "assets/booklet-movicol-mode-of-action.jpg?v=single-frame"
-  },
-  "acino-swiss-lab-production-tour": {
-    "image": "assets/andreas-services-creative-tech.jpg"
   },
   "acino-pain-management": {
     "image": "assets/andreas-services-lighting.jpg"
@@ -2844,6 +3001,21 @@ Object.entries(projectImageFixes).forEach(([slug, enhancement]) => {
 });
 // Project image fix sync end
 
+// Original portfolio exports, verified for this staging edition.
+const editorialProjectImages = {
+  'dj-bobo-evolut30n-tour': 'assets/projects/dj-bobo-evolut30n-tour/portfolio-1.webp',
+  'arcondis-brand-identity': 'assets/projects/arcondis-brand-identity/portfolio-1.webp',
+  'dr-martin-klein': 'assets/projects/dr-martin-klein/portfolio-1.webp',
+  'acino-pain-management': 'assets/projects/acino-pain-management/portfolio-1.webp',
+  'x-ray-website': 'assets/projects/x-ray-website/portfolio-1.webp',
+  'bongrain-savencia': 'assets/projects/bongrain-savencia/portfolio-1.webp',
+  'abbvie-oncology': 'assets/projects/abbvie-oncology/portfolio-1.webp',
+  'syngenta-campaign': 'assets/projects/syngenta-campaign/portfolio-1.webp'
+};
+Object.entries(editorialProjectImages).forEach(([slug, image]) => {
+  if (projectData[slug]) projectData[slug].image = image;
+});
+
 document.body.classList.add("js-ready");
 
 const currentPage = document.body.dataset.page;
@@ -2863,7 +3035,7 @@ const brushLeaveEvent = "PointerEvent" in window ? "pointerleave" : "mouseleave"
 const brushEnterEvent = "PointerEvent" in window ? "pointerenter" : "mouseenter";
 
 function setupHeroBackgroundBrush() {
-  if (!heroBrushSurface || !heroFrameColor) {
+  if (!heroBrushSurface || !heroFrameColor || heroBrushSurface.hasAttribute('data-webgl-portrait')) {
     return;
   }
 
@@ -3062,6 +3234,7 @@ function setupBrushRevealImages() {
 }
 
 function setupScrollTextReveals() {
+  if (document.body.hasAttribute('data-editorial-legal')) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const candidates = [
     "main h1:not(.sr-only)",
@@ -3075,6 +3248,9 @@ function setupScrollTextReveals() {
   const excludedAreas = [
     ".site-nav",
     ".site-footer",
+    ".project-facts",
+    ".project-copy",
+    "details",
     ".hero-chapter",
     ".wedding-hero-copy",
     ".wedding-hero-closing",
@@ -3369,7 +3545,7 @@ function setupHeroVideoScrub() {
       video.style.opacity = opacity.toFixed(4);
       video.pause();
 
-      if (duration) {
+      if (duration && opacity > 0 && !video.seeking) {
         const targetTime = reduceMotion
           ? 0.04
           : clamp(localProgress * duration, 0.04, Math.max(duration - 0.04, 0.04));
@@ -3398,6 +3574,7 @@ function setupHeroVideoScrub() {
       chapter.style.opacity = opacity.toFixed(4);
       chapter.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0)`;
       chapter.setAttribute("aria-hidden", opacity > 0.05 ? "false" : "true");
+      chapter.inert = opacity <= 0.05;
     });
 
     if (!reduceMotion && Math.abs(targetProgress - renderedProgress) > 0.0005) {
@@ -3519,6 +3696,7 @@ function closeMenu() {
   menuButton.setAttribute("aria-expanded", "false");
   menuButton.querySelector(".sr-only").textContent = "Menü öffnen";
   document.documentElement.classList.remove("menu-is-open");
+  if (navPanel?.contains(document.activeElement)) menuButton.focus();
   syncMenuTray(false);
 }
 
@@ -3533,6 +3711,8 @@ function syncMenuTray(isOpen) {
     return;
   }
 
+  navPanel.inert = !isOpen;
+  document.querySelector('main')?.toggleAttribute('inert', isOpen);
   navPanel.style.removeProperty("clip-path");
   navPanel.style.removeProperty("transform");
   navPanel.style.removeProperty("transition");
@@ -3576,7 +3756,7 @@ function applyTheme(theme, shouldStore = true) {
     const isDark = currentTheme === "dark";
     const aperture = isDark ? "F/24" : "F/2.4";
     const nextAperture = isDark ? "F/2.4" : "F/24";
-    const label = `Aperture ${aperture}. Wechsel zu ${nextAperture}.`;
+    const label = isDark ? 'Helles Farbschema einschalten' : 'Dunkles Farbschema einschalten';
     const text = toggle.querySelector(".theme-toggle-text");
 
     toggle.setAttribute("aria-label", label);
@@ -3677,171 +3857,23 @@ function setupTalkButton() {
 }
 
 function setupCinematicPageCta() {
-  if (!pageShell || ["contact", "privacy", "agb", "imprint"].includes(document.body.dataset.page) || document.querySelector(".cinematic-page-cta") || document.querySelector(".wedding-inquiry")) {
-    return;
+  if (!pageShell || ["contact", "privacy", "agb", "imprint"].includes(document.body.dataset.page) || document.querySelector(".wedding-inquiry, .guide-cta, .wd-cta, .alien-final-cta, .service-big-cta")) return;
+  const projectTitle = document.querySelector("#projectTitle")?.textContent.trim();
+  const section = document.createElement("section");
+  section.className = projectTitle ? "case-next" : "editorial-cta";
+  if (!projectTitle) {
+    const heading = document.createElement("h2");
+    heading.textContent = document.body.dataset.page === "about" ? "Lass uns etwas bewegen." : "Eine Idee im Kopf?";
+    section.append(heading);
   }
-
-  pageShell
-    .querySelectorAll(":scope > .seo-link-band, :scope > .alien-final-cta, :scope > .service-big-cta")
-    .forEach((block) => block.classList.add("is-pre-cinematic-cta"));
-
-  const page = document.body.classList.contains("wedding-page")
-    ? "wedding"
-    : document.body.dataset.page || "home";
-  const projectTitle = document.querySelector("#projectTitle")?.textContent?.trim();
-  const projectBriefingHref = document.querySelector("#projectBriefingLink")?.getAttribute("href") || "contact.html#briefing";
-  const inquiryHref = "contact.html#briefing";
-  const base = {
-    eyebrow: "Next scene",
-    headline: "Bilder, die wie Szenen wirken. Stories, die hängen bleiben.",
-    text: "Wenn aus einer Idee ein Film, eine Kampagne oder eine markante Bildwelt werden soll, starte ich mit Ziel, Gefühl und Wirkung.",
-    marquee: "Creating moments · Cinematic stories · Not just images ·",
-    primaryHref: inquiryHref,
-    primaryText: "Projekt starten",
-    links: [
-      ["Briefing starten", "contact.html#briefing"],
-      ["Works ansehen", "works.html"],
-      ["Leistungen", "services.html"]
-    ]
-  };
-  const copy = {
-    works: projectTitle
-      ? {
-          eyebrow: "Next frame",
-          headline: "Wenn dein nächstes Projekt Haltung, Rhythmus und einen klaren Look braucht.",
-          text: `${projectTitle} zeigt eine Richtung. Im Briefing kläre ich mit dir, welche Geschichte, welches Format und welche Bildsprache für dein Projekt die stärkste Wirkung erzeugen.`,
-          marquee: "Next frame · Strong story · Cinematic work ·",
-          primaryHref: `contact.html?project=${encodeURIComponent(projectTitle)}#briefing`,
-          primaryText: "Projekt starten",
-          links: [
-            ["Briefing", projectBriefingHref],
-            ["Alle Works", "works.html"]
-          ]
-        }
-      : {
-          eyebrow: "Next frame",
-          headline: "Aus Referenzen wird Richtung. Aus Richtung wird der erste starke Frame.",
-          text: "Wenn eine Arbeit hier etwas auslöst, lässt sich daraus schnell ein präziser Ansatz für dein Projekt, deine Marke oder deine Kampagne entwickeln.",
-          marquee: "Selected works · Strong story · Cinematic craft ·",
-          primaryHref: inquiryHref,
-          primaryText: "Projekt starten",
-          links: [
-            ["Briefing", "contact.html#briefing"],
-            ["Leistungen", "services.html"],
-            ["About", "about.html"]
-          ]
-        },
-    services: {
-      eyebrow: "Production flow",
-      headline: "Aus Strategie wird Szene. Aus Szene wird Wirkung.",
-      text: "Film, Fotografie, DoP, Art Direction und KI-Workflows werden so kombiniert, dass aus einem Briefing ein visueller Auftritt mit Haltung entsteht.",
-      marquee: "Story first · Look matters · Make it cinematic ·",
-      primaryHref: inquiryHref,
-      primaryText: "Projekt starten",
-      links: [
-        ["Briefing", "contact.html#briefing"],
-        ["Film-Works", "works.html#film"],
-        ["DoP buchen", "dop-kameramann.html"]
-      ]
-    },
-    wedding: {
-      eyebrow: "Euer Datum",
-      headline: "Erzählt mir, wann und wo ihr heiratet.",
-      text: "Datum, Ort und gewünschte Begleitdauer reichen für den ersten Verfügbarkeitscheck. Danach kläre ich persönlich mit euch, welches Paket und welche Bildsprache passen.",
-      marquee: "Freiburg · Basel · Offenburg · Eure Geschichte ·",
-      primaryHref: "contact.html?service=Hochzeitsfotografie#briefing",
-      primaryText: "Datum anfragen",
-      links: [
-        ["Pakete", "hochzeitsfotograf-freiburg.html#pakete"],
-        ["Reportagen", "hochzeitsfotograf-freiburg.html#reportagen"],
-        ["FAQ", "hochzeitsfotograf-freiburg.html#faq-hochzeit"]
-      ]
-    },
-    about: {
-      eyebrow: "Creative energy",
-      headline: "Erfahrung ist die Basis. Neugier ist der Motor.",
-      text: "Mehr als zehn Jahre zwischen Agentur, Entertainment, Healthcare, Film, Foto, Design und neuen Tools. Der nächste Schritt beginnt mit einer klaren Idee.",
-      marquee: "Experience · Curiosity · Cinematic precision ·",
-      primaryHref: inquiryHref,
-      primaryText: "Projekt starten",
-      links: [
-        ["Briefing", "contact.html#briefing"],
-        ["Works", "works.html"],
-        ["Leistungen", "services.html"]
-      ]
-    },
-    faq: {
-      eyebrow: "Open question",
-      headline: "Noch offen? Dann lass uns dein Projekt sauber einordnen.",
-      text: "Ein paar Eckdaten reichen: Ziel, Timing, Budgetrahmen, Referenzen und gewünschte Medien. Daraus entsteht schnell ein realistischer Produktionsweg.",
-      marquee: "Ask better · Plan sharper · Create stronger ·",
-      primaryHref: inquiryHref,
-      primaryText: "Projekt starten",
-      links: [
-        ["Briefing", "contact.html#briefing"],
-        ["Works", "works.html"],
-        ["Leistungen", "services.html"]
-      ]
-    }
-  };
-  const config = { ...base, ...(copy[page] || {}) };
-  const cta = document.createElement("section");
-  const marquee = document.createElement("div");
-  const track = document.createElement("div");
-  const inner = document.createElement("div");
-  const label = document.createElement("div");
-  const dot = document.createElement("i");
-  const labelText = document.createElement("span");
-  const copyWrap = document.createElement("div");
-  const title = document.createElement("h2");
-  const text = document.createElement("p");
-  const links = document.createElement("nav");
-  const primary = document.createElement("a");
-
-  cta.className = "cinematic-page-cta";
-  if (page === "wedding") {
-    cta.id = "hochzeit-anfragen";
-  }
-  cta.setAttribute("aria-labelledby", "cinematicPageCtaTitle");
-
-  marquee.className = "cinematic-cta-marquee";
-  marquee.setAttribute("aria-hidden", "true");
-  track.className = "cinematic-cta-track";
-  Array.from({ length: 6 }).forEach(() => {
-    const item = document.createElement("span");
-    item.textContent = config.marquee;
-    track.append(item);
-  });
-  marquee.append(track);
-
-  inner.className = "cinematic-cta-inner";
-  label.className = "alien-section-label cinematic-cta-label";
-  labelText.textContent = config.eyebrow;
-  label.append(dot, labelText);
-
-  copyWrap.className = "cinematic-cta-copy";
-  title.id = "cinematicPageCtaTitle";
-  title.textContent = config.headline;
-  text.textContent = config.text;
-
-  primary.className = "cinematic-cta-primary";
-  primary.href = config.primaryHref;
-  primary.textContent = config.primaryText;
-
-  links.className = "cinematic-cta-links";
-  links.setAttribute("aria-label", "Nächste Schritte");
-  links.append(primary);
-  config.links.forEach(([linkText, href]) => {
-    const link = document.createElement("a");
-    link.href = href;
-    link.textContent = linkText;
-    links.append(link);
-  });
-
-  copyWrap.append(title, text, links);
-  inner.append(label, copyWrap);
-  cta.append(marquee, inner);
-  pageShell.append(cta);
+  const contact = document.createElement("a");
+  contact.textContent = projectTitle ? "Ähnliches Projekt anfragen" : "Projekt besprechen";
+  contact.href = projectTitle ? `contact.html?project=${encodeURIComponent(projectTitle)}#briefing` : "contact.html#briefing";
+  const works = document.createElement("a");
+  works.textContent = "Alle Arbeiten ansehen";
+  works.href = "works.html";
+  section.append(contact, works);
+  pageShell.append(section);
 }
 
 function getCurrentProjectSlug() {
@@ -3892,6 +3924,262 @@ function formatVideoDuration(seconds) {
   const amount = Number(seconds);
 
   return Number.isFinite(amount) && amount > 0 ? `PT${Math.round(amount)}S` : undefined;
+}
+
+const projectCollaborationOverrides = {
+  "50-jahre-europa-park": "Projekt für Europa-Park. Umsetzung im interdisziplinären Content- und Produktionsteam.",
+  "tnw-website": "Projekt für TNW. Realisierung im Team von The Bloc Switzerland.",
+  "duolingo-spec-ad": "Freie Konzeptarbeit und Spec Ad. Kein Auftrag durch Duolingo.",
+  "rockstar-musicvideo": "Direkte Zusammenarbeit mit Artist und beteiligtem Produktionsteam.",
+  "dj-bobo-evolut30n-tour": "Entertainment-Produktion für DJ BoBo im beteiligten Produktions- und Postproduktionsteam.",
+  "europa-park-neuheiten-2023": "Projekt für Europa-Park. Umsetzung im interdisziplinären Content-Team.",
+  "europa-park-dinnershow-2022": "Projekt für Europa-Park. Zusammenarbeit mit Show-, Gastronomie- und Produktionsteam.",
+  "phantom-der-oper-vr-coastiality": "Projektpartner: Europa-Park und Andrew Lloyd Webber. Story: Mack Magic.",
+  "voltron-nevera-tv-werbespot": "Projekt für Europa-Park. Story: Mack Magic. Regie: Jan Reiff. Animation: Mack Animation.",
+  "songwon-corporate-movie": "Projekt für SONGWON. Umsetzung im beteiligten Corporate- und Produktionsteam.",
+  "energize-your-communications-commercial": "Projekt für X-Ray. Realisierung im beteiligten Film- und Postproduktionsteam.",
+  "virtual-production-case-study": "Freie Case Study und eigenständige Entwicklung.",
+  "austellung-around-the-world": "Freie kuratorische und fotografische Arbeit.",
+  "austellung-movin": "Eigenständige Ausstellungskonzeption in Zusammenarbeit mit dem Ausstellungsort."
+};
+
+const projectClientNames = {
+  "smt-imagefilm-qualitaet": "SMT",
+  "movin-recruitingfilm": "MOVIN",
+  "novartis-medportal": "Novartis",
+  "movicol-mode-of-action": "Movicol",
+  "acino-pain-management": "Acino",
+  "bongrain-savencia": "Bongrain / Savencia",
+  "x-ray-website": "X-Ray",
+  "arcondis-brand-identity": "ARCONDIS",
+  "syngenta-campaign": "Syngenta",
+  "abbvie-oncology": "AbbVie",
+  "dr-martin-klein": "Dr. Martin Klein",
+  "kaeppeli-recruitngfilm": "Käppeli",
+  "zum-park-recruitngfilm": "Zum Park",
+  "ttp-group-imagefilm": "TTP Group",
+  "praxis-seesemann-commercial-fotografie": "Praxis Seesemann",
+  "adesso-life-sciences-imagemovie": "adesso Life Sciences",
+  "messe-basel-imagemovie": "Messe Basel",
+  "evoke-emotions-commercial": "Evoke Emotions"
+};
+
+const projectPlaceOverrides = {
+  "50-jahre-europa-park": "Rust",
+  "tnw-website": "Basel",
+  "duolingo-spec-ad": "Freiburg",
+  "mareike-daniel-wedding": "Freiburg",
+  "rockstar-musicvideo": "Freiburg",
+  "dj-bobo-evolut30n-tour": "Rust",
+  "europa-park-neuheiten-2023": "Rust",
+  "europa-park-dinnershow-2022": "Rust",
+  "smt-imagefilm-qualitaet": "Freiburg",
+  "movin-recruitingfilm": "Freiburg",
+  "virtual-production-case-study": "Freiburg",
+  "novartis-medportal": "Basel",
+  "movicol-mode-of-action": "Basel",
+  "acino-pain-management": "Basel",
+  "bongrain-savencia": "Basel",
+  "x-ray-website": "Basel",
+  "arcondis-brand-identity": "Basel",
+  "syngenta-campaign": "Basel",
+  "abbvie-oncology": "Basel",
+  "dr-martin-klein": "Freiburg",
+  "paris": "Paris",
+  "uniimmo-portraits": "Freiburg",
+  "kaeppeli-recruitngfilm": "Freiburg",
+  "one-stop-in-venedig": "Venedig",
+  "dogportrait-ilvy-co": "Freiburg",
+  "zum-park-recruitngfilm": "Freiburg",
+  "hamburg": "Hamburg",
+  "vietnam": "Vietnam",
+  "ttp-group-imagefilm": "Basel",
+  "christoph-goettel-artist-portrait": "Freiburg",
+  "jeep-wrangler-on-hawaii": "Hawaii",
+  "praxis-seesemann-commercial-fotografie": "Freiburg",
+  "chris-blair-engagement-video": "Freiburg",
+  "valentin-business-portrait": "Freiburg",
+  "adesso-life-sciences-imagemovie": "Basel",
+  "larissa-spring-feels": "Freiburg",
+  "hochzeit-lucas-valerie": "Freiburg",
+  "familienportrait-foro": "Freiburg",
+  "sportsportrait-irene": "Freiburg",
+  "larissa-autumn-spirit": "Freiburg",
+  "austellung-around-the-world": "Freiburg",
+  "hochzeit-albana-max": "Freiburg",
+  "austellung-movin": "Freiburg",
+  "businessportrait-kurt": "Freiburg",
+  "messe-basel-imagemovie": "Basel",
+  "evoke-emotions-commercial": "Basel",
+  "destiny": "New York",
+  "energize-your-communications-commercial": "Basel",
+  "phantom-der-oper-vr-coastiality": "Rust",
+  "voltron-nevera-tv-werbespot": "Rust",
+  "songwon-corporate-movie": "Basel",
+  "desert-mustang": "Freiburg",
+  "mercedes-gt-in-der-salzwuste": "Freiburg",
+  "ocean-coast": "Côte d’Azur"
+};
+
+const projectYearOverrides = {
+  "x-ray-website": "2021",
+  "arcondis-brand-identity": "2015",
+  "syngenta-campaign": "2014",
+  "abbvie-oncology": "2017",
+  "dr-martin-klein": "2017",
+  "bongrain-savencia": "2015",
+  "acino-pain-management": "2016",
+  "phantom-der-oper-vr-coastiality": "2023",
+  "voltron-nevera-tv-werbespot": "2023",
+  "songwon-corporate-movie": "2016",
+  "novartis-medportal": "2021",
+  "movicol-mode-of-action": "2018",
+  "energize-your-communications-commercial": "2020",
+  "tnw-website": "2024",
+  "austellung-around-the-world": "2020",
+  "austellung-movin": "2019",
+  "businessportrait-kurt": "2021",
+  "chris-blair-engagement-video": "2021",
+  "christoph-goettel-artist-portrait": "2021",
+  "desert-mustang": "2021",
+  "destiny": "2021",
+  "dogportrait-ilvy-co": "2022",
+  "familienportrait-foro": "2020",
+  "hamburg": "2021",
+  "hochzeit-albana-max": "2018",
+  "hochzeit-lucas-valerie": "2020",
+  "jeep-wrangler-on-hawaii": "2019",
+  "larissa-autumn-spirit": "2018",
+  "larissa-spring-feels": "2021",
+  "mareike-daniel-wedding": "2023",
+  "mercedes-gt-in-der-salzwuste": "2022",
+  "ocean-coast": "2021",
+  "one-stop-in-venedig": "2020",
+  "paris": "2022",
+  "praxis-seesemann-commercial-fotografie": "2021",
+  "sportsportrait-irene": "2021",
+  "uniimmo-portraits": "2022",
+  "valentin-business-portrait": "2021",
+  "vietnam": "2021",
+  "zum-park-recruitngfilm": "2022"
+};
+
+const weddingProjectSlugs = new Set([
+  "mareike-daniel-wedding",
+  "hochzeit-lucas-valerie",
+  "hochzeit-albana-max"
+]);
+
+const portraitProjectSlugs = new Set([
+  "uniimmo-portraits",
+  "dogportrait-ilvy-co",
+  "christoph-goettel-artist-portrait",
+  "chris-blair-engagement-video",
+  "valentin-business-portrait",
+  "larissa-spring-feels",
+  "familienportrait-foro",
+  "sportsportrait-irene",
+  "larissa-autumn-spirit",
+  "businessportrait-kurt"
+]);
+
+const freeProjectSlugs = new Set([
+  "paris",
+  "mercedes-gt-in-der-salzwuste",
+  "one-stop-in-venedig",
+  "desert-mustang",
+  "ocean-coast",
+  "hamburg",
+  "vietnam",
+  "jeep-wrangler-on-hawaii",
+  "destiny"
+]);
+
+function findProjectFact(project, labels) {
+  return project.facts?.find(([label]) => labels.some((candidate) => (
+    label.trim().toLocaleLowerCase("de-DE") === candidate
+  )))?.[1];
+}
+
+function getProjectFormat(project) {
+  return project.format
+    || findProjectFact(project, ["format", "medium", "medien", "art des projekts"])
+    || `${project.eyebrow.replaceAll("/", " · ")}.`;
+}
+
+function getProjectYear(project, slug) {
+  if (project.year) {
+    return project.year;
+  }
+
+  if (projectYearOverrides[slug]) {
+    return projectYearOverrides[slug];
+  }
+
+  const datedVideo = project.videos?.find((video) => /^\d{4}/.test(video.date || ""));
+  return datedVideo?.date.slice(0, 4) || "";
+}
+
+function getProjectFormatAndMeta(project, slug) {
+  const place = project.place || projectPlaceOverrides[slug] || "";
+  const format = getProjectFormat(project)
+    .replace(/[.\s]+$/, "")
+    .split(/\s*·\s*/)
+    .filter((part) => part.toLocaleLowerCase("de-DE") !== place.toLocaleLowerCase("de-DE"))
+    .join(" · ");
+  const placeYear = [place, getProjectYear(project, slug)]
+    .filter(Boolean)
+    .join(" · ");
+
+  return placeYear ? `${format}. ${placeYear}` : `${format}.`;
+}
+
+function getProjectCollaboration(project, slug) {
+  const explicitFact = findProjectFact(project, [
+    "zusammenarbeit",
+    "projektpartner",
+    "auftraggeber",
+    "team",
+    "credits"
+  ]);
+
+  if (project.collaboration) {
+    return project.collaboration;
+  }
+
+  if (projectCollaborationOverrides[slug]) {
+    return projectCollaborationOverrides[slug];
+  }
+
+  if (explicitFact) {
+    return explicitFact;
+  }
+
+  if (weddingProjectSlugs.has(slug)) {
+    return "Direktauftrag. Enge Abstimmung mit dem Paar während Planung, Reportage und Bildauswahl.";
+  }
+
+  if (portraitProjectSlugs.has(slug)) {
+    return "Direkte Zusammenarbeit mit den porträtierten Personen beziehungsweise dem beauftragenden Unternehmen.";
+  }
+
+  if (freeProjectSlugs.has(slug)) {
+    return "Freie fotografische beziehungsweise filmische Arbeit und eigenständige Umsetzung.";
+  }
+
+  if (projectClientNames[slug]) {
+    return `Projekt für ${projectClientNames[slug]}. Umsetzung gemeinsam mit dem beteiligten Fach- und Produktionsteam.`;
+  }
+
+  return "Projektarbeit in direkter Abstimmung mit Auftraggebenden und beteiligtem Team.";
+}
+
+function getProjectFacts(project, slug) {
+  return [
+    ["Projekt & Format", getProjectFormatAndMeta(project, slug)],
+    ["Mein Beitrag", project.role],
+    ["Zusammenarbeit", getProjectCollaboration(project, slug)]
+  ];
 }
 
 function renderProjectVideoSchema(project, slug) {
@@ -3964,6 +4252,7 @@ function renderProjectVideos(project) {
 
     card.className = "project-video-card";
     frame.className = "consent-embed project-video-frame";
+    frame.style.setProperty('--video-poster', `url("${video.thumbnail || project.image}")`);
     frame.dataset.consentPlaceholder = `${provider} Video laden: externe Medien in den Datenschutz-Einstellungen erlauben.`;
 
     iframe.title = video.title || `${project.title} Video`;
@@ -3975,7 +4264,7 @@ function renderProjectVideos(project) {
     iframe.dataset.consentSrc = video.player;
 
     videoTitle.textContent = video.title || project.title;
-    meta.textContent = [provider, video.duration ? `${Math.round(Number(video.duration) / 60)} Min.` : ""]
+    meta.textContent = [provider, video.duration ? `${Math.floor(Number(video.duration) / 60)}:${String(Math.round(Number(video.duration) % 60)).padStart(2, '0')} Min.` : ""]
       .filter(Boolean)
       .join(" · ");
 
@@ -4008,6 +4297,7 @@ function renderProjectPage() {
 
   const slug = getCurrentProjectSlug();
   const project = projectData[slug] || projectData["dj-bobo-evolut30n-tour"];
+  document.body.dataset.projectSlug = slug;
   const title = document.querySelector("#projectTitle");
   const eyebrow = document.querySelector("#projectEyebrow");
   const intro = document.querySelector("#projectIntro");
@@ -4021,19 +4311,21 @@ function renderProjectPage() {
   const footerProjectTitle = document.querySelector("#footerProjectTitle");
   const footerProjectText = document.querySelector("#footerProjectText");
   const heroImage = projectHero.querySelector(".page-hero-image");
+  const roleLabel = role?.closest("article")?.querySelector(":scope > span");
 
   document.querySelector(".project-depth")?.remove();
   document.querySelector(".seo-link-band")?.remove();
 
-  document.title = `${project.title} | Andreas Boehler`;
+  document.body.dataset.projectKind = project.videos?.length ? 'film' : /web|design|branding|identity|guideline|inserat/i.test(project.eyebrow + ' ' + project.service) ? 'design' : 'photo';
   projectHero.style.setProperty("--page-image", `url("${project.image}")`);
   renderProjectVideoSchema(project, slug);
 
   if (title) title.textContent = project.title;
-  if (eyebrow) eyebrow.textContent = project.eyebrow;
+  if (eyebrow) eyebrow.textContent = getProjectFormat(project).replace(/[.\s]+$/, '');
   if (intro) intro.textContent = project.intro;
-  if (role) role.textContent = project.role;
-  if (description) description.textContent = project.description;
+  if (roleLabel) roleLabel.textContent = "Projektidee";
+  if (role) role.textContent = project.description;
+  if (description) description.textContent = "Eine ähnliche Idee?";
   if (heroImage) {
     heroImage.src = project.image;
     heroImage.alt = `Cinematisches Projektbild zu ${project.title}`;
@@ -4050,16 +4342,13 @@ function renderProjectPage() {
   if (facts) {
     facts.textContent = "";
 
-    project.facts.slice(0, 3).forEach(([label, text]) => {
+    getProjectFacts(project, slug).forEach(([label, text]) => {
       const article = document.createElement("article");
       const span = document.createElement("span");
       const heading = document.createElement("h3");
       const paragraph = document.createElement("p");
-      const sentenceBreak = text.indexOf(". ");
-
       span.textContent = label === "SEO-Relevanz" ? "Schwerpunkt" : label;
-      heading.textContent = text.split(".")[0];
-      paragraph.textContent = sentenceBreak > 0 ? text.slice(sentenceBreak + 2) : "";
+      heading.textContent = text;
 
       article.append(span, heading);
       if (paragraph.textContent) {

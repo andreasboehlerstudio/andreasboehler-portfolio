@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.38`
+Aktuelle Staging-Version: `0.5.39-staging.1`. Produktionsbasis: `0.5.38`.
 
 ## Inhalt
 
@@ -49,6 +49,9 @@ py -m http.server 4173 --bind 127.0.0.1
 |-- send-contact.php           # Formularversand und Lead-Erfassung
 |-- script.js                  # Interaktionen, Projektdaten, Animationen
 |-- styles.css                 # Layout, Typografie, responsive Design
+|-- editorial.css              # Reduzierte Layout-Schicht im Staging
+|-- editorial.js               # Navigation, Foto-Lightbox, Lazy Loading
+|-- about-reveal.js            # Optionaler Three.js-Portraet-Reveal
 |-- assets/                    # Bilder, Video-Stills, PDF- und Projektassets
 |-- includes/                  # Serverseitige Lead-Datenbanklogik
 |-- intern/                    # Geschuetzte interne Anfragenverwaltung
@@ -73,6 +76,7 @@ py -m http.server 4173 --bind 127.0.0.1
 Der Teststand liegt unter:
 
 ```text
+https://staging.andreasboehler.com/
 https://andreasboehlerstudio.github.io/andreasboehler-portfolio/staging/
 ```
 
@@ -80,7 +84,21 @@ https://andreasboehlerstudio.github.io/andreasboehler-portfolio/staging/
 - `staging` wird automatisch unter `/staging/` aktualisiert.
 - Staging-Seiten erhalten beim Deploy automatisch `noindex`, eine sperrende `robots.txt` und einen sichtbaren `STAGING` Hinweis.
 - Ein Push auf `staging` veraendert den Produktionsstand aus `main` nicht.
+- Keine `v*`-Tags fuer Staging pushen: diese loesen einen Produktionsdeploy aus.
+- `noindex` ist kein Zugriffsschutz. Vertrauliche Unterlagen gehoeren nicht ins oeffentliche Staging; das vollstaendige Portfolio-PDF wurde deshalb aus diesem Stand entfernt.
 - Nach Freigabe werden die getesteten Aenderungen nach `main` uebernommen und dort als Release versioniert.
+
+### Editorial-Teststand
+
+- Ruhigere Typohierarchie, kuerzere Einstiege und mehr Weissraum auf allen Seitentypen.
+- Projektseiten zeigen das Ergebnis vor den drei Faktenbereichen `Projekt & Format`, `Mein Beitrag` und `Zusammenarbeit`, einschliesslich der vorhandenen Orts- und Jahresangaben.
+- Gleichmaessiges 16:9-Fotoraster mit Tastatur-Lightbox; das volle Bild bleibt dort ungecropt.
+- About-Reveal mit lokalem Three.js 0.180.0, begrenzter Renderaufloesung und Rendering nur waehrend der Interaktion. Touch, reduzierte Bewegung, Datensparen und WebGL-Fehler behalten ein normales HTML-Bild.
+- Bestehende SEO-Inhalte und Formular-Endpunkte bleiben erhalten. Staging ist weiterhin `noindex`.
+
+Pruefung: 79 HTML-Seiten auf interne Datei-Verweise, genau eine H1, JSON-LD und drei einheitliche Projektspalten kontrolliert. Alle 79 Seiten im Browser bei 390 und 1440 Pixeln auf horizontale Ueberlaeufe und Ueberschriftenbreiten geprueft; zentrale Seiten zusaetzlich bei 320 und 1024 Pixeln. Menue, Hell/Dunkel, Foto-Lightbox und WebGL-Reveal manuell geprueft, inklusive Screenshot-Pixelvergleich. Keine neuen Formularnachrichten versendet und keine Feldmessung der Core Web Vitals vorgenommen.
+
+Vor einer Live-Freigabe offen: vollstaendige Projekt-/Medienfreigaben, bessere Originaldateien fuer einzelne kleine ARCONDIS- und Bongrain/Savencia-Ansichten sowie Performance-Tests auf echten Mobilgeraeten. Der Syngenta-Printentwurf mit Platzhaltertext ist ausdruecklich als Entwurf bezeichnet. Die Produktions-Asset-Freigabeliste muss auch unverlinkte Dateien abdecken; dieser Staging-Push aendert den Live-Deploy nicht.
 
 Typischer Ablauf:
 
@@ -150,6 +168,26 @@ Beispiel:
 ### [Unreleased]
 
 Noch keine nicht versionierten Aenderungen.
+
+### [0.5.39-staging.1] - 2026-09-06
+
+#### Changed
+
+- Ausschliesslich Staging: reduziertes Editorial-Layout fuer Startseite, Leistungen, About, Kontakt, Fotografie, Hochzeiten, Projekt-, SEO- und Rechtstextseiten.
+- Kuerzere Hero-Scrollstrecken, kleinere Zwischenueberschriften, lesbare Projektdetails und kompakter Footer.
+- Projektangaben aus dem lokalen Portfolio-Abgleich uebernommen; Ort, Jahr und individuelle Beitraege bleiben in der Dreispaltenstruktur erhalten. MOVIN Powerbreak ist als Projekt enthalten.
+- Falsche Projektbilder durch passende Originale bzw. individuelle Portfolio-Assets ersetzt; responsive WebP-Dateien ohne kuenstliches Hochskalieren exportiert.
+- Acino Swiss Lab und das komplette Portfolio-PDF aus diesem Staging-Stand entfernt.
+
+#### Added
+
+- Optionaler Three.js-Brush-Reveal fuer das About-Portraet mit statischem Fallback.
+- Fotografie-Lightbox mit Vor/Zurueck, Escape und Fokus-Rueckgabe.
+
+#### Fixed
+
+- Mobile Schriftueberlaeufe, About-Bildbreite, Projekt-Headerkontraste, Farbschema-Beschriftung und Tastaturzugang zum eingeklappten Menue.
+- Statische Projekttexte und strukturierte Bildangaben mit den sichtbaren Projekten abgeglichen; Import-Bezeichnungen und redundante Case-Notes entfernt.
 
 ### [0.5.38] - 2026-08-07
 

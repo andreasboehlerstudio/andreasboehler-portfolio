@@ -13412,11 +13412,11 @@ body[data-project-slug] .project-copy {
 }
 
 body[data-project-slug] .project-copy h2 {
-  max-width: 15ch;
+  max-width: 24ch;
   margin-top: clamp(24px, 3vw, 42px);
   font-family: var(--font-display);
-  font-size: clamp(2.45rem, 4.25vw, 5.4rem);
-  line-height: 0.98;
+  font-size: clamp(2.1rem, 3.15vw, 3.9rem);
+  line-height: 1.04;
 }
 
 body[data-project-slug] .project-copy article:last-child {
@@ -13457,6 +13457,56 @@ body[data-project-slug] .project-facts.text-grid p {
   margin-top: 18px;
   font-size: 0.95rem;
   line-height: 1.6;
+}
+
+.project-stills {
+  padding: 0 var(--section-x-slim) clamp(140px, 17vw, 260px);
+  background: var(--paper);
+}
+
+.project-stills > header {
+  display: grid;
+  grid-template-columns: minmax(100px, 0.18fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 96px);
+  max-width: 1500px;
+  margin: 0 auto clamp(48px, 7vw, 108px);
+  padding-top: clamp(42px, 6vw, 80px);
+  border-top: 1px solid var(--line);
+}
+
+.project-stills > header span {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+.project-stills > header h2 {
+  max-width: 15ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 4vw, 5.2rem);
+  font-weight: 400;
+  line-height: 0.96;
+}
+
+.project-stills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 22px);
+}
+
+.project-stills figure {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #080909;
+}
+
+.project-stills img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Uniform landscape stills: large, quiet and consistently cinematic. */
@@ -13524,6 +13574,21 @@ body:has(.photo-editorial-intro) .photography-wall .photo-tile img {
   body[data-project-slug] .project-facts.text-grid article {
     min-height: 0;
     padding: 28px 0 0;
+  }
+
+  .project-stills {
+    padding: 0 10px clamp(110px, 22vw, 170px);
+  }
+
+  .project-stills > header {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-inline: 12px;
+  }
+
+  .project-stills-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   body:has(.photo-editorial-intro) .photography-wall {

@@ -1,15 +1,13 @@
-<!doctype html>
-<html lang="de">
-  <head>
+<!DOCTYPE html><html lang="de"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#111111">
-    <link rel="preload" href="assets/WhyteInktrap-Book.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/HelveticaNowText-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/MonaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/MonaSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/WhyteInktrap-Book.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="assets/HelveticaNowText-Regular.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="assets/MonaSans-Regular.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="assets/MonaSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin="">
     <title>Webdesign Freiburg-Betzenhausen | Andreas Boehler</title>
     <meta name="description" content="Webdesign für lokale Unternehmen in Freiburg: klare Gestaltung, bessere Kontaktwege und ein effizienter Designprozess von Andreas Boehler.">
     <link rel="canonical" href="https://andreasboehler.com/webdesign-freiburg.html">
@@ -21,7 +19,7 @@
     <meta property="og:url" content="https://andreasboehler.com/webdesign-freiburg.html">
     <meta property="og:image" content="https://andreasboehler.com/assets/andreas-services-creative-tech.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="styles.css?v=20260725-release-0534">
+    <link rel="stylesheet" href="styles.css?v=0.5.39-staging.1">
     <style>
       :root {
         --lp-black: #101114;
@@ -392,11 +390,19 @@
         .wd-hero h1 { font-size: clamp(4rem, 20vw, 7.5rem); }
       }
     </style>
-  </head>
+
+<link rel="stylesheet" href="editorial.css?v=0.5.39-staging.1">
+</head>
   <body data-page="webdesign">
-    <nav class="wd-nav" aria-label="Schnellnavigation">
-      <a class="wd-mark" href="index.html" aria-label="Andreas Boehler"><span>Andreas</span><span>Boehler</span></a>
-      <a href="contact.html?service=Webdesign#briefing">Kostenloses Beispiel</a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <div class="nav-panel" id="navPanel">
+        <a class="nav-item" data-nav="home" href="index.html"><span>Home</span><strong>Über Andreas</strong></a>
+        <a class="nav-item" data-nav="works" href="works.html"><span>Works</span><strong>Cases · Kampagnen · Design</strong></a>
+        <a class="nav-item active" data-nav="services" href="services.html"><span>Leistungen</span><strong>Film · Foto · KI · DoP</strong></a>
+        <a class="nav-item" data-nav="about" href="about.html"><span>About</span><strong>Vita · Awards · Skills</strong></a>
+        <a class="nav-item" data-nav="contact" href="contact.html"><span>Contact</span><strong>Projekt starten</strong></a>
+      </div>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="navPanel"><span class="menu-icon" aria-hidden="true"></span><span class="sr-only">Menü öffnen</span></button>
     </nav>
 
     <main id="top">
@@ -404,20 +410,17 @@
         <section class="wd-hero" aria-labelledby="wdHeroTitle">
           <div class="wd-hero-copy">
             <div class="wd-kicker">Webdesign aus Freiburg-Betzenhausen</div>
-            <h1 id="wdHeroTitle">Websites, die sofort klar wirken.<em>Und Vertrauen schaffen.</em></h1>
-            <p class="wd-hero-lead">Ich gestalte moderne Online-Auftritte für lokale Unternehmen, Praxen, Restaurants, Apotheken und Fachbetriebe — mit einem ersten kostenlosen Beispiel, bevor Sie irgendetwas entscheiden.</p>
+            <h1 id="wdHeroTitle">Webdesign.<br>Klar und persönlich.</h1>
+            <p class="wd-hero-lead">Ich gestalte Websites für Unternehmen aus Freiburg und der Region. Mit klarer Struktur, einer eigenen Bildsprache und einem ersten kostenlosen Entwurf.</p>
             <div class="wd-hero-actions">
               <a class="wd-button primary" href="contact.html?service=Webdesign#briefing">Kostenloses Beispiel anfragen</a>
               <a class="wd-button" href="contact.html#briefing">Kurzer Kontakt</a>
             </div>
           </div>
-          <aside class="wd-hero-card" aria-label="Kurzangebot">
-            <p>Kein Agenturpaket, kein langer Prozess: erst ein visueller Vorschlag. Wenn es passt, wird daraus ein schlanker Website-Auftritt mit klarer Struktur, starker Optik und einfachen Kontaktwegen.</p>
-            <div class="wd-mini-proof">
-              <strong>0€ Risiko</strong>
-              <p>Sie sehen zuerst eine konkrete Richtung — als Bild oder Entwurf — und entscheiden danach, ob es weitergehen soll.</p>
-            </div>
-          </aside>
+          <figure class="wd-hero-visual">
+            <a href="tnw-website.html"><img src="assets/projects/tnw/tnw-web-header.jpg" width="1920" height="1080" alt="TNW Website auf Tablet und Smartphone" fetchpriority="high"></a>
+            <figcaption><a href="tnw-website.html">TNW · Webdesign und Filmcontent im Team von The Bloc Switzerland</a></figcaption>
+          </figure>
         </section>
 
         <section class="wd-section" aria-labelledby="wdLocalTitle">
@@ -474,6 +477,9 @@
         <span>andreasboehler.com · Anfrage über das Kontaktformular · +49 160 97627519</span>
       </footer>
     </main>
-    <script src="script.js?v=20260725-release-0534"></script>
-  </body>
-</html>
+    <script src="script.js?v=0.5.39-staging.1"></script>
+
+
+
+<script src="editorial.js?v=0.5.39-staging.1"></script>
+</body></html>
