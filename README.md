@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle Staging-Version: `0.5.39-staging.1`. Produktionsbasis: `0.5.38`.
+Aktuelle Staging-Version: `0.5.39-staging.2`. Produktionsbasis: `0.5.38`.
 
 ## Inhalt
 
@@ -168,6 +168,12 @@ Beispiel:
 ### [Unreleased]
 
 Noch keine nicht versionierten Aenderungen.
+
+### [0.5.39-staging.2] - 2026-09-06
+
+#### Fixed
+
+- Gesperrte Video-Player bieten direkt einen Button zu den Einstellungen fuer externe Medien. Die Einwilligung wird nicht automatisch erteilt.
 
 ### [0.5.39-staging.1] - 2026-09-06
 

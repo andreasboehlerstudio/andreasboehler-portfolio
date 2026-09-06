@@ -8,6 +8,12 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.39-staging.2] - 2026-09-06
+
+### Fixed
+
+- Direkter Freigabe-Button am gesperrten Video-Player oeffnet die Einstellungen fuer externe Medien; kein automatisches Akzeptieren von Cookies oder Laden externer Player.
+
 ## [0.5.39-staging.1] - 2026-09-06
 
 ### Changed

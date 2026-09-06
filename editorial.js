@@ -72,11 +72,26 @@ function setupPortraitWebGL() {
   const observer = new IntersectionObserver(entries => {
     if (!entries.some(entry => entry.isIntersecting)) return;
     observer.disconnect();
-    import('./about-reveal.js?v=0.5.39-staging.1').then(module => module.mountPortraitReveal(surface)).catch(() => {});
+    import('./about-reveal.js?v=0.5.39-staging.2').then(module => module.mountPortraitReveal(surface)).catch(() => {});
   }, { rootMargin: '100px' });
   observer.observe(surface);
+}
+
+function setupVideoConsentActions() {
+  document.querySelectorAll('.consent-embed').forEach(frame => {
+    const player = frame.querySelector('iframe[data-consent-category="external"]');
+    if (!player || frame.querySelector('.embed-consent-action')) return;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'embed-consent-action';
+    button.textContent = 'Video freigeben';
+    button.setAttribute('aria-label', `${player.title}: Einstellungen für externe Medien öffnen`);
+    button.addEventListener('click', () => window.AndreasConsent?.open());
+    frame.append(button);
+  });
 }
 
 setupEditorialNav();
 setupPhotoLightbox();
 setupPortraitWebGL();
+setupVideoConsentActions();

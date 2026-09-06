@@ -328,7 +328,7 @@ function setupStudioCursor() {
       return;
     }
 
-    if (target.closest('.site-nav, .photo-lightbox, .cookie-banner')) {
+    if (target.closest('.site-nav, .photo-lightbox, .cookie-consent, .embed-consent-action')) {
       setMode('');
       return;
     }

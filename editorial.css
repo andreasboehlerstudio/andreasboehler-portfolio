@@ -141,6 +141,14 @@ body[data-project-slug] .project-video-showcase > header { display: none; }
 body[data-project-slug] .project-video-grid { max-width: 1440px; margin-inline: auto; width: 100%; }
 body[data-project-slug] .project-video-frame { background: #161616 var(--video-poster) center / cover no-repeat; }
 body[data-project-slug] .project-video-frame::after { background-color: rgba(0,0,0,.72); color: white; }
+.consent-embed:has(.embed-consent-action)::before { display: none; }
+.embed-consent-action {
+  position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  padding: 14px 22px; border: 1px solid #ffffff80; border-radius: 4px;
+  background: #151515; color: #fff; font: 16px/1.4 var(--font-text); cursor: pointer;
+}
+.embed-consent-action:focus-visible { outline: 2px solid white; outline-offset: 6px; }
+.consent-embed.is-unlocked .embed-consent-action { display: none; }
 body[data-project-slug] .project-copy { padding-block: 72px; gap: 64px; grid-template-columns: 2fr 1fr; }
 body[data-project-slug] .project-copy #projectRole { font: 22px/1.65 var(--font-text); max-width: 62ch; margin-top: 16px; }
 body[data-project-slug] .project-copy article:last-child { padding-top: 38px; }
