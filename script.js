@@ -328,11 +328,6 @@ function setupStudioCursor() {
       return;
     }
 
-    if (target.closest('.site-nav, .photo-lightbox, .cookie-consent, .embed-consent-action')) {
-      setMode('');
-      return;
-    }
-
     if (target.closest(selectors.text)) {
       setMode("text");
       return;
@@ -356,9 +351,7 @@ function setupStudioCursor() {
     setMode("");
   };
 
-  let cursorFrame = null;
   const animate = () => {
-    cursorFrame = null;
     state.ringX += (state.x - state.ringX) * 0.18;
     state.ringY += (state.y - state.ringY) * 0.18;
     state.dotX += (state.x - state.dotX) * 0.55;
@@ -366,8 +359,7 @@ function setupStudioCursor() {
 
     ring.style.transform = `translate3d(${state.ringX}px, ${state.ringY}px, 0) translate3d(-50%, -50%, 0) scale(var(--cursor-scale, 1))`;
     dot.style.transform = `translate3d(${state.dotX}px, ${state.dotY}px, 0) translate3d(-50%, -50%, 0)`;
-    const unsettled = Math.abs(state.x - state.ringX) + Math.abs(state.y - state.ringY) > 0.1;
-    if (unsettled && !document.hidden && finePointer.matches && !reducedMotion.matches) cursorFrame = window.requestAnimationFrame(animate);
+    window.requestAnimationFrame(animate);
   };
 
   document.addEventListener("pointermove", (event) => {
@@ -377,7 +369,6 @@ function setupStudioCursor() {
 
     state.x = event.clientX;
     state.y = event.clientY;
-    if (!cursorFrame) cursorFrame = window.requestAnimationFrame(animate);
     cursor.classList.add("is-visible");
     updateModeFromPoint(event);
   }, { passive: true });
@@ -3001,21 +2992,6 @@ Object.entries(projectImageFixes).forEach(([slug, enhancement]) => {
 });
 // Project image fix sync end
 
-// Original portfolio exports, verified for this staging edition.
-const editorialProjectImages = {
-  'dj-bobo-evolut30n-tour': 'assets/projects/dj-bobo-evolut30n-tour/portfolio-1.webp',
-  'arcondis-brand-identity': 'assets/projects/arcondis-brand-identity/portfolio-1.webp',
-  'dr-martin-klein': 'assets/projects/dr-martin-klein/portfolio-1.webp',
-  'acino-pain-management': 'assets/projects/acino-pain-management/portfolio-1.webp',
-  'x-ray-website': 'assets/projects/x-ray-website/portfolio-1.webp',
-  'bongrain-savencia': 'assets/projects/bongrain-savencia/portfolio-1.webp',
-  'abbvie-oncology': 'assets/projects/abbvie-oncology/portfolio-1.webp',
-  'syngenta-campaign': 'assets/projects/syngenta-campaign/portfolio-1.webp'
-};
-Object.entries(editorialProjectImages).forEach(([slug, image]) => {
-  if (projectData[slug]) projectData[slug].image = image;
-});
-
 document.body.classList.add("js-ready");
 
 const currentPage = document.body.dataset.page;
@@ -3035,7 +3011,7 @@ const brushLeaveEvent = "PointerEvent" in window ? "pointerleave" : "mouseleave"
 const brushEnterEvent = "PointerEvent" in window ? "pointerenter" : "mouseenter";
 
 function setupHeroBackgroundBrush() {
-  if (!heroBrushSurface || !heroFrameColor || heroBrushSurface.hasAttribute('data-webgl-portrait')) {
+  if (!heroBrushSurface || !heroFrameColor) {
     return;
   }
 
@@ -3234,7 +3210,6 @@ function setupBrushRevealImages() {
 }
 
 function setupScrollTextReveals() {
-  if (document.body.hasAttribute('data-editorial-legal')) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const candidates = [
     "main h1:not(.sr-only)",
@@ -3248,9 +3223,6 @@ function setupScrollTextReveals() {
   const excludedAreas = [
     ".site-nav",
     ".site-footer",
-    ".project-facts",
-    ".project-copy",
-    "details",
     ".hero-chapter",
     ".wedding-hero-copy",
     ".wedding-hero-closing",
@@ -3545,7 +3517,7 @@ function setupHeroVideoScrub() {
       video.style.opacity = opacity.toFixed(4);
       video.pause();
 
-      if (duration && opacity > 0 && !video.seeking) {
+      if (duration) {
         const targetTime = reduceMotion
           ? 0.04
           : clamp(localProgress * duration, 0.04, Math.max(duration - 0.04, 0.04));
@@ -3574,7 +3546,6 @@ function setupHeroVideoScrub() {
       chapter.style.opacity = opacity.toFixed(4);
       chapter.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0)`;
       chapter.setAttribute("aria-hidden", opacity > 0.05 ? "false" : "true");
-      chapter.inert = opacity <= 0.05;
     });
 
     if (!reduceMotion && Math.abs(targetProgress - renderedProgress) > 0.0005) {
@@ -3696,7 +3667,6 @@ function closeMenu() {
   menuButton.setAttribute("aria-expanded", "false");
   menuButton.querySelector(".sr-only").textContent = "Menü öffnen";
   document.documentElement.classList.remove("menu-is-open");
-  if (navPanel?.contains(document.activeElement)) menuButton.focus();
   syncMenuTray(false);
 }
 
@@ -3711,8 +3681,6 @@ function syncMenuTray(isOpen) {
     return;
   }
 
-  navPanel.inert = !isOpen;
-  document.querySelector('main')?.toggleAttribute('inert', isOpen);
   navPanel.style.removeProperty("clip-path");
   navPanel.style.removeProperty("transform");
   navPanel.style.removeProperty("transition");
@@ -3756,7 +3724,7 @@ function applyTheme(theme, shouldStore = true) {
     const isDark = currentTheme === "dark";
     const aperture = isDark ? "F/24" : "F/2.4";
     const nextAperture = isDark ? "F/2.4" : "F/24";
-    const label = isDark ? 'Helles Farbschema einschalten' : 'Dunkles Farbschema einschalten';
+    const label = `Aperture ${aperture}. Wechsel zu ${nextAperture}.`;
     const text = toggle.querySelector(".theme-toggle-text");
 
     toggle.setAttribute("aria-label", label);
@@ -3857,23 +3825,171 @@ function setupTalkButton() {
 }
 
 function setupCinematicPageCta() {
-  if (!pageShell || ["contact", "privacy", "agb", "imprint"].includes(document.body.dataset.page) || document.querySelector(".wedding-inquiry, .guide-cta, .wd-cta, .alien-final-cta, .service-big-cta")) return;
-  const projectTitle = document.querySelector("#projectTitle")?.textContent.trim();
-  const section = document.createElement("section");
-  section.className = projectTitle ? "case-next" : "editorial-cta";
-  if (!projectTitle) {
-    const heading = document.createElement("h2");
-    heading.textContent = document.body.dataset.page === "about" ? "Lass uns etwas bewegen." : "Eine Idee im Kopf?";
-    section.append(heading);
+  if (!pageShell || ["contact", "privacy", "agb", "imprint"].includes(document.body.dataset.page) || document.querySelector(".cinematic-page-cta") || document.querySelector(".wedding-inquiry")) {
+    return;
   }
-  const contact = document.createElement("a");
-  contact.textContent = projectTitle ? "Ähnliches Projekt anfragen" : "Projekt besprechen";
-  contact.href = projectTitle ? `contact.html?project=${encodeURIComponent(projectTitle)}#briefing` : "contact.html#briefing";
-  const works = document.createElement("a");
-  works.textContent = "Alle Arbeiten ansehen";
-  works.href = "works.html";
-  section.append(contact, works);
-  pageShell.append(section);
+
+  pageShell
+    .querySelectorAll(":scope > .seo-link-band, :scope > .alien-final-cta, :scope > .service-big-cta")
+    .forEach((block) => block.classList.add("is-pre-cinematic-cta"));
+
+  const page = document.body.classList.contains("wedding-page")
+    ? "wedding"
+    : document.body.dataset.page || "home";
+  const projectTitle = document.querySelector("#projectTitle")?.textContent?.trim();
+  const projectBriefingHref = document.querySelector("#projectBriefingLink")?.getAttribute("href") || "contact.html#briefing";
+  const inquiryHref = "contact.html#briefing";
+  const base = {
+    eyebrow: "Next scene",
+    headline: "Bilder, die wie Szenen wirken. Stories, die hängen bleiben.",
+    text: "Wenn aus einer Idee ein Film, eine Kampagne oder eine markante Bildwelt werden soll, starte ich mit Ziel, Gefühl und Wirkung.",
+    marquee: "Creating moments · Cinematic stories · Not just images ·",
+    primaryHref: inquiryHref,
+    primaryText: "Projekt starten",
+    links: [
+      ["Briefing starten", "contact.html#briefing"],
+      ["Works ansehen", "works.html"],
+      ["Leistungen", "services.html"]
+    ]
+  };
+  const copy = {
+    works: projectTitle
+      ? {
+          eyebrow: "Next frame",
+          headline: "Wenn dein nächstes Projekt Haltung, Rhythmus und einen klaren Look braucht.",
+          text: `${projectTitle} zeigt eine Richtung. Im Briefing kläre ich mit dir, welche Geschichte, welches Format und welche Bildsprache für dein Projekt die stärkste Wirkung erzeugen.`,
+          marquee: "Next frame · Strong story · Cinematic work ·",
+          primaryHref: `contact.html?project=${encodeURIComponent(projectTitle)}#briefing`,
+          primaryText: "Projekt starten",
+          links: [
+            ["Briefing", projectBriefingHref],
+            ["Alle Works", "works.html"]
+          ]
+        }
+      : {
+          eyebrow: "Next frame",
+          headline: "Aus Referenzen wird Richtung. Aus Richtung wird der erste starke Frame.",
+          text: "Wenn eine Arbeit hier etwas auslöst, lässt sich daraus schnell ein präziser Ansatz für dein Projekt, deine Marke oder deine Kampagne entwickeln.",
+          marquee: "Selected works · Strong story · Cinematic craft ·",
+          primaryHref: inquiryHref,
+          primaryText: "Projekt starten",
+          links: [
+            ["Briefing", "contact.html#briefing"],
+            ["Leistungen", "services.html"],
+            ["About", "about.html"]
+          ]
+        },
+    services: {
+      eyebrow: "Production flow",
+      headline: "Aus Strategie wird Szene. Aus Szene wird Wirkung.",
+      text: "Film, Fotografie, DoP, Art Direction und KI-Workflows werden so kombiniert, dass aus einem Briefing ein visueller Auftritt mit Haltung entsteht.",
+      marquee: "Story first · Look matters · Make it cinematic ·",
+      primaryHref: inquiryHref,
+      primaryText: "Projekt starten",
+      links: [
+        ["Briefing", "contact.html#briefing"],
+        ["Film-Works", "works.html#film"],
+        ["DoP buchen", "dop-kameramann.html"]
+      ]
+    },
+    wedding: {
+      eyebrow: "Euer Datum",
+      headline: "Erzählt mir, wann und wo ihr heiratet.",
+      text: "Datum, Ort und gewünschte Begleitdauer reichen für den ersten Verfügbarkeitscheck. Danach kläre ich persönlich mit euch, welches Paket und welche Bildsprache passen.",
+      marquee: "Freiburg · Basel · Offenburg · Eure Geschichte ·",
+      primaryHref: "contact.html?service=Hochzeitsfotografie#briefing",
+      primaryText: "Datum anfragen",
+      links: [
+        ["Pakete", "hochzeitsfotograf-freiburg.html#pakete"],
+        ["Reportagen", "hochzeitsfotograf-freiburg.html#reportagen"],
+        ["FAQ", "hochzeitsfotograf-freiburg.html#faq-hochzeit"]
+      ]
+    },
+    about: {
+      eyebrow: "Creative energy",
+      headline: "Erfahrung ist die Basis. Neugier ist der Motor.",
+      text: "Mehr als zehn Jahre zwischen Agentur, Entertainment, Healthcare, Film, Foto, Design und neuen Tools. Der nächste Schritt beginnt mit einer klaren Idee.",
+      marquee: "Experience · Curiosity · Cinematic precision ·",
+      primaryHref: inquiryHref,
+      primaryText: "Projekt starten",
+      links: [
+        ["Briefing", "contact.html#briefing"],
+        ["Works", "works.html"],
+        ["Leistungen", "services.html"]
+      ]
+    },
+    faq: {
+      eyebrow: "Open question",
+      headline: "Noch offen? Dann lass uns dein Projekt sauber einordnen.",
+      text: "Ein paar Eckdaten reichen: Ziel, Timing, Budgetrahmen, Referenzen und gewünschte Medien. Daraus entsteht schnell ein realistischer Produktionsweg.",
+      marquee: "Ask better · Plan sharper · Create stronger ·",
+      primaryHref: inquiryHref,
+      primaryText: "Projekt starten",
+      links: [
+        ["Briefing", "contact.html#briefing"],
+        ["Works", "works.html"],
+        ["Leistungen", "services.html"]
+      ]
+    }
+  };
+  const config = { ...base, ...(copy[page] || {}) };
+  const cta = document.createElement("section");
+  const marquee = document.createElement("div");
+  const track = document.createElement("div");
+  const inner = document.createElement("div");
+  const label = document.createElement("div");
+  const dot = document.createElement("i");
+  const labelText = document.createElement("span");
+  const copyWrap = document.createElement("div");
+  const title = document.createElement("h2");
+  const text = document.createElement("p");
+  const links = document.createElement("nav");
+  const primary = document.createElement("a");
+
+  cta.className = "cinematic-page-cta";
+  if (page === "wedding") {
+    cta.id = "hochzeit-anfragen";
+  }
+  cta.setAttribute("aria-labelledby", "cinematicPageCtaTitle");
+
+  marquee.className = "cinematic-cta-marquee";
+  marquee.setAttribute("aria-hidden", "true");
+  track.className = "cinematic-cta-track";
+  Array.from({ length: 6 }).forEach(() => {
+    const item = document.createElement("span");
+    item.textContent = config.marquee;
+    track.append(item);
+  });
+  marquee.append(track);
+
+  inner.className = "cinematic-cta-inner";
+  label.className = "alien-section-label cinematic-cta-label";
+  labelText.textContent = config.eyebrow;
+  label.append(dot, labelText);
+
+  copyWrap.className = "cinematic-cta-copy";
+  title.id = "cinematicPageCtaTitle";
+  title.textContent = config.headline;
+  text.textContent = config.text;
+
+  primary.className = "cinematic-cta-primary";
+  primary.href = config.primaryHref;
+  primary.textContent = config.primaryText;
+
+  links.className = "cinematic-cta-links";
+  links.setAttribute("aria-label", "Nächste Schritte");
+  links.append(primary);
+  config.links.forEach(([linkText, href]) => {
+    const link = document.createElement("a");
+    link.href = href;
+    link.textContent = linkText;
+    links.append(link);
+  });
+
+  copyWrap.append(title, text, links);
+  inner.append(label, copyWrap);
+  cta.append(marquee, inner);
+  pageShell.append(cta);
 }
 
 function getCurrentProjectSlug() {
@@ -4252,7 +4368,6 @@ function renderProjectVideos(project) {
 
     card.className = "project-video-card";
     frame.className = "consent-embed project-video-frame";
-    frame.style.setProperty('--video-poster', `url("${video.thumbnail || project.image}")`);
     frame.dataset.consentPlaceholder = `${provider} Video laden: externe Medien in den Datenschutz-Einstellungen erlauben.`;
 
     iframe.title = video.title || `${project.title} Video`;
@@ -4264,7 +4379,7 @@ function renderProjectVideos(project) {
     iframe.dataset.consentSrc = video.player;
 
     videoTitle.textContent = video.title || project.title;
-    meta.textContent = [provider, video.duration ? `${Math.floor(Number(video.duration) / 60)}:${String(Math.round(Number(video.duration) % 60)).padStart(2, '0')} Min.` : ""]
+    meta.textContent = [provider, video.duration ? `${Math.round(Number(video.duration) / 60)} Min.` : ""]
       .filter(Boolean)
       .join(" · ");
 
@@ -4297,7 +4412,6 @@ function renderProjectPage() {
 
   const slug = getCurrentProjectSlug();
   const project = projectData[slug] || projectData["dj-bobo-evolut30n-tour"];
-  document.body.dataset.projectSlug = slug;
   const title = document.querySelector("#projectTitle");
   const eyebrow = document.querySelector("#projectEyebrow");
   const intro = document.querySelector("#projectIntro");
@@ -4316,16 +4430,16 @@ function renderProjectPage() {
   document.querySelector(".project-depth")?.remove();
   document.querySelector(".seo-link-band")?.remove();
 
-  document.body.dataset.projectKind = project.videos?.length ? 'film' : /web|design|branding|identity|guideline|inserat/i.test(project.eyebrow + ' ' + project.service) ? 'design' : 'photo';
+  document.title = `${project.title} | Andreas Boehler`;
   projectHero.style.setProperty("--page-image", `url("${project.image}")`);
   renderProjectVideoSchema(project, slug);
 
   if (title) title.textContent = project.title;
-  if (eyebrow) eyebrow.textContent = getProjectFormat(project).replace(/[.\s]+$/, '');
+  if (eyebrow) eyebrow.textContent = project.eyebrow;
   if (intro) intro.textContent = project.intro;
   if (roleLabel) roleLabel.textContent = "Projektidee";
   if (role) role.textContent = project.description;
-  if (description) description.textContent = "Eine ähnliche Idee?";
+  if (description) description.textContent = "Interesse an einer vergleichbaren Produktion oder visuellen Lösung?";
   if (heroImage) {
     heroImage.src = project.image;
     heroImage.alt = `Cinematisches Projektbild zu ${project.title}`;
@@ -4347,8 +4461,11 @@ function renderProjectPage() {
       const span = document.createElement("span");
       const heading = document.createElement("h3");
       const paragraph = document.createElement("p");
+      const sentenceBreak = text.indexOf(". ");
+
       span.textContent = label === "SEO-Relevanz" ? "Schwerpunkt" : label;
-      heading.textContent = text;
+      heading.textContent = text.split(".")[0];
+      paragraph.textContent = sentenceBreak > 0 ? text.slice(sentenceBreak + 2) : "";
 
       article.append(span, heading);
       if (paragraph.textContent) {

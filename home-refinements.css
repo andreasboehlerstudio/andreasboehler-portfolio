@@ -1,0 +1,28 @@
+/* Approved homepage details only; all other layouts retain the original design. */
+body[data-page="home"] .hero-chapter h1 {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  font-size: 104px;
+  line-height: 1.06;
+  text-align: center;
+  text-wrap: balance;
+  letter-spacing: 0;
+}
+body[data-page="home"] .hero-chapter :is(h2,.hero-chapter-word) {
+  max-width: 100%;
+  font-size: 104px;
+  line-height: 1.12;
+  text-wrap: balance;
+  letter-spacing: 0;
+}
+body[data-page="home"] .home-client-scroll span { letter-spacing: 0; }
+@media (max-width: 1100px) {
+  body[data-page="home"] .hero-chapter :is(h1,h2,.hero-chapter-word) { font-size: 80px; }
+}
+@media (max-width: 700px) {
+  body[data-page="home"] .hero-chapter :is(h1,h2,.hero-chapter-word) { font-size: 40px; }
+}
+@media (max-width: 360px) {
+  body[data-page="home"] .hero-chapter :is(h1,h2,.hero-chapter-word) { font-size: 32px; }
+}

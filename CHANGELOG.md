@@ -8,6 +8,14 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.5.39-staging.4] - 2026-09-07
+
+### Changed
+
+- Vorheriges Portfolio-Design wiederhergestellt; der seitenweite Editorial-Umbau, die neue Foto-Lightbox und der Three.js-Test sind zurueckgenommen.
+- Ausschliesslich auf der Startseite bleiben die Kundenkacheln, korrigierte Hero-Schriftgroessen und das neue DJ-BoBo-Titelmotiv erhalten.
+- Vorhandene Projektkorrekturen, MOVIN Powerbreak und die Vertraulichkeitsentfernungen bleiben erhalten. Keine Aenderung an der Live-Seite.
+
 ## [0.5.39-staging.3] - 2026-09-06
 
 ### Documentation

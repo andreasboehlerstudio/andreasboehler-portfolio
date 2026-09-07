@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle Staging-Version: `0.5.39-staging.3`. Produktionsbasis: `0.5.38`.
+Aktuelle Staging-Version: `0.5.39-staging.4`. Produktionsbasis: `0.5.38`.
 
 ## Inhalt
 
@@ -49,9 +49,7 @@ py -m http.server 4173 --bind 127.0.0.1
 |-- send-contact.php           # Formularversand und Lead-Erfassung
 |-- script.js                  # Interaktionen, Projektdaten, Animationen
 |-- styles.css                 # Layout, Typografie, responsive Design
-|-- editorial.css              # Reduzierte Layout-Schicht im Staging
-|-- editorial.js               # Navigation, Foto-Lightbox, Lazy Loading
-|-- about-reveal.js            # Optionaler Three.js-Portraet-Reveal
+|-- home-refinements.css        # Freigegebene Schriftkorrektur nur auf der Startseite
 |-- assets/                    # Bilder, Video-Stills, PDF- und Projektassets
 |-- includes/                  # Serverseitige Lead-Datenbanklogik
 |-- intern/                    # Geschuetzte interne Anfragenverwaltung
@@ -89,17 +87,17 @@ Hostingstatus am 06.09.2026: Der FTP-Staging-Upload war erfolgreich, aber `https
 - `noindex` ist kein Zugriffsschutz. Vertrauliche Unterlagen gehoeren nicht ins oeffentliche Staging; das vollstaendige Portfolio-PDF wurde deshalb aus diesem Stand entfernt.
 - Nach Freigabe werden die getesteten Aenderungen nach `main` uebernommen und dort als Release versioniert.
 
-### Editorial-Teststand
+### Aktueller Teststand
 
-- Ruhigere Typohierarchie, kuerzere Einstiege und mehr Weissraum auf allen Seitentypen.
-- Projektseiten zeigen das Ergebnis vor den drei Faktenbereichen `Projekt & Format`, `Mein Beitrag` und `Zusammenarbeit`, einschliesslich der vorhandenen Orts- und Jahresangaben.
-- Gleichmaessiges 16:9-Fotoraster mit Tastatur-Lightbox; das volle Bild bleibt dort ungecropt.
-- About-Reveal mit lokalem Three.js 0.180.0, begrenzter Renderaufloesung und Rendering nur waehrend der Interaktion. Touch, reduzierte Bewegung, Datensparen und WebGL-Fehler behalten ein normales HTML-Bild.
-- Bestehende SEO-Inhalte und Formular-Endpunkte bleiben erhalten. Staging ist weiterhin `noindex`.
+Der breite Editorial-Umbau wurde auf Wunsch zurueckgenommen. Grundlage ist wieder der lokale Portfolio-Stand vor diesem Umbau, einschliesslich seiner Projektangaben, Orts- und Jahresangaben, MOVIN Powerbreak und des verbesserten Phantom-Teasers.
 
-Pruefung: 79 HTML-Seiten auf interne Datei-Verweise, genau eine H1, JSON-LD und drei einheitliche Projektspalten kontrolliert. Alle 79 Seiten im Browser bei 390 und 1440 Pixeln auf horizontale Ueberlaeufe und Ueberschriftenbreiten geprueft; zentrale Seiten zusaetzlich bei 320 und 1024 Pixeln. Menue, Hell/Dunkel, Foto-Lightbox und WebGL-Reveal manuell geprueft, inklusive Screenshot-Pixelvergleich. Keine neuen Formularnachrichten versendet und keine Feldmessung der Core Web Vitals vorgenommen.
+- Seitenstruktur, Services, About, Fotografie, Projektseiten, Scrollsequenzen und Footer entsprechen wieder dem vorherigen Design.
+- Nur auf der Startseite bleiben die Kundenkacheln mit ihrer Maus-/Scrollbewegung, die Korrektur der Hero-Schriftgroessen und das neue DJ-BoBo-Titelmotiv erhalten.
+- Die neue globale Layout-Schicht, die zusaetzliche Foto-Lightbox und der Three.js-Test wurden entfernt. Der vorherige Brush-Effekt bleibt bestehen.
+- Acino Swiss Lab und das vollstaendige Portfolio-PDF bleiben aus Vertraulichkeitsgruenden entfernt.
+- Weitere Optimierungen werden einzeln zur Auswahl gestellt, nicht als erneuter Gesamtumbau umgesetzt. Staging bleibt `noindex`; der Live-Stand wird nicht geaendert.
 
-Vor einer Live-Freigabe offen: vollstaendige Projekt-/Medienfreigaben, bessere Originaldateien fuer einzelne kleine ARCONDIS- und Bongrain/Savencia-Ansichten sowie Performance-Tests auf echten Mobilgeraeten. Der Syngenta-Printentwurf mit Platzhaltertext ist ausdruecklich als Entwurf bezeichnet. Die Produktions-Asset-Freigabeliste muss auch unverlinkte Dateien abdecken; dieser Staging-Push aendert den Live-Deploy nicht.
+Die Tests und Ergebnisse der verworfenen Versionen gelten nicht als Freigabe dieses wiederhergestellten Designs. Insbesondere sind weitere mobile Typografie-, Bildqualitaets- und Performance-Korrekturen gesondert abzustimmen. Die Produktions-Asset-Freigabeliste muss auch unverlinkte Dateien abdecken.
 
 Typischer Ablauf:
 
@@ -169,6 +167,14 @@ Beispiel:
 ### [Unreleased]
 
 Noch keine nicht versionierten Aenderungen.
+
+### [0.5.39-staging.4] - 2026-09-07
+
+#### Changed
+
+- Vorheriges Portfolio-Design wiederhergestellt; der seitenweite Editorial-Umbau, die neue Foto-Lightbox und der Three.js-Test sind zurueckgenommen.
+- Ausschliesslich auf der Startseite bleiben die Kundenkacheln, korrigierte Hero-Schriftgroessen und das neue DJ-BoBo-Titelmotiv erhalten.
+- Vorhandene Projektkorrekturen, MOVIN Powerbreak und die Vertraulichkeitsentfernungen bleiben erhalten. Keine Aenderung an der Live-Seite.
 
 ### [0.5.39-staging.3] - 2026-09-06
 
