@@ -8,6 +8,13 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.6.0] - 2026-09-26
+
+### Added
+
+- Eine eigene englische WardrobeDraft-Datenschutzerklaerung beschreibt lokale Speicherung, optionale KI-Anbieter, Google-Drive-Import, Vinted-Unterstuetzung, Konten, Cloudflare, Resend und Stripe.
+- Die neue Privacy-URL ist von der allgemeinen Datenschutzerklaerung aus erreichbar, bleibt jedoch per `noindex` und ohne Sitemap-Eintrag aus Suchmaschinenindices heraus.
+
 ## [0.5.38] - 2026-08-07
 
 ### Fixed
