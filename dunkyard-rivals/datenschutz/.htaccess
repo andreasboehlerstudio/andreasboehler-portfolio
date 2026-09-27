@@ -1,0 +1,6 @@
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, follow, noarchive"
+</IfModule>

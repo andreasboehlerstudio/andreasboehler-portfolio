@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Datenschutz / Privacy – DUNKYARD RIVALS</title>
+    <meta name="description" content="Datenschutzerklärung und Privacy Policy für das Windows-Spiel DUNKYARD RIVALS von Andreas Boehler.">
+    <meta name="robots" content="noindex, follow, noarchive">
+    <meta name="googlebot" content="noindex, follow, noarchive">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#111111">
+    <meta name="author" content="Andreas Boehler">
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://andreasboehler.com/dunkyard-rivals/datenschutz/">
+    <style>
+      @font-face {
+        font-family: Whyte;
+        src: url("../../assets/WhyteInktrap-Book.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: StudioText;
+        src: url("../../assets/HelveticaNowText-Regular.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Mona Sans";
+        src: url("../../assets/MonaSans-SemiBold.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+      }
+
+      :root {
+        color-scheme: light;
+        --ink: #111111;
+        --paper: #ffffff;
+        --warm: #f6f3ee;
+        --footer: #ebe7df;
+        --accent: #ff5a1c;
+        --line: rgba(17, 17, 17, 0.18);
+        --muted: rgba(17, 17, 17, 0.68);
+        --x: clamp(22px, 5vw, 104px);
+        --display: Whyte, StudioText, Arial, Helvetica, sans-serif;
+        --text: StudioText, Arial, Helvetica, sans-serif;
+        --wordmark: "Mona Sans", StudioText, Arial, Helvetica, sans-serif;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; overflow-x: clip; background: var(--paper); color: var(--ink); font-family: var(--text); line-height: 1.6; }
+      a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+      a:hover, a:focus-visible { color: var(--accent); }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+      .skip-link { position: fixed; left: 16px; top: 12px; z-index: 20; padding: 10px 14px; background: var(--paper); color: var(--ink); transform: translateY(-180%); }
+      .skip-link:focus { transform: translateY(0); }
+
+      .site-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 22px var(--x);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+        background: #111111;
+        color: #ffffff;
+      }
+
+      .wordmark { font-family: var(--wordmark); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.09em; text-decoration: none; }
+      .page-label { color: rgba(255, 255, 255, 0.62); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+      .hero {
+        min-height: 58vh;
+        display: grid;
+        align-content: end;
+        gap: clamp(28px, 5vw, 72px);
+        padding: clamp(84px, 12vw, 180px) var(--x) clamp(56px, 8vw, 112px);
+        background:
+          radial-gradient(circle at 86% 18%, rgba(255, 90, 28, 0.31), transparent 29rem),
+          linear-gradient(135deg, #111111 0%, #171a22 100%);
+        color: #ffffff;
+      }
+
+      .eyebrow, .section-kicker, .card-number { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; }
+      .eyebrow, .section-kicker, .card-number { color: var(--accent); }
+      .hero h1 { max-width: 12ch; margin: 12px 0 0; font-family: var(--display); font-size: clamp(3.8rem, 11vw, 10.5rem); font-weight: 400; letter-spacing: -0.065em; line-height: 0.82; }
+      .hero-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 0.45fr); gap: clamp(28px, 6vw, 96px); align-items: end; }
+      .hero-copy p { max-width: 50rem; margin: 0; color: rgba(255, 255, 255, 0.72); font-size: clamp(1.02rem, 1.5vw, 1.32rem); }
+
+      .language-links { display: flex; flex-wrap: wrap; gap: 10px; }
+      .language-links a { display: inline-flex; min-height: 44px; align-items: center; padding: 10px 16px; border: 1px solid rgba(255, 255, 255, 0.28); text-decoration: none; }
+      .language-links a:first-child { background: #ffffff; color: #111111; }
+      .language-links a:hover, .language-links a:focus-visible { border-color: var(--accent); background: var(--accent); color: #111111; }
+
+      .language-section { scroll-margin-top: 24px; padding: clamp(78px, 10vw, 156px) var(--x); }
+      .language-section:nth-of-type(even) { background: var(--warm); }
+      .section-intro { display: grid; grid-template-columns: minmax(150px, 0.25fr) minmax(0, 1fr); gap: clamp(30px, 6vw, 100px); margin-bottom: clamp(54px, 8vw, 110px); }
+      .section-intro h2 { max-width: 13ch; margin: 12px 0 24px; font-family: var(--display); font-size: clamp(2.7rem, 6.5vw, 7rem); font-weight: 400; letter-spacing: -0.055em; line-height: 0.94; }
+      .section-intro p { max-width: 52rem; margin: 0; color: var(--muted); font-size: clamp(1.03rem, 1.35vw, 1.22rem); }
+      .updated { color: var(--muted); font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; }
+
+      .jump-list { display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 28px 0 0; padding: 0; list-style: none; }
+      .jump-list a { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+      .cards { display: grid; border-top: 1px solid var(--line); }
+      .policy-card { display: grid; grid-template-columns: minmax(210px, 0.36fr) minmax(0, 1fr); gap: clamp(30px, 6vw, 100px); padding: clamp(34px, 5vw, 72px) 0; border-bottom: 1px solid var(--line); scroll-margin-top: 28px; }
+      .policy-card h3 { max-width: 18ch; margin: 10px 0 0; font-family: var(--display); font-size: clamp(1.65rem, 2.8vw, 3.4rem); font-weight: 400; letter-spacing: -0.035em; line-height: 1.02; }
+      .policy-card p, .policy-card li { max-width: 56rem; color: var(--muted); font-size: clamp(1rem, 1.1vw, 1.16rem); }
+      .policy-card p { margin: 0 0 1rem; }
+      .policy-card p:last-child { margin-bottom: 0; }
+      .policy-card ul { margin: 0 0 1rem; padding-left: 1.2em; }
+      .policy-card strong { color: var(--ink); font-weight: 600; }
+
+      .note { margin-top: 28px; padding: 18px 20px; border-left: 3px solid var(--accent); background: rgba(255, 90, 28, 0.08); }
+      .source-links { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+      .source-links a { font-size: 0.94rem; }
+
+      .site-foot { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: end; padding: clamp(48px, 7vw, 96px) var(--x); background: var(--footer); }
+      .site-foot strong { display: block; max-width: 12ch; font-family: var(--display); font-size: clamp(2.4rem, 5vw, 5.8rem); font-weight: 400; letter-spacing: -0.05em; line-height: 0.92; }
+      .site-foot nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 22px; }
+      .site-foot small { color: rgba(17, 17, 17, 0.58); }
+
+      @media (max-width: 820px) {
+        .hero-copy, .section-intro, .policy-card, .site-foot { grid-template-columns: 1fr; }
+        .site-foot nav { justify-content: flex-start; }
+      }
+
+      @media (max-width: 520px) {
+        .site-head { align-items: flex-start; }
+        .page-label { max-width: 16ch; text-align: right; }
+        .hero > * { min-width: 0; }
+        .hero h1 { font-size: clamp(3rem, 16vw, 5.5rem); }
+        .language-links a { flex: 1 1 120px; justify-content: center; }
+        .policy-card h3 { max-width: none; overflow-wrap: anywhere; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#content">Zum Inhalt / Skip to content</a>
+    <header class="site-head">
+      <a class="wordmark" href="../../">ANDREAS BOEHLER</a>
+      <span class="page-label">Game privacy · DUNKYARD RIVALS</span>
+    </header>
+
+    <main id="content">
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <span class="eyebrow">DUNKYARD RIVALS · Windows game</span>
+          <h1 id="page-title">Datenschutz<br>Privacy</h1>
+        </div>
+        <div class="hero-copy">
+          <p>Informationen zur lokalen Speicherung im Spiel, zum E-Mail-Support, zu Vertriebsplattformen und zum Aufruf dieser Webseite. Information about local game data, email support, distribution platforms and this webpage.</p>
+          <nav class="language-links" aria-label="Sprache / Language">
+            <a href="#deutsch" lang="de">Deutsch</a>
+            <a href="#english" lang="en">English</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="language-section" id="deutsch" lang="de" aria-labelledby="de-title">
+        <div class="section-intro">
+          <div>
+            <span class="section-kicker">Deutsch</span>
+            <p class="updated">Stand: 27.09.2026</p>
+          </div>
+          <div>
+            <h2 id="de-title">Datenschutz für DUNKYARD RIVALS.</h2>
+            <p>Diese Erklärung beschreibt die Verarbeitung personenbezogener Daten im Zusammenhang mit dem Windows-Spiel DUNKYARD RIVALS, dem Support, den Vertriebsplattformen und dieser Informationsseite. Sie ersetzt keine individuelle Rechtsberatung und stellt keine Garantie vollständiger technischer oder rechtlicher Fehlerfreiheit dar.</p>
+            <ul class="jump-list" aria-label="Abschnitte der deutschen Fassung">
+              <li><a href="#de-controller">Verantwortlicher</a></li>
+              <li><a href="#de-game">Spiel & lokale Daten</a></li>
+              <li><a href="#de-support">E-Mail-Support</a></li>
+              <li><a href="#de-stores">Stores</a></li>
+              <li><a href="#de-website">Webseite</a></li>
+              <li><a href="#de-rights">Rechte</a></li>
+              <li><a href="#english">English ↓</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="policy-card" id="de-controller">
+            <div><span class="card-number">01</span><h3>Verantwortlicher und Kontakt</h3></div>
+            <div>
+              <p><strong>Andreas Böhler</strong><br>handelnd unter Andreas Boehler<br>Am Mühlbach 14<br>79114 Freiburg im Breisgau<br>Deutschland</p>
+              <p>Creator und datenschutzrechtlich Verantwortlicher für DUNKYARD RIVALS. Support- und Datenschutzanfragen: <a href="mailto:support@andreasboehler.com">support@andreasboehler.com</a>. Weitere Anbieterangaben stehen im <a href="../../impressum.html">Impressum</a>.</p>
+              <p>Ein Datenschutzbeauftragter ist nicht benannt. Datenschutzanfragen können direkt an die oben genannte E-Mail-Adresse gerichtet werden.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="de-game">
+            <div><span class="card-number">02</span><h3>Spielbetrieb und lokale Speicherung</h3></div>
+            <div>
+              <p>DUNKYARD RIVALS ist ein Windows-Einzelspielerspiel gegen computergesteuerte Gegner. Es bietet keinen Online-Multiplayer, keinen Chat und kein eigenes Spielerkonto.</p>
+              <p>Einstellungen und Karriere-Spielstände werden lokal auf dem Computer gespeichert. Diese Daten bleiben grundsätzlich unter der Kontrolle der spielenden Person. DUNKYARD RIVALS übermittelt diese lokalen Spielstände und Einstellungen nicht an Andreas Boehler.</p>
+              <p>Eine Prüfung der Spielskripte ergab keine eingebauten HTTP-, WebSocket- oder sonstigen Netzwerkfunktionen. Diese Aussage beschreibt den geprüften Entwicklungsstand; sie ist keine vollständige technische Zertifizierung und keine Garantie, dass Betriebssystem, Store-Client, Sicherheitssoftware oder andere unabhängige Komponenten keine eigenen Verbindungen herstellen.</p>
+              <p>Bei der Entwicklung wurden KI-Werkzeuge für Grafiken, Code und Texte eingesetzt. Daraus folgt keine Übertragung von Spielerdaten an KI-Dienste während des Spielens.</p>
+              <p>Für die rein lokale Speicherung erhält Andreas Boehler keine personenbezogenen Daten. Eine Bereitstellung personenbezogener Daten an den Creator ist für das Spielen nicht erforderlich. Automatisierte Entscheidungen oder Profiling durch Andreas Boehler finden im Spiel nicht statt.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="de-support">
+            <div><span class="card-number">03</span><h3>Support per E-Mail</h3></div>
+            <div>
+              <p>Wenn du per E-Mail Kontakt aufnimmst, werden die von dir übermittelten Angaben verarbeitet. Dazu können E-Mail-Adresse, Name oder Absenderbezeichnung, Nachrichteninhalt, technische E-Mail-Metadaten sowie freiwillig eingesandte Anhänge wie Screenshots oder Logauszüge gehören.</p>
+              <p>Die Verarbeitung dient der Beantwortung der Anfrage, der Fehleranalyse, der Unterstützung bei der Nutzung des Spiels und gegebenenfalls der Anbahnung oder Durchführung eines Vertrags. Rechtsgrundlagen sind Art. 6 Abs. 1 lit. b DSGVO für vertragsbezogene Kommunikation und Art. 6 Abs. 1 lit. f DSGVO für allgemeine Supportanfragen sowie das berechtigte Interesse an einem sicheren und funktionierenden Produkt. Soweit gesetzliche Aufbewahrungspflichten bestehen, gilt zusätzlich Art. 6 Abs. 1 lit. c DSGVO.</p>
+              <p>Die E-Mail-Kommunikation wird über den E-Mail-Dienst von Hostinger abgewickelt. Zusätzlich verarbeitet der von dir gewählte E-Mail-Anbieter die Nachricht in eigener Verantwortung. Sende bitte nur Anhänge und Angaben, die für die Bearbeitung erforderlich sind.</p>
+              <p>Supportnachrichten und Anhänge werden nur so lange aufbewahrt, wie dies zur Bearbeitung, Dokumentation des Vorgangs, Fehleranalyse sowie zur Wahrung gesetzlicher Pflichten oder möglicher Rechtsansprüche erforderlich ist. Danach werden sie gelöscht, sofern keine Pflicht oder ein vorrangiger Grund zur weiteren Aufbewahrung besteht.</p>
+              <p>Die Kontaktaufnahme ist freiwillig. Ohne eine erreichbare E-Mail-Adresse und die für das Problem notwendigen Angaben kann eine individuelle Antwort oder Fehleranalyse unter Umständen nicht erfolgen.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="de-stores">
+            <div><span class="card-number">04</span><h3>Kauf, Zahlung, Download und Store-Funktionen</h3></div>
+            <div>
+              <p>DUNKYARD RIVALS wird über itch.io und Gumroad vertrieben; eine Veröffentlichung im Microsoft Store ist in Vorbereitung. Konten, Kaufabwicklung, Zahlung, Download, Lizenzverwaltung, Updates, Store-Support, Bewertungen und gegebenenfalls Plattformdiagnosen werden von der jeweils verwendeten Plattform nach deren eigener Verantwortung und Datenschutzerklärung verarbeitet.</p>
+              <p>Andreas Boehler bestimmt diese eigenständigen Plattformverarbeitungen nicht. Welche Daten ein Store verarbeitet, hängt unter anderem von Plattform, Konto, Zahlungsart, Gerät und Datenschutzeinstellungen ab. Soweit eine Plattform Bestell-, Auszahlungs- oder Käuferinformationen an Andreas Boehler bereitstellt, werden diese ausschließlich zur Vertragsabwicklung, zum Support, zur Abrechnung sowie zur Erfüllung gesetzlicher Pflichten verarbeitet. Rechtsgrundlagen sind Art. 6 Abs. 1 lit. b und c DSGVO; bei der Abwehr von Missbrauch oder Rechtsansprüchen Art. 6 Abs. 1 lit. f DSGVO.</p>
+              <p>Maßgeblich für die eigenen Verarbeitungen der Plattformen sind deren Hinweise:</p>
+              <p class="source-links">
+                <a href="https://itch.io/docs/legal/privacy-policy" rel="noopener noreferrer">Datenschutz bei itch.io</a>
+                <a href="https://gumroad.com/privacy" rel="noopener noreferrer">Datenschutz bei Gumroad</a>
+                <a href="https://www.microsoft.com/privacy/privacystatement" rel="noopener noreferrer">Microsoft-Datenschutz</a>
+              </p>
+              <p>Der Aufruf externer Links erfolgt erst nach deinem Anklicken. Dann können die jeweiligen Anbieter insbesondere IP-Adresse, Geräte- und Browserinformationen sowie gegebenenfalls Konto- und Transaktionsdaten verarbeiten.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="de-website">
+            <div><span class="card-number">05</span><h3>Aufruf dieser Datenschutz-Webseite</h3></div>
+            <div>
+              <p>Diese Seite wird auf der Website andreasboehler.com bei <strong>Hostinger International Ltd.</strong>, 61 Lordou Vironos Street, 6023 Larnaca, Zypern, bereitgestellt. Beim Abruf können technisch notwendige Server- und Auslieferungsdaten verarbeitet werden, insbesondere IP-Adresse, Datum und Uhrzeit, aufgerufene URL, Referrer, Browsertyp, Betriebssystem, HTTP-Statuscode und übertragene Datenmenge.</p>
+              <p>Die Verarbeitung dient der Auslieferung der Seite, der Stabilität, Fehleranalyse, IT-Sicherheit und Missbrauchsabwehr. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; das berechtigte Interesse liegt in der sicheren und zuverlässigen Bereitstellung dieses Informationsangebots.</p>
+              <p>Server- und Sicherheitsprotokolle werden nur so lange aufbewahrt, wie dies für Betrieb, Fehleranalyse, Sicherheit und Missbrauchsabwehr erforderlich ist oder gesetzliche Pflichten eine längere Aufbewahrung verlangen. Hostinger kann für die technische Bereitstellung Unterauftragsverarbeiter einsetzen. Einzelheiten, einschließlich möglicher Verarbeitungen außerhalb des EWR und der von Hostinger genannten Garantien, stehen in den <a href="https://www.hostinger.com/de/legal/datenschutz-bestimmungen" rel="noopener noreferrer">Datenschutzhinweisen von Hostinger</a>.</p>
+              <p>Diese konkrete Seite bindet keine Analyse- oder Trackingdienste, keine Cookies, keine externen Schriftarten und keine eingebetteten Medien ein. Die Schriften werden lokal vom selben Webserver geladen. Die Seite enthält lediglich externe Links, die erst beim Anklicken aufgerufen werden.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="de-rights">
+            <div><span class="card-number">06</span><h3>Deine Datenschutzrechte</h3></div>
+            <div>
+              <p>Nach Maßgabe der <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A02016R0679-20160504" rel="noopener noreferrer">Datenschutz-Grundverordnung</a> können dir insbesondere Rechte auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21) zustehen. Eine erteilte Einwilligung kann mit Wirkung für die Zukunft widerrufen werden.</p>
+              <p>Diese Rechte beziehen sich auf Daten, die Andreas Boehler tatsächlich verarbeitet. Lokal auf deinem Gerät gespeicherte Spielstände und Einstellungen liegen nicht bei Andreas Boehler und können daher am Gerät selbst verwaltet oder gelöscht werden.</p>
+              <p>Zur Ausübung deiner Rechte genügt eine Nachricht an <a href="mailto:support@andreasboehler.com">support@andreasboehler.com</a>. Außerdem besteht nach Art. 77 DSGVO ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde. Für Baden-Württemberg ist der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg zuständig: <a href="https://www.baden-wuerttemberg.datenschutz.de/beschwerde/" rel="noopener noreferrer">Informationen und Beschwerdeformular</a>.</p>
+              <p>Diese Erklärung wird angepasst, wenn sich Funktionen, Vertriebswege, Dienstleister oder tatsächliche Verarbeitungsabläufe wesentlich ändern. Maßgeblich ist die hier veröffentlichte Fassung.</p>
+              <div class="note"><strong>Hinweis:</strong> Diese Datenschutzerklärung wurde anhand des beschriebenen Funktionsumfangs, der geprüften Spielskripte, der vorhandenen Website-Konfiguration und aktueller offizieller Informationen erstellt. Sie ist keine Zertifizierung und ersetzt keine Prüfung des veröffentlichten Builds und der konkreten Store-Konfiguration.</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="language-section" id="english" lang="en" aria-labelledby="en-title">
+        <div class="section-intro">
+          <div>
+            <span class="section-kicker">English</span>
+            <p class="updated">Effective: 27 September 2026</p>
+          </div>
+          <div>
+            <h2 id="en-title">Privacy Policy for DUNKYARD RIVALS.</h2>
+            <p>This policy explains the processing of personal data in connection with the Windows game DUNKYARD RIVALS, support, distribution platforms and this information page. It is not individual legal advice and does not guarantee complete technical or legal error-free operation.</p>
+            <ul class="jump-list" aria-label="Sections of the English version">
+              <li><a href="#en-controller">Controller</a></li>
+              <li><a href="#en-game">Game & local data</a></li>
+              <li><a href="#en-support">Email support</a></li>
+              <li><a href="#en-stores">Stores</a></li>
+              <li><a href="#en-website">Website</a></li>
+              <li><a href="#en-rights">Your rights</a></li>
+              <li><a href="#deutsch">Deutsch ↑</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="policy-card" id="en-controller">
+            <div><span class="card-number">01</span><h3>Controller and contact</h3></div>
+            <div>
+              <p><strong>Andreas Böhler</strong><br>trading as Andreas Boehler<br>Am Mühlbach 14<br>79114 Freiburg im Breisgau<br>Germany</p>
+              <p>Creator and data controller for DUNKYARD RIVALS. Support and privacy requests: <a href="mailto:support@andreasboehler.com">support@andreasboehler.com</a>. Further provider information is available in the <a href="../../impressum.html">legal notice</a>.</p>
+              <p>No data protection officer has been designated. Privacy requests can be sent directly to the email address above.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="en-game">
+            <div><span class="card-number">02</span><h3>Gameplay and local storage</h3></div>
+            <div>
+              <p>DUNKYARD RIVALS is a single-player Windows game against computer-controlled opponents. It has no online multiplayer, no chat and no game-specific player account.</p>
+              <p>Settings and career save data are stored locally on the computer. They remain under the player's control. DUNKYARD RIVALS does not transmit these local saves or settings to Andreas Boehler.</p>
+              <p>A review of the game scripts found no built-in HTTP, WebSocket or other networking functions. This statement describes the reviewed development state; it is not a complete technical certification or a guarantee that the operating system, a store client, security software or other independent components do not make their own connections.</p>
+              <p>AI tools were used during development for graphics, code and text. This does not cause player data to be sent to AI services while the game is being played.</p>
+              <p>Andreas Boehler does not receive personal data from the game's purely local storage. Providing personal data to the creator is not required to play. The game does not carry out automated decision-making or profiling on behalf of Andreas Boehler.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="en-support">
+            <div><span class="card-number">03</span><h3>Email support</h3></div>
+            <div>
+              <p>If you contact support by email, the information you provide is processed. This may include your email address, name or sender name, message content, technical email metadata and attachments you voluntarily provide, such as screenshots or log extracts.</p>
+              <p>The data is used to answer your request, investigate errors, support use of the game and, where applicable, enter into or perform a contract. The legal bases are Article 6(1)(b) GDPR for contract-related communication and Article 6(1)(f) GDPR for general support and the legitimate interest in a secure, functioning product. Article 6(1)(c) GDPR also applies where retention is required by law.</p>
+              <p>Email is handled through Hostinger's email service. The email provider you choose also processes the message under its own responsibility. Please send only information and attachments needed to handle the request.</p>
+              <p>Support messages and attachments are kept only for as long as needed to handle and document the request, investigate errors, comply with legal obligations or establish, exercise or defend legal claims. They are then deleted unless an obligation or overriding reason requires further retention.</p>
+              <p>Contacting support is voluntary. Without a reachable email address and the information needed to understand the issue, an individual response or investigation may not be possible.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="en-stores">
+            <div><span class="card-number">04</span><h3>Purchases, payments, downloads and store features</h3></div>
+            <div>
+              <p>DUNKYARD RIVALS is distributed through itch.io and Gumroad; release in Microsoft Store is in preparation. Accounts, purchases, payment, downloads, licence management, updates, store support, reviews and any platform diagnostics are processed by the platform used, under that platform's own responsibility and privacy policy.</p>
+              <p>Andreas Boehler does not determine these independent platform processing activities. The data processed by a store depends on the platform, account, payment method, device and privacy settings. Where a platform provides Andreas Boehler with order, payout or purchaser information, it is processed only to perform the contract, provide support, handle accounting and comply with legal obligations. The legal bases are Articles 6(1)(b) and (c) GDPR and, for preventing abuse or handling legal claims, Article 6(1)(f) GDPR.</p>
+              <p>The platforms' own processing is governed by their applicable notices:</p>
+              <p class="source-links">
+                <a href="https://itch.io/docs/legal/privacy-policy" rel="noopener noreferrer">itch.io Privacy Policy</a>
+                <a href="https://gumroad.com/privacy" rel="noopener noreferrer">Gumroad Privacy Policy</a>
+                <a href="https://www.microsoft.com/privacy/privacystatement" rel="noopener noreferrer">Microsoft Privacy Statement</a>
+              </p>
+              <p>External websites are contacted only after you click a link. The relevant provider may then process your IP address, device and browser information and, where applicable, account and transaction data.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="en-website">
+            <div><span class="card-number">05</span><h3>Visiting this privacy webpage</h3></div>
+            <div>
+              <p>This page is provided on andreasboehler.com by <strong>Hostinger International Ltd.</strong>, 61 Lordou Vironos Street, 6023 Larnaca, Cyprus. When the page is requested, technically necessary server and delivery data may be processed, including IP address, date and time, requested URL, referrer, browser type, operating system, HTTP status code and the amount of data transferred.</p>
+              <p>This processing is used to deliver the page, maintain stability, analyse errors, protect IT security and prevent abuse. The legal basis is Article 6(1)(f) GDPR; the legitimate interest is the secure and reliable provision of this information.</p>
+              <p>Server and security logs are retained only as long as needed for operation, error analysis, security and abuse prevention, or for a longer period where required by law. Hostinger may use subprocessors to provide the technical service. Details, including possible processing outside the EEA and safeguards described by Hostinger, are available in the <a href="https://www.hostinger.com/legal/privacy-policy" rel="noopener noreferrer">Hostinger Privacy Policy</a>.</p>
+              <p>This specific page does not include analytics or tracking services, cookies, external fonts or embedded media. Fonts are served locally by the same web server. External websites are contacted only when a visitor clicks a link.</p>
+            </div>
+          </article>
+
+          <article class="policy-card" id="en-rights">
+            <div><span class="card-number">06</span><h3>Your data protection rights</h3></div>
+            <div>
+              <p>Subject to the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016R0679-20160504" rel="noopener noreferrer">General Data Protection Regulation</a>, you may in particular have rights of access (Article 15), rectification (Article 16), erasure (Article 17), restriction of processing (Article 18), data portability (Article 20) and objection to processing based on legitimate interests (Article 21). Consent can be withdrawn at any time with effect for the future.</p>
+              <p>These rights apply to data actually processed by Andreas Boehler. Save files and settings stored locally on your device are not held by Andreas Boehler and can therefore be managed or deleted on the device itself.</p>
+              <p>To exercise your rights, email <a href="mailto:support@andreasboehler.com">support@andreasboehler.com</a>. Under Article 77 GDPR, you may also lodge a complaint with a data protection supervisory authority. The authority responsible in Baden-Württemberg is the State Commissioner for Data Protection and Freedom of Information Baden-Württemberg: <a href="https://www.baden-wuerttemberg.datenschutz.de/beschwerde/" rel="noopener noreferrer">information and complaint form</a>.</p>
+              <p>This policy will be updated if features, distribution channels, service providers or actual processing operations materially change. The version published here is the current version.</p>
+              <div class="note"><strong>Note:</strong> This privacy policy was prepared based on the described feature set, the reviewed game scripts, the existing website configuration and current official information. It is not a certification and does not replace a review of the published build and the specific store configuration.</div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <div>
+        <small>DUNKYARD RIVALS · Privacy</small>
+        <strong>Local game. Clear information.</strong>
+      </div>
+      <nav aria-label="Footer">
+        <a href="#top">Nach oben / Top</a>
+        <a href="../../impressum.html">Impressum</a>
+        <a href="../../datenschutz.html">Website-Datenschutz</a>
+        <a href="mailto:support@andreasboehler.com">Support</a>
+      </nav>
+    </footer>
+  </body>
+</html>
