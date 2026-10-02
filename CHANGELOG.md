@@ -8,6 +8,13 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.6.1] - 2026-09-27
+
+### Added
+
+- Eine eigenstaendige zweisprachige Datenschutzseite fuer das Windows-Spiel DUNKYARD RIVALS unter `/dunkyard-rivals/datenschutz/` dokumentiert lokale Spielstaende, E-Mail-Support, Store-Verantwortlichkeiten und den Webseitenabruf.
+- Die Seite ist ohne Anmeldung erreichbar, verwendet keine Analyse-, Tracking- oder externen Medien-Dienste und bleibt per Meta-Tag sowie `X-Robots-Tag` auf `noindex`.
+
 ## [0.6.0] - 2026-09-26
 
 ### Added

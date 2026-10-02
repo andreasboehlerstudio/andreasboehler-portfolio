@@ -110,6 +110,9 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
+# Keep the game privacy page on its requested public trailing-slash URL.
+RewriteRule ^dunkyard-rivals/datenschutz/?$ andreasboehlerportfolio/dunkyard-rivals/datenschutz/index.html [L,NC]
+
 # Explicitly retire obsolete trailing-slash WordPress URLs without a relevant successor.
 RewriteCond %{HTTP_HOST} !^staging\.andreasboehler\.com$ [NC]
 RewriteRule ^.+/$ - [R=410,L,NC]
