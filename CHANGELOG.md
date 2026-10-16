@@ -8,6 +8,14 @@ Format: orientiert an Keep a Changelog. Versionierung: SemVer (`MAJOR.MINOR.PATC
 
 - Noch keine nicht versionierten Aenderungen.
 
+## [0.7.0] - 2026-10-16
+
+### Added
+
+- Eine eigenstaendige deutsche Datenschutzseite fuer die Windows-Demo und Vollversion von Vacuum Vandals ist unter `/vacuum-vandals-privacy.html` vorbereitet.
+- Die Seite beschreibt lokale Einstellungen, optionales Netzwerkspiel, konfigurierte Unity-Dienste, E-Mail-Support ueber Hostinger, Vertriebsplattformen und Betroffenenrechte.
+- Die selbststaendige HTML-Datei verwendet keine Scripts, Formulare oder externen Assets; bestehende Website- und Rechtstexte bleiben unveraendert.
+
 ## [0.6.1] - 2026-09-27
 
 ### Added

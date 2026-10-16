@@ -4,7 +4,7 @@ Statische Portfolio-Website fuer Andreas Boehler mit kuratierten Film-, Foto-, A
 
 Die Seite ist bewusst ohne Build-System aufgebaut: HTML, CSS, JavaScript und Assets liegen direkt im Repository und koennen lokal oder ueber GitHub Pages / einen statischen Webhost ausgeliefert werden.
 
-Aktuelle dokumentierte Version: `0.5.38`
+Aktuelle dokumentierte Version: `0.7.0`
 
 ## Inhalt
 
@@ -150,6 +150,14 @@ Beispiel:
 ### [Unreleased]
 
 Noch keine nicht versionierten Aenderungen.
+
+### [0.7.0] - 2026-10-16
+
+#### Added
+
+- Eine eigenstaendige deutsche Datenschutzseite fuer die Windows-Demo und Vollversion von Vacuum Vandals ist unter `/vacuum-vandals-privacy.html` vorbereitet.
+- Die Seite beschreibt lokale Einstellungen, optionales Netzwerkspiel, konfigurierte Unity-Dienste, E-Mail-Support ueber Hostinger, Vertriebsplattformen und Betroffenenrechte.
+- Die selbststaendige HTML-Datei verwendet keine Scripts, Formulare oder externen Assets; bestehende Website- und Rechtstexte bleiben unveraendert.
 
 ### [0.5.38] - 2026-08-07
 
