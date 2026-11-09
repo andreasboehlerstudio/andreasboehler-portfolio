@@ -166,6 +166,7 @@ function setupWorksViewToggle() {
 }
 
 function setupWorksCuration() {
+  if (document.body.dataset.liveProjects === "curated-eight") return;
   const grid = document.querySelector(".redox-portfolio-grid");
 
   if (!grid || grid.dataset.curationReady === "true") {
@@ -3677,6 +3678,7 @@ function setupTalkButton() {
 }
 
 function setupCinematicPageCta() {
+  if (document.body.dataset.curatedCase === "true") return;
   if (!pageShell || ["contact", "privacy", "agb", "imprint"].includes(document.body.dataset.page) || document.querySelector(".cinematic-page-cta") || document.querySelector(".wedding-inquiry")) {
     return;
   }
@@ -4000,6 +4002,7 @@ function renderProjectVideos(project) {
 }
 
 function renderProjectPage() {
+  if (document.body.dataset.curatedCase === "true") return;
   const projectHero = document.querySelector("#projectHero");
 
   if (!projectHero) {

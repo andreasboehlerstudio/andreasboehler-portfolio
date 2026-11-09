@@ -1,0 +1,24 @@
+/* Content update 2026-10-30. Existing visual system retained. */
+.curated-card-credit { margin-top:8px; line-height:1.5; }
+.curated-film,.curated-credits,.curated-next { padding:clamp(72px,9vw,140px) var(--section-x-slim,6vw); }
+.curated-film { background:#080909; color:#f7f4ee; }
+.curated-film header { max-width:780px; margin-bottom:40px; }
+.curated-film header>span,.curated-credits header>span,.curated-next>span { font-family:var(--font-mono); font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; }
+.curated-film h2,.curated-credits h2,.curated-next h2 { font-family:var(--font-display); font-size:clamp(2.2rem,5vw,5rem); font-weight:400; line-height:1.08; margin:20px 0; }
+.curated-film p { font-size:clamp(1rem,1.3vw,1.25rem); line-height:1.7; }
+.curated-film-frame { position:relative; width:100%; aspect-ratio:16/9; margin-bottom:28px; }
+.curated-film-frame iframe { width:100%; height:100%; border:0; }
+.curated-film>.inline-link { display:inline-block; margin-top:20px; color:inherit; }
+.curated-stills { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; padding:clamp(24px,4vw,64px) var(--section-x-slim,6vw); }
+.curated-stills figure { margin:0; overflow:hidden; }
+.curated-stills img { display:block; width:100%; height:100%; aspect-ratio:16/9; object-fit:cover; }
+.curated-credits { display:grid; grid-template-columns:1fr 1.5fr; gap:40px; }
+.curated-credits dl { margin:0; }
+.curated-credits dl>div { display:grid; grid-template-columns:minmax(120px,1fr) 2fr; gap:24px; padding:22px 0; border-bottom:1px solid #8885; }
+.curated-credits dt { font-size:.8rem; text-transform:uppercase; line-height:1.6; }
+.curated-credits dd { margin:0; font-size:clamp(1rem,1.3vw,1.2rem); line-height:1.6; }
+.curated-credits>.inline-link { grid-column:2; }
+.curated-next { border-top:1px solid #8885; }
+.curated-next a { color:inherit; }
+body[data-curated-case="true"] #projectRole { font-size:clamp(1.35rem,2.8vw,3rem); line-height:1.25; overflow-wrap:normal; }
+@media(max-width:700px) { .curated-stills {grid-template-columns:1fr;} .curated-credits {grid-template-columns:1fr; gap:24px;} .curated-credits>.inline-link {grid-column:1;} .curated-credits dl>div {grid-template-columns:1fr;gap:8px;} .curated-film,.curated-credits,.curated-next {padding:64px 24px;} }

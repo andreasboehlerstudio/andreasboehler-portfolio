@@ -6,12 +6,14 @@ from pathlib import Path
 
 
 ALLOWED_PROJECTS = {
-    "50-jahre-europa-park.html",
-    "dj-bobo-evolut30n-tour.html",
-    "novartis-medportal.html",
-    "photography.html",
-    "tnw-website.html",
+    "phantom-der-oper-vr-coastiality.html",
     "voltron-nevera-tv-werbespot.html",
+    "dj-bobo-evolut30n-tour.html",
+    "castello-dei-medici.html",
+    "hanhart-europa-park.html",
+    "movin-powerbreak.html",
+    "energize-your-communications-commercial.html",
+    "50-jahre-europa-park.html",
 }
 
 NON_PROJECT_WORKS_PAGES = {"photography.html", "works.html"}
@@ -25,7 +27,7 @@ def is_project_page(path: Path) -> bool:
 def curate_works_page(path: Path) -> None:
     html = path.read_text(encoding="utf-8")
     card_pattern = re.compile(
-        r'\s*<a class="redox-project-card"(?: id="[^"]+")? '
+        r'\s*<a class="redox-project-card(?: [^"]*)?"(?: id="[^"]+")? '
         r'href="(?P<href>[^"]+\.html)">.*?</a>',
         re.DOTALL,
     )

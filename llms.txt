@@ -27,25 +27,14 @@ Ausgewaehlte Marken und Organisationen aus Projektarbeit, Agenturkontext, Inhous
 
 ## Selected portfolio projects
 
-- [50 Jahre Europa-Park](https://andreasboehler.com/50-jahre-europa-park.html): Entertainment · Jubiläum; Ein Jubiläumsprojekt für eine der stärksten Entertainment-Marken Europas: emotional, schnell verständlich und nah am Erlebnis.
-- [Duolingo Spec Ad](https://andreasboehler.com/duolingo-spec-ad.html): Spec Ad · Commercial; Eine überzeichnete Werbeidee mit starkem Motiv, klarer Dramaturgie und einem Look, der sofort hängen bleibt.
-- [Mareike & Daniel Wedding](https://andreasboehler.com/mareike-daniel-wedding.html): Fotografie · Dokumentarisch; Eine emotionale Bildserie, die nicht inszeniert wirken will, sondern Momente mit Timing, Nähe und Lichtgefühl bewahrt.
-- [Rockstar Musicvideo](https://andreasboehler.com/rockstar-musicvideo.html): Musicvideo · Performance; Ein Musikvideo mit rauer Energie, präzisem Timing und starker visueller Verdichtung rund um Performance und Atmosphäre.
-- [DJ Bobo EVOLUT30N Tour](https://andreasboehler.com/dj-bobo-evolut30n-tour.html): Producer · VFX · KI Postproduktion · 2024; Ein futuristischer Tourtrailer zwischen Show, Abenteuerkino und digitaler Postproduktion.
-- [Europa-Park Neuheiten 2023](https://andreasboehler.com/europa-park-neuheiten-2023.html): Entertainment · Freizeitpark; Bewegtbild und Fotografie für neue Attraktionen, saisonale Kommunikation und emotionale Besucherlebnisse.
-- [SMT Imagefilm Qualität](https://andreasboehler.com/smt-imagefilm-qualitaet.html): Corporate Film · Qualität; Ein Imagefilm, der Qualität nicht abstrakt behauptet, sondern über Prozesse, Menschen und Details erfahrbar macht.
-- [MOVIN Recruitingfilm](https://andreasboehler.com/movin-recruitingfilm.html): Recruiting · Employer Branding; Ein Recruitingfilm, der Arbeit, Menschen und Unternehmenskultur so zeigt, dass Bewerber ein Gefühl für das Umfeld bekommen.
-- [Virtual Production Case Study](https://andreasboehler.com/virtual-production-case-study.html): Lab · Virtual Production; Ein Case über moderne Produktionsweisen zwischen realem Set, digitalem Raum, 3D-Logik und Postproduktion.
-- [Novartis Medportal](https://andreasboehler.com/novartis-medportal.html): Healthcare · Digital Portal; Ein Werbefilm für digitale Prozesse zwischen Pharmaunternehmen, Ärzten und klarer Informationsarchitektur.
-- [Acino Swiss Lab & Production Tour](https://andreasboehler.com/acino-swiss-lab-production-tour.html): Healthcare · 360° Film; Ein immersiver Einblick in Labor, Produktion und Qualitätsprozesse für Investoren- und Standortkommunikation.
-- [Movicol Mode of Action](https://andreasboehler.com/movicol-mode-of-action.html): 3D Animation · Medical; Eine medizinische Wirkweise wird durch 3D Animation, Storyboard und präzise Postproduktion verständlich.
-- [Acino Pain Management](https://andreasboehler.com/acino-pain-management.html): Awarenessfilm · Healthcare; Ein Awarenessfilm in mehreren Sprachen für medizinisches Fachpersonal und Patientenkommunikation.
-- [Bongrain / Savencia](https://andreasboehler.com/bongrain-savencia.html): Webdesign · Sales Tool; Digitale Rezepte, Rich Media und ein iPad Sales Tool für Markenkommunikation im Food-Kontext.
-- [X-Ray Website](https://andreasboehler.com/x-ray-website.html): UX · UI · Healthcare Agency; Relaunch und digitale Positionierung einer Healthcare-Agentur mit UX, UI und Core-Team-Aufbau.
-- [ARCONDIS Brand Identity](https://andreasboehler.com/arcondis-brand-identity.html): Branding · Life Science IT; Brand Identity und Website für Life-Science IT Consulting mit klarer, technischer und vertrauenswürdiger Kommunikation.
-- [Syngenta Campaign](https://andreasboehler.com/syngenta-campaign.html): Branding · Guidelines; Branding, Guidelines und Kampagnenlogik für Agrarprodukte mit hohem Informations- und Vertrauensbedarf.
-- [AbbVie Oncology](https://andreasboehler.com/abbvie-oncology.html): Healthcare · Print Campaign; Composing und Printanzeigen für Onkologie-Kommunikation mit hoher visueller Sensibilität.
-- [Dr. Martin Klein](https://andreasboehler.com/dr-martin-klein.html): Corporate Design · Facharztprofil; Corporate Design, Logo und Markenauftritt für ein medizinisches Facharztprofil.
+- [Das Phantom der Oper – Eurosat Coastiality](https://andreasboehler.com/phantom-der-oper-vr-coastiality.html) – Europa-Park · Werbespot. Producer · Produktionsleitung · VFX.
+- [Voltron Nevera – It Works](https://andreasboehler.com/voltron-nevera-tv-werbespot.html) – Europa-Park · TV-Werbespot. Producer · Post-Production Supervisor · Logo-VFX.
+- [DJ BoBo – The Great Adventure](https://andreasboehler.com/dj-bobo-evolut30n-tour.html) – DJ BoBo · Tourtrailer. Producer · VFX · Motion Graphics.
+- [Castello dei Medici](https://andreasboehler.com/castello-dei-medici.html) – Europa-Park · Kurzfilm zur Wiedereröffnung des Geisterschlosses. Producer · VFX · Logoanimation.
+- [Hanhart × Europa-Park](https://andreasboehler.com/hanhart-europa-park.html) – Hanhart / Europa-Park · Brand Film. Kamera · Lichtsetzung.
+- [MOVIN Powerbreak](https://andreasboehler.com/movin-powerbreak.html) – MOVIN am Loretto Berg · Imagefilm. Konzeption · Schnitt · Motion Design.
+- [Energize Your Communications](https://andreasboehler.com/energize-your-communications-commercial.html) – X-Ray · Imagefilm. DoP · Schnitt · Color Grading · VFX.
+- [50 Jahre Europa-Park](https://andreasboehler.com/50-jahre-europa-park.html) – Europa-Park · Jubiläumsfilm. Producer · Konzeption und Idee.
 
 ## Key topics
 
