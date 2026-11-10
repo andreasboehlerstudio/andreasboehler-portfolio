@@ -1,10 +1,9 @@
 @font-face {
-  font-family: Whyte;
-  src: url("assets/WhyteInktrap-Book.woff2") format("woff2");
+  font-family: "Bricolage Grotesque";
+  src: url("assets/BricolageGrotesque96pt-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  unicode-range: U+0000-007F;
 }
 
 @font-face {
@@ -32,7 +31,7 @@
 }
 
 :root {
-  --font-display: Whyte, StudioText, Arial, Helvetica, sans-serif;
+  --font-display: "Bricolage Grotesque", StudioText, Arial, Helvetica, sans-serif;
   --font-text: StudioText, Arial, Helvetica, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --font-wordmark: "Mona Sans", StudioText, Arial, Helvetica, sans-serif;
